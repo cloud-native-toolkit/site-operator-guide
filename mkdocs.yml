@@ -1,0 +1,70 @@
+site_name: "Cloud-Native Toolkit: Operate"
+site_description: >-
+  The Cloud-Native Toolkit is an open-source collection of assets that enable application development and support teams to deliver business value quickly using Red Hat OpenShift or Kubernetes
+site_url: https://cloudnativetoolkit.dev
+site_author: Cloud-Native Toolkit development team
+repo_name: ""
+repo_url: https://github.com/cloud-native-toolkit/site-operator-guide
+docs_dir: docs
+site_dir: public
+edit_uri: edit/main/docs
+theme:
+    name: material
+    logo: images/cloudnativetoolkit.png
+    favicon: images/cloudnativetoolkit.png
+    palette:
+      scheme: default
+      primary: black
+    font:
+      text: IBM Plex Sans
+      code: IBM Plex Mono
+    language: en
+    custom_dir: overrides
+    features:
+#      - navigation.tabs
+      - navigation.instant
+      - navigation.tracking
+#      - navigation.tabs.sticky
+#      - navigation.top
+use_directory_urls: true
+watch:
+  - overrides
+plugins:
+  - search:
+      lang: en
+  - minify:
+      minify_html: true
+  - redirects:
+      redirect_maps: {}
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - toc:
+      permalink: true
+      toc_depth: 3
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - pymdownx.tabbed
+  - pymdownx.details
+extra_css:
+    - css/extra.css
+    - css/toolkit-code.css
+extra:
+  generator: false
+copyright: Copyright © 2022 Cloud-Native Toolkit
+google_analytics: ['UA-153689700-1', 'operate.cloudnativetoolkit.dev']
+nav:
+  - Home: index.md
+  - Getting started:
+      - Overview: getting-started/index.md
+  - Learn: learn/index.md
+#      - Overview: learn/index.md
+  - Do: do/index.md
+#      - Overview: do/index.md
+  - Resources:
+      - Overview: resources/index.md
+      - ASCENT: resources/ascent.md
+      - Automation bundles: resources/automation-bundles.md
+      - Module catalog: resources/module-catalog.md
+

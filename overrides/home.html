@@ -1,0 +1,102 @@
+
+{% extends "main.html" %}
+
+<link rel="stylesheet" href="{{ 'assets/stylesheets/home.css' | url }}" />
+
+<!-- Tabs -->
+{% block tabs %}{% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+<link rel="stylesheet" href="{{ 'assets/stylesheets/home.css' | url }}" />
+  <!-- Hero for landing page -->
+  <section class="mdx-container">
+    <div class="md-grid md-typeset">
+      <div class="mdx-hero">
+        <section>
+          <div class="home-hero">
+            <div class="home-hero-text">
+              <div>
+                <ul style="list-style-type: none">
+                  <li>Use automation bundles to provision multi-cloud solutions</li>
+                  <li>Define custom multi-cloud solutions from available automation modules</li>
+                  <li>Contribute automation modules and reference architectures</li>
+                </ul>
+              </div>
+              <div>
+                <a href="getting-started/"><button class="md-button md-button--primary" style="margin: 0 auto; display: block;">Get started</button></a>
+              </div>
+            </div>
+            <div class=home-hero-image>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="home-description">
+            <div class='row'>
+              <div class='column'>
+                <div style="margin: 0 auto; display: block;" class="md-typeset">
+                  <div style="padding: 0 20px">
+                    <ul style="list-style-type: none; text-align: center;">
+                      <li>Understand available automation bundles</li>
+                      <li>Get hands-on experience using automation through tutorials</li>
+                      <li>Learn how to build custom automation</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <a href="learn/"><button class="md-button md-button--primary" style="margin: 0 auto; display: block; background-color: #fff; color: #000;">Learn</button></a>
+                  </div>
+                </div>
+              </div>
+              <div class='column'>
+                <div style="margin: 0 auto; display: block;" class="md-typeset">
+                  <div style="padding: 0 20px">
+                    <ul style="list-style-type: none; text-align: center;">
+                      <li>Get resources to apply the automation on a project</li>
+                      <li>Dig deeper into the technologies that support the automation</li>
+                      <li>Get support for advanced use cases</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <a href="do/"><button class="md-button md-button--primary" style="margin: 0 auto; display: block; background-color: #fff; color: #000;">Do</button></a>
+                  </div>
+                </div>
+                </div>
+              <div class='column'>
+                <div style="margin: 0 auto; display: block;" class="md-typeset">
+                  <div style="padding: 0 20px">
+                    <ul style="list-style-type: none; text-align: center;">
+                      <li>Get resources to apply the automation on a project</li>
+                      <li>Dig deeper into the technologies that support the automation</li>
+                      <li>Get support for advanced use cases</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <a href="resources/"><button class="md-button md-button--primary" style="margin: 0 auto; display: block; background-color: #fff; color: #000;">Resources</button></a>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="home-purpose">
+            <div class='row'>
+              <div class='column'>
+                <h2 style="margin: 0 auto; display: block;">
+                  <h2>Resources</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+<!-- Application footer -->
+{% block footer %}
+{{ super() }}
+{% endblock %}
+
