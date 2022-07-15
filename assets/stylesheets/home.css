@@ -102,3 +102,7 @@ article.md-content__inner.md-typeset {
   background-color: #161616;
   border-left: 1px solid #393939;
 }
+
+.md-content {
+  padding-bottom: 0;
+}
