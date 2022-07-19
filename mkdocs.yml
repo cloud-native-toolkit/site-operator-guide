@@ -58,6 +58,10 @@ nav:
   - Home: index.md
   - Getting started:
       - Overview: getting-started/index.md
+      - Labs:
+        -  Lab 1 - Getting started with the basics  : getting-started/lab1.md
+        -  Lab 2 - Use IasCable to create a VPC and a Red Hat OpenShift cluster on IBM Cloud  : getting-started/lab2.md
+        -  Lab 3 - Setup initial GitOps on a Red Hat OpenShift Cluster in a Virtual Private Cloud on IBM Cloud : getting-started/lab3.md
   - Learn: learn/index.md
 #      - Overview: learn/index.md
   - Do: do/index.md
