@@ -172,6 +172,12 @@ spec:
           value: "iascable-gitops"
 ```
 
+That will result later in flowing overall depencencies of the used `Terraform` modules, given in provide a created `dependencies.dot` file later. 
+
+![](images/dependency-graph-lab3.png)
+
+> Note: You can use [GraphvizOnline](https://dreampuf.github.io/GraphvizOnline) for the visualization.
+
 ## 4. Use `IasCable` to create the scaffolding for a `Terraform` project
 
 ### Step 1: Install [colima](https://github.com/abiosoft/colima) container engine and start the container engine
@@ -210,7 +216,6 @@ Loading catalog from url: https://modules.cloudnativetoolkit.dev/index.yaml
 Name: my-ibm-vpc-roks-argocd
 Writing output to: ./output
 ```
-
 
 ### Step 3: Copy helper bash scripts into the output folder
 
