@@ -21,7 +21,7 @@ Simplified we can say a [BOM is specified](https://github.com/cloud-native-toolk
 
 Here is a simplified overview diagram of the dependencies:
 
-![](../../images/ascale-bom-overview.drawio.png)
+![](../../images/iascale-bom-overview.drawio.png)
 
 Here is a simplified activity diagram that shows the activities carried out by the user and the `IasCable` framework.
 
@@ -33,7 +33,7 @@ Simplified we can say, we have two basic roles in that context:
 
 1. `Creaters` (Architect, Developer
 or Operator) defining [Bill of Materials](https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure) to create Terraform automation for creating specific infrastructure based on reusing existing Terraform modules.
-2. `Consumors` who using the create Terraform automation based on the `BOM` definition.
+2. `Consumers` who using the create Terraform automation based on the `BOM` definition.
 
 And we have two major elements to define and create the needed Terraform automation.
 
@@ -175,7 +175,7 @@ The folder `output` contains all the content created by the `iascable build` com
 
 * `output/ibm-vpc` folder
 
-The folder `ibm-vpc` is the name we used in ower own `BOM` file. Let us call that folder project folder, which was defined in meta data.
+The folder `ibm-vpc` is the name we used in our own `BOM` file. Let us call that folder project folder, which was defined in meta data.
 
 ```yaml
 metadata:
@@ -190,8 +190,8 @@ This is table contains the list of files in the terraform folder.
 | --- | --- |
 | `output/ibm-vpc/terraform/main.tf` | Here you see a number of modules defined including the defined `ibm-vpc` and `ibm-vpc-subnets` from the BOM file. |
 | `output/ibm-vpc/terraform/providers.tf` | Simply contains the needed cloud provider information. In that case what we need to specify for `IBM Cloud`. |
-| `output/ibm-vpc/terraform/variables.ft` | Contains the specification for the used variable in the `main.tf` or other Terrafrom files. |
-| `output/ibm-vpc/terraform/version.ft` | Contains the specification for the used Terrafrom provider sources and versions. In that case only IBM is listed.|
+| `output/ibm-vpc/terraform/variables.ft` | Contains the specification for the used variable in the `main.tf` or other Terraform files. |
+| `output/ibm-vpc/terraform/version.ft` | Contains the specification for the used Terraform provider sources and versions. In that case only IBM is listed.|
 | `output/ibm-vpc/terraform/ibm-vpc.auto.tfvars` | That file can be used to configure the variable values. (maybe add to .gitignore) During the execution of `terraform plan` and `terraform apply` you will be ask for input, if you didn't specify that values. |
 
 * The `output/launch.sh` file
@@ -1151,6 +1151,6 @@ var.resource_group_name
 Destroy complete! Resources: 36 destroyed.
 ```
 
-## 4. Summay
+## 4. Summary
 
 The `IasCable` and the [`Modules`](https://modules.cloudnativetoolkit.dev/) (from the Software Everywhere project) which are all from the Cloud Native Toolkit providing a good concept for a framework to provide reusable components to install and configure cloud infrastructure. This was just a getting started. There is more to learn.
