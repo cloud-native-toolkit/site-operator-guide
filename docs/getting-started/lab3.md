@@ -172,7 +172,7 @@ spec:
           value: "iascable-gitops"
 ```
 
-That will result later in flowing overall depencencies for the used `Terraform` modules. The dependencies are given in automatic created `dependencies.dot` file later. 
+That will result later in flowing overall dependencies for the used `Terraform` modules. The dependencies are given in automatic created `dependencies.dot` file later. 
 
 ![](images/dependency-graph-lab3.png)
 
