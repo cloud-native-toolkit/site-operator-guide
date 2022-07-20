@@ -42,7 +42,7 @@ And we have two major elements to define and create the needed Terraform automat
 
 The following diagram shows some high level dependencies.
 
-![](images/software-everywhere-getting-started.drawio.png)
+![](../images/software-everywhere-getting-started.drawio.png)
 
 ## 2. Pre-requisites for the example
 
