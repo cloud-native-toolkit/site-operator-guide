@@ -172,7 +172,7 @@ spec:
           value: "iascable-gitops"
 ```
 
-That will result later in flowing overall dependencies for the used `Terraform` modules. The dependencies are given in automatic created `dependencies.dot` file later. 
+The `BOM` will result later in following overall dependencies for the used `Terraform modules` after the usage of `IasCable`. The dependencies are given in automatic created `dependencies.dot` file later. 
 
 ![](images/dependency-graph-lab3.png)
 
