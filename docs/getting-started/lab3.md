@@ -268,7 +268,7 @@ my-ibm-vpc-roks-argocd
 
 ```sh
 sh helper-tools-create-container-workspace.sh
-ls /workspaces
+ls /home/devops/workspace
 ```
 
 The following tasks are automated in the helper bash script [`helper-tools-create-container-workspace.sh`](https://github.com/thomassuedbroecker/iascable-vpc-openshift-argocd/blob/main/example/helper-tools-create-container-workspace.sh) I wrote.
