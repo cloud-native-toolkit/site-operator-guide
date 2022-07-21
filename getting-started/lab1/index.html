@@ -1,0 +1,943 @@
+<!doctype html><html lang=en class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="The Cloud-Native Toolkit is an open-source collection of assets that enable application development and support teams to deliver business value quickly using Red Hat OpenShift or Kubernetes"><meta name=author content="Cloud-Native Toolkit development team"><link href=https://cloudnativetoolkit.dev/getting-started/lab1/ rel=canonical><link rel=icon href=../../images/cloudnativetoolkit.png><meta name=generator content="mkdocs-1.2.1, mkdocs-material-7.1.8"><title>Lab 1 - Getting started with the basics - Cloud-Native Toolkit: Operate</title><link rel=stylesheet href=../../assets/stylesheets/main.ca7ac06f.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.f1a3b89f.min.css><meta name=theme-color content=#000000><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,400,400i,700%7CIBM+Plex+Mono&display=fallback"><style>:root{--md-text-font-family:"IBM Plex Sans";--md-code-font-family:"IBM Plex Mono"}</style><link rel=stylesheet href=../../css/extra.css><link rel=stylesheet href=../../css/toolkit-code.css><script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-153689700-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){var e;this.value&&(e=document.location.pathname,ga("send","pageview",e+"?q="+this.value))}),"undefined"!=typeof location$&&location$.subscribe(function(e){ga("send","pageview",e.pathname)})})</script><script async src=https://www.google-analytics.com/analytics.js></script><!-- Determine title --><!-- The image needs to have an absolute URL --><!-- Open graph meta tags --><meta property=og:type content=website><meta property=og:title content="Cloud-Native Toolkit: Operate - Lab 1 - Getting started with the basics"><meta property=og:description content="The Cloud-Native Toolkit is an open-source collection of assets that enable application development and support teams to deliver business value quickly using Red Hat OpenShift or Kubernetes"><meta content=https://cloudnativetoolkit.dev/getting-started/lab1/ property=og:url><meta property=og:image content=https://cloudnativetoolkit.dev/assets/images/banner.png><meta property=og:image:type content=image/png><meta property=og:image:width content=1080><meta property=og:image:height content=568></head> <body dir=ltr data-md-color-scheme=default data-md-color-primary=black data-md-color-accent> <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#lab-1-getting-start-with-the-basics class=md-skip> Skip to content </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../.. title="Cloud-Native Toolkit: Operate" class="md-header__button md-logo" aria-label="Cloud-Native Toolkit: Operate" data-md-component=logo> <img src=../../images/cloudnativetoolkit.png alt=logo> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Cloud-Native Toolkit: Operate </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> Lab 1 - Getting started with the basics </span> </div> </div> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=Search placeholder=Search autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> Initializing search </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <a href=https://github.com/cloud-native-toolkit/site-operator-guide/ title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg> </div> <div class=md-source__repository> </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <!-- Determine class according to configuration --> <!-- Main navigation --> <nav class="md-nav md-nav--primary" aria-label=Navigation data-md-level=0> <!-- Site title --> <!--
+  <label class="md-nav__title" for="__drawer">
+    <a
+      href="../.."
+      title="Cloud-Native Toolkit: Operate"
+      class="md-nav__button md-logo"
+      aria-label="Cloud-Native Toolkit: Operate"
+      data-md-component="logo"
+    >
+      
+  <img src="../../images/cloudnativetoolkit.png" alt="logo">
+
+    </a>
+    Cloud-Native Toolkit: Operate
+  </label>
+--> <!-- Repository information --> <div class=md-nav__source> <a href=https://github.com/cloud-native-toolkit/site-operator-guide/ title="Go to repository" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg> </div> <div class=md-source__repository> </div> </a> </div> <!-- Render item list --> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> Home </a> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2 checked> <label class=md-nav__link for=__nav_2> Getting started <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Getting started" data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Getting started </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ class=md-nav__link> Overview </a> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2_2 type=checkbox id=__nav_2_2 checked> <label class=md-nav__link for=__nav_2_2> Labs <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Labs data-md-level=2> <label class=md-nav__title for=__nav_2_2> <span class="md-nav__icon md-icon"></span> Labs </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> Lab 1 - Getting started with the basics <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> Lab 1 - Getting started with the basics </a> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#1-the-iascable-framework class=md-nav__link> 1. The IasCable framework </a> <nav class=md-nav aria-label="1. The IasCable framework"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#bill-of-material-and-modules class=md-nav__link> Bill of Material and Modules </a> </li> <li class=md-nav__item> <a href=#realize-software-everywhere-with-bill-of-material-and-modules class=md-nav__link> Realize Software Everywhere with Bill of Material and Modules </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#2-pre-requisites-for-the-example class=md-nav__link> 2. Pre-requisites for the example </a> </li> <li class=md-nav__item> <a href=#3-step-by-step-example-setup class=md-nav__link> 3. Step-by-step example setup </a> <nav class=md-nav aria-label="3. Step-by-step example setup"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#step-1-install-cli class=md-nav__link> Step 1: Install CLI </a> </li> <li class=md-nav__item> <a href=#step-2-verify-the-installation class=md-nav__link> Step 2: Verify the installation </a> </li> <li class=md-nav__item> <a href=#step-3-create-a-bill-of-materialsbom-file class=md-nav__link> Step 3: Create a Bill of Materials(BOM) file </a> </li> <li class=md-nav__item> <a href=#step-4-execute-following-command class=md-nav__link> Step 4: Execute following command </a> </li> <li class=md-nav__item> <a href=#step-5-verify-the-created-content class=md-nav__link> Step 5: Verify the created content </a> </li> <li class=md-nav__item> <a href=#step-6-execute-the-terraform-init-command class=md-nav__link> Step 6: Execute the terraform init command </a> </li> <li class=md-nav__item> <a href=#step-7-execute-the-terraform-plan-command class=md-nav__link> Step 7: Execute the terraform plan command </a> </li> <li class=md-nav__item> <a href=#step-8-execute-the-terraform-apply class=md-nav__link> Step 8: Execute the terraform apply </a> </li> <li class=md-nav__item> <a href=#step-9-execute-the-terraform-destroy-command class=md-nav__link> Step 9: Execute the terraform destroy command </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#4-summary class=md-nav__link> 4. Summary </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../lab2/ class=md-nav__link> Lab 2 - Use IasCable to create a VPC and a Red Hat OpenShift cluster on IBM Cloud </a> </li> <li class=md-nav__item> <a href=../lab3/ class=md-nav__link> Lab 3 - Setup initial GitOps on a Red Hat OpenShift Cluster in a Virtual Private Cloud on IBM Cloud </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../learn/ class=md-nav__link> Learn </a> </li> <li class=md-nav__item> <a href=../../do/ class=md-nav__link> Do </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Resources <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Resources data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Resources </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../resources/ class=md-nav__link> Overview </a> </li> <li class=md-nav__item> <a href=../../resources/ascent/ class=md-nav__link> ASCENT </a> </li> <li class=md-nav__item> <a href=../../resources/automation-bundles/ class=md-nav__link> Automation bundles </a> </li> <li class=md-nav__item> <a href=../../resources/module-catalog/ class=md-nav__link> Module catalog </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label="Table of contents"> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> Table of contents </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#1-the-iascable-framework class=md-nav__link> 1. The IasCable framework </a> <nav class=md-nav aria-label="1. The IasCable framework"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#bill-of-material-and-modules class=md-nav__link> Bill of Material and Modules </a> </li> <li class=md-nav__item> <a href=#realize-software-everywhere-with-bill-of-material-and-modules class=md-nav__link> Realize Software Everywhere with Bill of Material and Modules </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#2-pre-requisites-for-the-example class=md-nav__link> 2. Pre-requisites for the example </a> </li> <li class=md-nav__item> <a href=#3-step-by-step-example-setup class=md-nav__link> 3. Step-by-step example setup </a> <nav class=md-nav aria-label="3. Step-by-step example setup"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#step-1-install-cli class=md-nav__link> Step 1: Install CLI </a> </li> <li class=md-nav__item> <a href=#step-2-verify-the-installation class=md-nav__link> Step 2: Verify the installation </a> </li> <li class=md-nav__item> <a href=#step-3-create-a-bill-of-materialsbom-file class=md-nav__link> Step 3: Create a Bill of Materials(BOM) file </a> </li> <li class=md-nav__item> <a href=#step-4-execute-following-command class=md-nav__link> Step 4: Execute following command </a> </li> <li class=md-nav__item> <a href=#step-5-verify-the-created-content class=md-nav__link> Step 5: Verify the created content </a> </li> <li class=md-nav__item> <a href=#step-6-execute-the-terraform-init-command class=md-nav__link> Step 6: Execute the terraform init command </a> </li> <li class=md-nav__item> <a href=#step-7-execute-the-terraform-plan-command class=md-nav__link> Step 7: Execute the terraform plan command </a> </li> <li class=md-nav__item> <a href=#step-8-execute-the-terraform-apply class=md-nav__link> Step 8: Execute the terraform apply </a> </li> <li class=md-nav__item> <a href=#step-9-execute-the-terraform-destroy-command class=md-nav__link> Step 9: Execute the terraform destroy command </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#4-summary class=md-nav__link> 4. Summary </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <a href=https://github.com/cloud-native-toolkit/site-operator-guide/edit/main/docs/getting-started/lab1.md title="Edit this page" class="md-content__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg> </a> <h1 id=lab-1-getting-start-with-the-basics>Lab 1: Getting start with the basics<a class=headerlink href=#lab-1-getting-start-with-the-basics title="Permanent link">&para;</a></h1> <blockquote> <p>That lab project uses following resource as input: From <a href=https://github.com/cloud-native-toolkit/iascable>IasCable</a> and <a href=https://suedbroecker.net/2022/07/06/get-started-with-an-installable-component-infrastructure-by-selecting-components-from-a-catalog-of-available-modules-with-iascable/ >that blog post</a>.</p> </blockquote> <p>This is just a starting point to use <code>IasCable</code>.</p> <h2 id=1-the-iascable-framework>1. The <code>IasCable</code> framework<a class=headerlink href=#1-the-iascable-framework title="Permanent link">&para;</a></h2> <p>Let us have first a look the basic components of the <code>IasCable</code> framework.</p> <h3 id=bill-of-material-and-modules><a href=https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure>Bill of Material</a> and <a href=https://modules.cloudnativetoolkit.dev/ >Modules</a><a class=headerlink href=#bill-of-material-and-modules title="Permanent link">&para;</a></h3> <p>The IasCable uses a <a href=https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure><code>Bill of Material</code></a> and <a href=https://modules.cloudnativetoolkit.dev/ ><code>Modules</code></a>(from the <a href=https://github.com/cloud-native-toolkit/software-everywhere>Software Everywhere project</a>), which you need to understand. These two parts are the heart of the framework we could say to realize the objective to build an installable component infrastructure based on components from a catalog of available modules.</p> <blockquote> <p>Please visit the linked resources for more details.</p> </blockquote> <p>Simplified we can say a by modules it uses, variables you can define and providers you can define. It is good to know that modules can depend on other modules, if this is the case the related modules will be included by the framework, as far as I understand.</p> <p>Simplified we can say a <a href=https://github.com/cloud-native-toolkit/iascable#bom-spec>BOM is specified</a> by modules it uses. In addition you have the option to use variables and providers definitions related to a BOM specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.</p> <p>Here is a simplified overview diagram of the dependencies:</p> <p><img alt src=../../images/iascable-bom-overview.drawio.png></p> <p>Here is a simplified activity diagram that shows the activities carried out by the user and the <code>IasCable</code> framework.</p> <p><img alt src=../../images/activity-diagram.drawio.png></p> <h3 id=realize-software-everywhere-with-bill-of-material-and-modules>Realize <a href=https://github.com/cloud-native-toolkit/software-everywhere>Software Everywhere</a> with <a href=https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure>Bill of Material</a> and <a href=https://modules.cloudnativetoolkit.dev/ >Modules</a><a class=headerlink href=#realize-software-everywhere-with-bill-of-material-and-modules title="Permanent link">&para;</a></h3> <p>Simplified we can say, we have two basic roles in that context:</p> <ol> <li><code>Creators</code> (Architect, Developer or Operator) defining <a href=https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure>Bill of Materials</a> to create Terraform automation for creating specific infrastructure based on reusing existing Terraform modules.</li> <li><code>Consumers</code> who using the create Terraform automation based on the <code>BOM</code> definition.</li> </ol> <p>And we have two major elements to define and create the needed Terraform automation.</p> <ol> <li>The <code>BOM</code> configures <code>IasCable</code> to point to right Terraform modules in a module catalog to create the Terraform automation code.</li> <li><code>IasCable</code> is uses Terraform modules to create a Terraform automation which will be consumed.</li> </ol> <p>The following diagram shows some high level dependencies.</p> <p><img alt src=../../images/software-everywhere-getting-started.drawio.png></p> <h2 id=2-pre-requisites-for-the-example>2. Pre-requisites for the example<a class=headerlink href=#2-pre-requisites-for-the-example title="Permanent link">&para;</a></h2> <p>Following tools need to be installed on your local computer to follow the step by step instructions.</p> <ul> <li><a href=https://www.terraform.io/ ><code>Terraform</code></a></li> <li>Git</li> </ul> <p>That is the cloud environment we will use.</p> <ul> <li><a href=https://cloud.ibm.com/login>IBM Cloud</a></li> </ul> <h2 id=3-step-by-step-example-setup>3. <code>Step-by-step</code> example setup<a class=headerlink href=#3-step-by-step-example-setup title="Permanent link">&para;</a></h2> <p>This is a step by step example setup to create a <code>Virtual Private Cloud</code> with three <code>Subnets</code> on IBM Cloud.</p> <ul> <li>1 x <a href=https://www.ibm.com/cloud/learn/vpc><code>Virtual Private Cloud</code></a></li> <li>3 x <a href="https://cloud.ibm.com/docs/subnets?topic=subnets-getting-started"><code>Subnets</code></a></li> <li>2 x <a href="https://cloud.ibm.com/docs/vpc?topic=vpc-using-acls"><code>Access Control Lists</code></a></li> <li>1 x <a href="https://cloud.ibm.com/docs/vpc?topic=vpc-about-custom-routes"><code>Routing Table</code></a></li> <li> <p>2 x <a href="https://cloud.ibm.com/docs/security-groups?topic=security-groups-about-ibm-security-groups"><code>Security Groups</code></a></p> </li> <li> <p>Simplified architecture overview</p> </li> </ul> <p><img alt src=../../images/vpc-example.drawio.png></p> <h3 id=step-1-install-cli>Step 1: Install CLI<a class=headerlink href=#step-1-install-cli title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>curl -sL https://raw.githubusercontent.com/cloud-native-toolkit/iascable/main/install.sh <span class=p>|</span> sh
+</code></pre></div> <h3 id=step-2-verify-the-installation>Step 2: Verify the installation<a class=headerlink href=#step-2-verify-the-installation title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>iascable build --help
+</code></pre></div> <ul> <li>Example output:</li> </ul> <div class=highlight><pre><span></span><code>Configure <span class=o>(</span>and optionally deploy<span class=o>)</span> the iteration zero assets
+
+Options:
+      --version                   Show version number   <span class=o>[</span>boolean<span class=o>]</span>
+      --help                      Show <span class=nb>help</span>             <span class=o>[</span>boolean<span class=o>]</span>
+  -u, --catalogUrl                The url of the module catalog.
+                                  Can be https:// or file:/
+                                  protocol.
+   <span class=o>[</span>default: <span class=s2>&quot;https://modules.cloudnativetoolkit.dev/index.yaml&quot;</span><span class=o>]</span>
+  -i, --input                     The path to the bill of
+                                  materials to use as input
+                                                          <span class=o>[</span>array<span class=o>]</span>
+  -r, --reference                 The reference BOM to use <span class=k>for</span>
+                                  the build               <span class=o>[</span>array<span class=o>]</span>
+  -o, --outDir                    The base directory where the
+                                  <span class=nb>command</span> output will be written
+                                            <span class=o>[</span>default: <span class=s2>&quot;./output&quot;</span><span class=o>]</span>
+      --platform                  Filter <span class=k>for</span> the platform
+                                  <span class=o>(</span>kubernetes or ocp4<span class=o>)</span>
+      --provider                  Filter <span class=k>for</span> the provider <span class=o>(</span>ibm or
+                                  k8s<span class=o>)</span>
+      --tileLabel                 The label <span class=k>for</span> the tile.
+                                  Required <span class=k>if</span> you want to
+                                  generate the tile metadata.
+      --name                      The name used to override the
+                                  module name <span class=k>in</span> the bill of
+                                  material.               <span class=o>[</span>array<span class=o>]</span>
+      --tileDescription           The description of the tile.
+      --flattenOutput, --flatten  Flatten the generated output
+                                  into a single directory <span class=o>(</span>i.e.
+                                  remove the terraform folder<span class=o>)</span>.
+                                                        <span class=o>[</span>boolean<span class=o>]</span>
+      --debug                     Flag to turn on more detailed
+                                  output message        <span class=o>[</span>boolean<span class=o>]</span>
+</code></pre></div> <h3 id=step-3-create-a-bill-of-materialsbom-file>Step 3: Create a <code>Bill of Materials</code>(BOM) file<a class=headerlink href=#step-3-create-a-bill-of-materialsbom-file title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>nano firstbom.yaml
+</code></pre></div> <p>Copy following content into the new file:</p> <div class=highlight><pre><span></span><code><span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cloudnativetoolkit.dev/v1alpha1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">BillOfMaterial</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-vpc</span>
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>modules</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-vpc</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-vpc-subnets</span>
+</code></pre></div> <h3 id=step-4-execute-following-command>Step 4: Execute following command<a class=headerlink href=#step-4-execute-following-command title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>iascable build -i firstbom.yaml
+</code></pre></div> <h3 id=step-5-verify-the-created-content>Step 5: Verify the created content<a class=headerlink href=#step-5-verify-the-created-content title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>├── firstbom.yaml
+└── output
+    ├── ibm-vpc
+    │   ├── apply.sh
+    │   ├── bom.yaml
+    │   ├── dependencies.dot
+    │   ├── destroy.sh
+    │   └── terraform
+    │       ├── docs
+    │       │   ├── ibm-resource-group.md
+    │       │   ├── ibm-vpc-subnets.md
+    │       │   └── ibm-vpc.md
+    │       ├── ibm-vpc.auto.tfvars
+    │       ├── main.tf
+    │       ├── providers.tf
+    │       ├── variables.tf
+    │       └── version.tf
+    └── launch.sh
+</code></pre></div> <ul> <li><code>output</code> folder</li> </ul> <p>The folder <code>output</code> contains all the content created by the <code>iascable build</code> command</p> <ul> <li><code>output/ibm-vpc</code> folder</li> </ul> <p>The folder <code>ibm-vpc</code> is the name we used in our own <code>BOM</code> file. Let us call that folder project folder, which was defined in meta data.</p> <div class=highlight><pre><span></span><code><span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-vpc</span>
+</code></pre></div> <ul> <li><code>output/ibm-vpc/terraform</code> folder</li> </ul> <p>This is table contains the list of files in the terraform folder.</p> <table> <thead> <tr> <th>Filename</th> <th>Content</th> </tr> </thead> <tbody> <tr> <td><code>output/ibm-vpc/terraform/main.tf</code></td> <td>Here you see a number of modules defined including the defined <code>ibm-vpc</code> and <code>ibm-vpc-subnets</code> from the BOM file.</td> </tr> <tr> <td><code>output/ibm-vpc/terraform/providers.tf</code></td> <td>Simply contains the needed cloud provider information. In that case what we need to specify for <code>IBM Cloud</code>.</td> </tr> <tr> <td><code>output/ibm-vpc/terraform/variables.ft</code></td> <td>Contains the specification for the used variable in the <code>main.tf</code> or other Terraform files.</td> </tr> <tr> <td><code>output/ibm-vpc/terraform/version.ft</code></td> <td>Contains the specification for the used Terraform provider sources and versions. In that case only IBM is listed.</td> </tr> <tr> <td><code>output/ibm-vpc/terraform/ibm-vpc.auto.tfvars</code></td> <td>That file can be used to configure the variable values. (maybe add to .gitignore) During the execution of <code>terraform plan</code> and <code>terraform apply</code> you will be ask for input, if you didn't specify that values.</td> </tr> </tbody> </table> <ul> <li>The <code>output/launch.sh</code> file</li> </ul> <p>That script downloads and starts a container on your local machine. The objective to ensure that the right environment is used for applying the Terraform configuration.</p> <p>It attaches the local path to the container as a volume.</p> <blockquote> <p>Note: Need to ensure you have a container engine on your machine. Best Docker! Because by default is uses Docker. Attach doesn't work for <code>podman</code> on macOS.</p> </blockquote> <ul> <li>The <code>output/ibm-vpc/apply.sh</code> file</li> </ul> <p>That file converts an existing <code>variable.yaml</code> file or variable in the <code>BOM</code> file to a <code>variables.tf</code> and then executes <code>terraform init</code> and <code>terraform apply</code>.</p> <ul> <li>The <code>output/ibm-vpc/destroy.sh</code> file</li> </ul> <p>That file simply executes the <code>terraform init</code> and <code>terraform destroy -auto-approve</code> commands.</p> <ul> <li>The <code>output/ibm-vpc/dependencies.dot</code> file</li> </ul> <p>That file contains the dependencies which can be visualized for example with <a href=https://dreampuf.github.io/GraphvizOnline/ >Graphviz Online</a>.</p> <p>Example: <img alt src=../../images/digraph-dependencies.png></p> <ul> <li>The <code>output/bom.yaml</code> file</li> </ul> <p>That file was created by our own <code>BOM file</code>. That file now contains all needed variables. These variables are also reflected in the <code>output/ibm-vpc/terraform/variables.ft</code> file.</p> <p>Here is the content of the newly created <code>bom.yaml</code> file.</p> <div class=highlight><pre><span></span><code><span class=nt>apiVersion</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">cloudnativetoolkit.dev/v1alpha1</span>
+<span class=nt>kind</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">BillOfMaterial</span>
+<span class=nt>metadata</span><span class=p>:</span>
+  <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-vpc</span>
+<span class=nt>spec</span><span class=p>:</span>
+  <span class=nt>modules</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-vpc</span>
+      <span class=nt>alias</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-vpc</span>
+      <span class=nt>version</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">v1.16.0</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-vpc-subnets</span>
+      <span class=nt>alias</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-vpc-subnets</span>
+      <span class=nt>version</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">v1.13.2</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-resource-group</span>
+      <span class=nt>alias</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">resource_group</span>
+      <span class=nt>version</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">v3.2.16</span>
+  <span class=nt>variables</span><span class=p>:</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">region</span>
+      <span class=nt>type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+      <span class=nt>description</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">The IBM Cloud region where the cluster will be/has been installed.</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibmcloud_api_key</span>
+      <span class=nt>type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">ibm-vpc-subnets__count</span>
+      <span class=nt>type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">number</span>
+      <span class=nt>description</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">The number of subnets that should be provisioned</span>
+      <span class=nt>defaultValue</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
+    <span class="p p-Indicator">-</span> <span class=nt>name</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">resource_group_name</span>
+      <span class=nt>type</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">string</span>
+      <span class=nt>description</span><span class=p>:</span> <span class="l l-Scalar l-Scalar-Plain">The name of the resource group</span>
+</code></pre></div> <h3 id=step-6-execute-the-terraform-init-command>Step 6: Execute the <code>terraform init</code> command<a class=headerlink href=#step-6-execute-the-terraform-init-command title="Permanent link">&para;</a></h3> <p>Navigate to the <code>output/ibm-vpc/terraform</code> folder and execute the <code>terraform init</code> command.</p> <div class=highlight><pre><span></span><code><span class=nb>cd</span> output/ibm-vpc/terraform
+terraform init
+</code></pre></div> <h3 id=step-7-execute-the-terraform-plan-command>Step 7: Execute the <code>terraform plan</code> command<a class=headerlink href=#step-7-execute-the-terraform-plan-command title="Permanent link">&para;</a></h3> <p>Execute the <code>terraform plan</code> command.</p> <div class=highlight><pre><span></span><code>terraform plan
+</code></pre></div> <p>Here you can see the interaction:</p> <div class=highlight><pre><span></span><code>var.ibmcloud_api_key
+  the value of ibmcloud_api_key
+
+  Enter a value: 
+</code></pre></div> <blockquote> <p>Note: You can create an <code>IBM Cloud API Key</code> with following command: <code>ibmcloud iam api-key-create iascable-example</code>.</p> </blockquote> <h3 id=step-8-execute-the-terraform-apply>Step 8: Execute the <code>terraform apply</code><a class=headerlink href=#step-8-execute-the-terraform-apply title="Permanent link">&para;</a></h3> <p>Execute the <code>terraform apply</code> command.</p> <div class=highlight><pre><span></span><code>terraform apply -auto-approve
+</code></pre></div> <ul> <li>Input of your variables:</li> </ul> <div class=highlight><pre><span></span><code>var.ibmcloud_api_key
+  the value of ibmcloud_api_key
+
+  Enter a value: xxx
+var.region
+  The IBM Cloud region where the cluster will be/has been installed.
+
+  Enter a value: us-south 
+var.resource_group_name
+  The name of the resource group
+
+  Enter a value: default
+</code></pre></div> <ul> <li>Output overview of the resources which will be created:</li> </ul> <div class=highlight><pre><span></span><code>Terraform used the selected providers to generate the following
+execution plan. Resource actions are indicated with the
+following symbols:
+  + create
+ &lt;<span class=o>=</span> <span class=nb>read</span> <span class=o>(</span>data resources<span class=o>)</span>
+
+Terraform will perform the following actions:
+
+  <span class=c1># module.ibm-vpc.data.ibm_is_security_group.base will be read during apply</span>
+  <span class=c1># (config refers to values not yet known)</span>
+ &lt;<span class=o>=</span> data <span class=s2>&quot;ibm_is_security_group&quot;</span> <span class=s2>&quot;base&quot;</span>  <span class=o>{</span>
+      + <span class=nv>crn</span>                     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                    <span class=o>=</span> <span class=s2>&quot;default-vpc-base&quot;</span>
+      + <span class=nv>resource_controller_url</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_crn</span>            <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group_name</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_name</span>           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rules</span>                   <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>                    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>vpc</span>                     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.data.ibm_is_vpc.vpc will be read during apply</span>
+  <span class=c1># (config refers to values not yet known)</span>
+ &lt;<span class=o>=</span> data <span class=s2>&quot;ibm_is_vpc&quot;</span> <span class=s2>&quot;vpc&quot;</span>  <span class=o>{</span>
+      + <span class=nv>classic_access</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>crn</span>                         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>cse_source_addresses</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_network_acl</span>         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_network_acl_crn</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_network_acl_name</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_routing_table</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_routing_table_name</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_security_group</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_security_group_crn</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_security_group_name</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                        <span class=o>=</span> <span class=s2>&quot;default-vpc&quot;</span>
+      + <span class=nv>resource_controller_url</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_crn</span>                <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group_name</span>         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_name</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_status</span>             <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>security_group</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>status</span>                      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>subnets</span>                     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>                        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.data.ibm_resource_group.resource_group will be read during apply</span>
+  <span class=c1># (config refers to values not yet known)</span>
+ &lt;<span class=o>=</span> data <span class=s2>&quot;ibm_resource_group&quot;</span> <span class=s2>&quot;resource_group&quot;</span>  <span class=o>{</span>
+      + <span class=nv>account_id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>created_at</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>crn</span>                 <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>is_default</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                <span class=o>=</span> <span class=s2>&quot;default&quot;</span>
+      + <span class=nv>payment_methods_url</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>quota_id</span>            <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>quota_url</span>           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_linkages</span>   <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>state</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>teams_url</span>           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>updated_at</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_network_acl_rule.allow_internal_egress[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;allow_internal_egress&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;allow&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;allow-internal-egress&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_network_acl_rule.allow_internal_ingress[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;allow_internal_ingress&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;allow&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;inbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;allow-internal-ingress&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_network_acl_rule.deny_external_ingress[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;deny_external_ingress&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;deny&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;0.0.0.0/0&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;inbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;deny-external-ingress&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;0.0.0.0/0&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_network_acl_rule.deny_external_rdp[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;deny_external_rdp&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;deny&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;0.0.0.0/0&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;inbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;deny-external-rdp&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;0.0.0.0/0&quot;</span>
+
+      + tcp <span class=o>{</span>
+          + <span class=nv>port_max</span>        <span class=o>=</span> <span class=m>3389</span>
+          + <span class=nv>port_min</span>        <span class=o>=</span> <span class=m>3389</span>
+          + <span class=nv>source_port_max</span> <span class=o>=</span> <span class=m>3389</span>
+          + <span class=nv>source_port_min</span> <span class=o>=</span> <span class=m>3389</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_network_acl_rule.deny_external_ssh[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;deny_external_ssh&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;deny&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;0.0.0.0/0&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;inbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;deny-external-ssh&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;0.0.0.0/0&quot;</span>
+
+      + tcp <span class=o>{</span>
+          + <span class=nv>port_max</span>        <span class=o>=</span> <span class=m>22</span>
+          + <span class=nv>port_min</span>        <span class=o>=</span> <span class=m>22</span>
+          + <span class=nv>source_port_max</span> <span class=o>=</span> <span class=m>22</span>
+          + <span class=nv>source_port_min</span> <span class=o>=</span> <span class=m>22</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group.base[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group&quot;</span> <span class=s2>&quot;base&quot;</span> <span class=o>{</span>
+      + <span class=nv>crn</span>                     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                    <span class=o>=</span> <span class=s2>&quot;default-vpc-base&quot;</span>
+      + <span class=nv>resource_controller_url</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_crn</span>            <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group_name</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_name</span>           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rules</span>                   <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>                    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>vpc</span>                     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group_rule.cse_dns_1[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group_rule&quot;</span> <span class=s2>&quot;cse_dns_1&quot;</span> <span class=o>{</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>group</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>related_crn</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>remote</span>      <span class=o>=</span> <span class=s2>&quot;161.26.0.10&quot;</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + udp <span class=o>{</span>
+          + <span class=nv>port_max</span> <span class=o>=</span> <span class=m>53</span>
+          + <span class=nv>port_min</span> <span class=o>=</span> <span class=m>53</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group_rule.cse_dns_1[1] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group_rule&quot;</span> <span class=s2>&quot;cse_dns_1&quot;</span> <span class=o>{</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>group</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>related_crn</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>remote</span>      <span class=o>=</span> <span class=s2>&quot;161.26.0.10&quot;</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + udp <span class=o>{</span>
+          + <span class=nv>port_max</span> <span class=o>=</span> <span class=m>53</span>
+          + <span class=nv>port_min</span> <span class=o>=</span> <span class=m>53</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group_rule.cse_dns_2[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group_rule&quot;</span> <span class=s2>&quot;cse_dns_2&quot;</span> <span class=o>{</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>group</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>related_crn</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>remote</span>      <span class=o>=</span> <span class=s2>&quot;161.26.0.11&quot;</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + udp <span class=o>{</span>
+          + <span class=nv>port_max</span> <span class=o>=</span> <span class=m>53</span>
+          + <span class=nv>port_min</span> <span class=o>=</span> <span class=m>53</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group_rule.cse_dns_2[1] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group_rule&quot;</span> <span class=s2>&quot;cse_dns_2&quot;</span> <span class=o>{</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>group</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>related_crn</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>remote</span>      <span class=o>=</span> <span class=s2>&quot;161.26.0.11&quot;</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + udp <span class=o>{</span>
+          + <span class=nv>port_max</span> <span class=o>=</span> <span class=m>53</span>
+          + <span class=nv>port_min</span> <span class=o>=</span> <span class=m>53</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group_rule.default_inbound_http[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group_rule&quot;</span> <span class=s2>&quot;default_inbound_http&quot;</span> <span class=o>{</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;inbound&quot;</span>
+      + <span class=nv>group</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>related_crn</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>remote</span>      <span class=o>=</span> <span class=s2>&quot;0.0.0.0/0&quot;</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + tcp <span class=o>{</span>
+          + <span class=nv>port_max</span> <span class=o>=</span> <span class=m>80</span>
+          + <span class=nv>port_min</span> <span class=o>=</span> <span class=m>80</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group_rule.default_inbound_ping[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group_rule&quot;</span> <span class=s2>&quot;default_inbound_ping&quot;</span> <span class=o>{</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;inbound&quot;</span>
+      + <span class=nv>group</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>related_crn</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>remote</span>      <span class=o>=</span> <span class=s2>&quot;0.0.0.0/0&quot;</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + icmp <span class=o>{</span>
+          + <span class=nb>type</span> <span class=o>=</span> <span class=m>8</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group_rule.private_dns_1[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group_rule&quot;</span> <span class=s2>&quot;private_dns_1&quot;</span> <span class=o>{</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>group</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>related_crn</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>remote</span>      <span class=o>=</span> <span class=s2>&quot;161.26.0.7&quot;</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + udp <span class=o>{</span>
+          + <span class=nv>port_max</span> <span class=o>=</span> <span class=m>53</span>
+          + <span class=nv>port_min</span> <span class=o>=</span> <span class=m>53</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group_rule.private_dns_1[1] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group_rule&quot;</span> <span class=s2>&quot;private_dns_1&quot;</span> <span class=o>{</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>group</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>related_crn</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>remote</span>      <span class=o>=</span> <span class=s2>&quot;161.26.0.7&quot;</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + udp <span class=o>{</span>
+          + <span class=nv>port_max</span> <span class=o>=</span> <span class=m>53</span>
+          + <span class=nv>port_min</span> <span class=o>=</span> <span class=m>53</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group_rule.private_dns_2[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group_rule&quot;</span> <span class=s2>&quot;private_dns_2&quot;</span> <span class=o>{</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>group</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>related_crn</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>remote</span>      <span class=o>=</span> <span class=s2>&quot;161.26.0.8&quot;</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + udp <span class=o>{</span>
+          + <span class=nv>port_max</span> <span class=o>=</span> <span class=m>53</span>
+          + <span class=nv>port_min</span> <span class=o>=</span> <span class=m>53</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_security_group_rule.private_dns_2[1] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_security_group_rule&quot;</span> <span class=s2>&quot;private_dns_2&quot;</span> <span class=o>{</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>group</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>related_crn</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>remote</span>      <span class=o>=</span> <span class=s2>&quot;161.26.0.8&quot;</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + udp <span class=o>{</span>
+          + <span class=nv>port_max</span> <span class=o>=</span> <span class=m>53</span>
+          + <span class=nv>port_min</span> <span class=o>=</span> <span class=m>53</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_is_vpc.vpc[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_vpc&quot;</span> <span class=s2>&quot;vpc&quot;</span> <span class=o>{</span>
+      + <span class=nv>address_prefix_management</span>   <span class=o>=</span> <span class=s2>&quot;auto&quot;</span>
+      + <span class=nv>classic_access</span>              <span class=o>=</span> <span class=nb>false</span>
+      + <span class=nv>crn</span>                         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>cse_source_addresses</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_network_acl</span>         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_network_acl_crn</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_network_acl_name</span>    <span class=o>=</span> <span class=s2>&quot;default-vpc-default&quot;</span>
+      + <span class=nv>default_routing_table</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_routing_table_name</span>  <span class=o>=</span> <span class=s2>&quot;default-vpc-default&quot;</span>
+      + <span class=nv>default_security_group</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_security_group_crn</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_security_group_name</span> <span class=o>=</span> <span class=s2>&quot;default-vpc-default&quot;</span>
+      + <span class=nv>id</span>                          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                        <span class=o>=</span> <span class=s2>&quot;default-vpc&quot;</span>
+      + <span class=nv>resource_controller_url</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_crn</span>                <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group_name</span>         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_name</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_status</span>             <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>security_group</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>status</span>                      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>subnets</span>                     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>                        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_resource_tag.nacl-tag[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_resource_tag&quot;</span> <span class=s2>&quot;nacl-tag&quot;</span> <span class=o>{</span>
+      + <span class=nv>acccount_id</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_id</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tag_type</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.ibm_resource_tag.sg-tag[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_resource_tag&quot;</span> <span class=s2>&quot;sg-tag&quot;</span> <span class=o>{</span>
+      + <span class=nv>acccount_id</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_id</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tag_type</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc.null_resource.print_names will be created</span>
+  + resource <span class=s2>&quot;null_resource&quot;</span> <span class=s2>&quot;print_names&quot;</span> <span class=o>{</span>
+      + <span class=nv>id</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.data.ibm_is_vpc.vpc will be read during apply</span>
+  <span class=c1># (config refers to values not yet known)</span>
+ &lt;<span class=o>=</span> data <span class=s2>&quot;ibm_is_vpc&quot;</span> <span class=s2>&quot;vpc&quot;</span>  <span class=o>{</span>
+      + <span class=nv>classic_access</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>crn</span>                         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>cse_source_addresses</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_network_acl</span>         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_network_acl_crn</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_network_acl_name</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_routing_table</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_routing_table_name</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_security_group</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_security_group_crn</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>default_security_group_name</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                        <span class=o>=</span> <span class=s2>&quot;default-vpc&quot;</span>
+      + <span class=nv>resource_controller_url</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_crn</span>                <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group_name</span>         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_name</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_status</span>             <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>security_group</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>status</span>                      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>subnets</span>                     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>                        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.data.ibm_resource_group.resource_group will be read during apply</span>
+  <span class=c1># (config refers to values not yet known)</span>
+ &lt;<span class=o>=</span> data <span class=s2>&quot;ibm_resource_group&quot;</span> <span class=s2>&quot;resource_group&quot;</span>  <span class=o>{</span>
+      + <span class=nv>account_id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>created_at</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>crn</span>                 <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>is_default</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                <span class=o>=</span> <span class=s2>&quot;default&quot;</span>
+      + <span class=nv>payment_methods_url</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>quota_id</span>            <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>quota_url</span>           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_linkages</span>   <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>state</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>teams_url</span>           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>updated_at</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.ibm_is_network_acl.subnet_acl[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl&quot;</span> <span class=s2>&quot;subnet_acl&quot;</span> <span class=o>{</span>
+      + <span class=nv>crn</span>                     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                    <span class=o>=</span> <span class=s2>&quot;default-vpc-subnet-default&quot;</span>
+      + <span class=nv>resource_controller_url</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_crn</span>            <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group_name</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_name</span>           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>                    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>vpc</span>                     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+      + rules <span class=o>{</span>
+          + <span class=nv>action</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+          + <span class=nv>destination</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+          + <span class=nv>direction</span>   <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+          + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+          + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+          + <span class=nv>name</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+          + <span class=nb>source</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+          + <span class=nv>subnets</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+
+          + icmp <span class=o>{</span>
+              + <span class=nv>code</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+              + <span class=nb>type</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+            <span class=o>}</span>
+
+          + tcp <span class=o>{</span>
+              + <span class=nv>port_max</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+              + <span class=nv>port_min</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+              + <span class=nv>source_port_max</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+              + <span class=nv>source_port_min</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+            <span class=o>}</span>
+
+          + udp <span class=o>{</span>
+              + <span class=nv>port_max</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+              + <span class=nv>port_min</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+              + <span class=nv>source_port_max</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+              + <span class=nv>source_port_min</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+            <span class=o>}</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.ibm_is_network_acl_rule.acl_rule[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;acl_rule&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;allow&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;inbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;default-vpc-subnet-default-allow-ingress-internal&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.ibm_is_network_acl_rule.acl_rule[1] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;acl_rule&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;allow&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;inbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;default-vpc-subnet-default-allow-roks-ingress&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;166.8.0.0/14&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.ibm_is_network_acl_rule.acl_rule[2] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;acl_rule&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;allow&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;inbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;default-vpc-subnet-default-allow-vse-ingress&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;161.26.0.0/16&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.ibm_is_network_acl_rule.acl_rule[3] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;acl_rule&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;allow&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;default-vpc-subnet-default-allow-egress-internal&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.ibm_is_network_acl_rule.acl_rule[4] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;acl_rule&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;allow&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;166.8.0.0/14&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;default-vpc-subnet-default-allow-roks-egress&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.ibm_is_network_acl_rule.acl_rule[5] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_network_acl_rule&quot;</span> <span class=s2>&quot;acl_rule&quot;</span> <span class=o>{</span>
+      + <span class=nv>action</span>      <span class=o>=</span> <span class=s2>&quot;allow&quot;</span>
+      + <span class=nv>before</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>destination</span> <span class=o>=</span> <span class=s2>&quot;161.26.0.0/16&quot;</span>
+      + <span class=nv>direction</span>   <span class=o>=</span> <span class=s2>&quot;outbound&quot;</span>
+      + <span class=nv>href</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>        <span class=o>=</span> <span class=s2>&quot;default-vpc-subnet-default-allow-vse-egress&quot;</span>
+      + <span class=nv>network_acl</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>protocol</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>rule_id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nb>source</span>      <span class=o>=</span> <span class=s2>&quot;10.0.0.0/8&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.ibm_is_subnet.vpc_subnets[0] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_subnet&quot;</span> <span class=s2>&quot;vpc_subnets&quot;</span> <span class=o>{</span>
+      + <span class=nv>access_tags</span>                  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>available_ipv4_address_count</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>crn</span>                          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>                   <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>ipv4_cidr_block</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                         <span class=o>=</span> <span class=s2>&quot;default-vpc-subnet-default01&quot;</span>
+      + <span class=nv>network_acl</span>                  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>public_gateway</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_controller_url</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_crn</span>                 <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group_name</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_name</span>                <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_status</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>routing_table</span>                <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>status</span>                       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>                         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>total_ipv4_address_count</span>     <span class=o>=</span> <span class=m>256</span>
+      + <span class=nv>vpc</span>                          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>zone</span>                         <span class=o>=</span> <span class=s2>&quot;us-south-1&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.ibm_is_subnet.vpc_subnets[1] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_subnet&quot;</span> <span class=s2>&quot;vpc_subnets&quot;</span> <span class=o>{</span>
+      + <span class=nv>access_tags</span>                  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>available_ipv4_address_count</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>crn</span>                          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>                   <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>ipv4_cidr_block</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                         <span class=o>=</span> <span class=s2>&quot;default-vpc-subnet-default02&quot;</span>
+      + <span class=nv>network_acl</span>                  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>public_gateway</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_controller_url</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_crn</span>                 <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group_name</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_name</span>                <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_status</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>routing_table</span>                <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>status</span>                       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>                         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>total_ipv4_address_count</span>     <span class=o>=</span> <span class=m>256</span>
+      + <span class=nv>vpc</span>                          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>zone</span>                         <span class=o>=</span> <span class=s2>&quot;us-south-2&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.ibm_is_subnet.vpc_subnets[2] will be created</span>
+  + resource <span class=s2>&quot;ibm_is_subnet&quot;</span> <span class=s2>&quot;vpc_subnets&quot;</span> <span class=o>{</span>
+      + <span class=nv>access_tags</span>                  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>available_ipv4_address_count</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>crn</span>                          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>ip_version</span>                   <span class=o>=</span> <span class=s2>&quot;ipv4&quot;</span>
+      + <span class=nv>ipv4_cidr_block</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                         <span class=o>=</span> <span class=s2>&quot;default-vpc-subnet-default03&quot;</span>
+      + <span class=nv>network_acl</span>                  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>public_gateway</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_controller_url</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_crn</span>                 <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_group_name</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_name</span>                <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_status</span>              <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>routing_table</span>                <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>status</span>                       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>                         <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>total_ipv4_address_count</span>     <span class=o>=</span> <span class=m>256</span>
+      + <span class=nv>vpc</span>                          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>zone</span>                         <span class=o>=</span> <span class=s2>&quot;us-south-3&quot;</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.ibm-vpc-subnets.null_resource.print_names will be created</span>
+  + resource <span class=s2>&quot;null_resource&quot;</span> <span class=s2>&quot;print_names&quot;</span> <span class=o>{</span>
+      + <span class=nv>id</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.resource_group.data.ibm_resource_group.resource_group will be read during apply</span>
+  <span class=c1># (config refers to values not yet known)</span>
+ &lt;<span class=o>=</span> data <span class=s2>&quot;ibm_resource_group&quot;</span> <span class=s2>&quot;resource_group&quot;</span>  <span class=o>{</span>
+      + <span class=nv>account_id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>created_at</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>crn</span>                 <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>id</span>                  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>is_default</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>name</span>                <span class=o>=</span> <span class=s2>&quot;default&quot;</span>
+      + <span class=nv>payment_methods_url</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>quota_id</span>            <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>quota_url</span>           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_linkages</span>   <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>state</span>               <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>teams_url</span>           <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>updated_at</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.resource_group.data.ibm_resource_tag.resource_group_tags will be read during apply</span>
+  <span class=c1># (config refers to values not yet known)</span>
+ &lt;<span class=o>=</span> data <span class=s2>&quot;ibm_resource_tag&quot;</span> <span class=s2>&quot;resource_group_tags&quot;</span>  <span class=o>{</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>resource_id</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>tags</span>        <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.resource_group.null_resource.resource_group will be created</span>
+  + resource <span class=s2>&quot;null_resource&quot;</span> <span class=s2>&quot;resource_group&quot;</span> <span class=o>{</span>
+      + <span class=nv>id</span>       <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>triggers</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.resource_group.null_resource.wait_for_sync will be created</span>
+  + resource <span class=s2>&quot;null_resource&quot;</span> <span class=s2>&quot;wait_for_sync&quot;</span> <span class=o>{</span>
+      + <span class=nv>id</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.resource_group.random_uuid.tag will be created</span>
+  + resource <span class=s2>&quot;random_uuid&quot;</span> <span class=s2>&quot;tag&quot;</span> <span class=o>{</span>
+      + <span class=nv>id</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>result</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.resource_group.module.clis.data.external.setup-binaries will be read during apply</span>
+  <span class=c1># (config refers to values not yet known)</span>
+ &lt;<span class=o>=</span> data <span class=s2>&quot;external&quot;</span> <span class=s2>&quot;setup-binaries&quot;</span>  <span class=o>{</span>
+      + <span class=nv>id</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>program</span> <span class=o>=</span> <span class=o>[</span>
+          + <span class=s2>&quot;bash&quot;</span>,
+          + <span class=s2>&quot;.terraform/modules/resource_group.clis/scripts/setup-binaries.sh&quot;</span>,
+        <span class=o>]</span>
+      + <span class=nv>query</span>   <span class=o>=</span> <span class=o>{</span>
+          + <span class=s2>&quot;bin_dir&quot;</span> <span class=o>=</span> <span class=s2>&quot;/Users/thomassuedbroecker/Downloads/dev/iascable-starting-point/examples/output/ibm-vpc/terraform/bin2&quot;</span>
+          + <span class=s2>&quot;clis&quot;</span>    <span class=o>=</span> <span class=s2>&quot;yq,jq,igc&quot;</span>
+          + <span class=s2>&quot;uuid&quot;</span>    <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+        <span class=o>}</span>
+      + <span class=nv>result</span>  <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.resource_group.module.clis.null_resource.print will be created</span>
+  + resource <span class=s2>&quot;null_resource&quot;</span> <span class=s2>&quot;print&quot;</span> <span class=o>{</span>
+      + <span class=nv>id</span> <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+    <span class=o>}</span>
+
+  <span class=c1># module.resource_group.module.clis.random_string.uuid will be created</span>
+  + resource <span class=s2>&quot;random_string&quot;</span> <span class=s2>&quot;uuid&quot;</span> <span class=o>{</span>
+      + <span class=nv>id</span>          <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>length</span>      <span class=o>=</span> <span class=m>16</span>
+      + <span class=nv>lower</span>       <span class=o>=</span> <span class=nb>true</span>
+      + <span class=nv>min_lower</span>   <span class=o>=</span> <span class=m>0</span>
+      + <span class=nv>min_numeric</span> <span class=o>=</span> <span class=m>0</span>
+      + <span class=nv>min_special</span> <span class=o>=</span> <span class=m>0</span>
+      + <span class=nv>min_upper</span>   <span class=o>=</span> <span class=m>0</span>
+      + <span class=nv>number</span>      <span class=o>=</span> <span class=nb>false</span>
+      + <span class=nv>numeric</span>     <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>result</span>      <span class=o>=</span> <span class=o>(</span>known after apply<span class=o>)</span>
+      + <span class=nv>special</span>     <span class=o>=</span> <span class=nb>false</span>
+      + <span class=nv>upper</span>       <span class=o>=</span> <span class=nb>false</span>
+    <span class=o>}</span>
+
+Plan: <span class=m>36</span> to add, <span class=m>0</span> to change, <span class=m>0</span> to destroy.
+╷
+│ Warning: Experimental feature <span class=s2>&quot;module_variable_optional_attrs&quot;</span> is active
+│ 
+│   on .terraform/modules/ibm-vpc-subnets/version.tf line <span class=m>10</span>, <span class=k>in</span> terraform:
+│   <span class=m>10</span>:   <span class=nv>experiments</span> <span class=o>=</span> <span class=o>[</span>module_variable_optional_attrs<span class=o>]</span>
+│ 
+│ Experimental features are subject to breaking changes <span class=k>in</span>
+│ future minor or patch releases, based on feedback.
+│ 
+│ If you have feedback on the design of this feature, please
+│ open a GitHub issue to discuss it.
+╵
+╷
+│ Warning: Argument is deprecated
+│ 
+│   with module.resource_group.module.clis.random_string.uuid,
+│   on .terraform/modules/resource_group.clis/main.tf line <span class=m>15</span>, <span class=k>in</span> resource <span class=s2>&quot;random_string&quot;</span> <span class=s2>&quot;uuid&quot;</span>:
+│   <span class=m>15</span>:   <span class=nv>number</span>  <span class=o>=</span> <span class=nb>false</span>
+│ 
+│ Use numeric instead.
+│ 
+│ <span class=o>(</span>and one more similar warning elsewhere<span class=o>)</span>
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only <span class=s1>&#39;yes&#39;</span> will be accepted to approve.
+
+  Enter a value: yes
+</code></pre></div> <ul> <li>Final result of the creation</li> </ul> <div class=highlight><pre><span></span><code>Apply complete! Resources: <span class=m>36</span> added, <span class=m>0</span> changed, <span class=m>0</span> destroyed.
+</code></pre></div> <h3 id=step-9-execute-the-terraform-destroy-command>Step 9: Execute the <code>terraform destroy</code> command<a class=headerlink href=#step-9-execute-the-terraform-destroy-command title="Permanent link">&para;</a></h3> <blockquote> <p>Note: Ensure you didn't delete the <code>terraform.tfstate</code> and the <code>.terraform.lock.hcl</code> files before.</p> </blockquote> <p>To destroy the provisioned resources, run the following:</p> <div class=highlight><pre><span></span><code>terraform destroy -auto-approve
+</code></pre></div> <blockquote> <p>You need to ensure to provide the IBM Cloud API Key, the region and the resource group name.</p> </blockquote> <div class=highlight><pre><span></span><code>var.ibmcloud_api_key
+  the value of ibmcloud_api_key
+
+  Enter a value: xxxx
+
+var.region
+  The IBM Cloud region where the cluster will be/has been installed.
+
+  Enter a value: us-south
+
+var.resource_group_name
+  The name of the resource group
+
+  Enter a value: default
+</code></pre></div> <ul> <li>Output overview:</li> </ul> <div class=highlight><pre><span></span><code>╷
+│ Warning: Experimental feature <span class=s2>&quot;module_variable_optional_attrs&quot;</span> is active
+│ 
+│   on .terraform/modules/ibm-vpc-subnets/version.tf line <span class=m>10</span>, <span class=k>in</span> terraform:
+│   <span class=m>10</span>:   <span class=nv>experiments</span> <span class=o>=</span> <span class=o>[</span>module_variable_optional_attrs<span class=o>]</span>
+│ 
+│ Experimental features are subject to breaking changes <span class=k>in</span>
+│ future minor or patch releases, based on feedback.
+│ 
+│ If you have feedback on the design of this feature, please
+│ open a GitHub issue to discuss it.
+╵
+╷
+│ Warning: Argument is deprecated
+│ 
+│   with module.resource_group.module.clis.random_string.uuid,
+│   on .terraform/modules/resource_group.clis/main.tf line <span class=m>15</span>, <span class=k>in</span> resource <span class=s2>&quot;random_string&quot;</span> <span class=s2>&quot;uuid&quot;</span>:
+│   <span class=m>15</span>:   <span class=nv>number</span>  <span class=o>=</span> <span class=nb>false</span>
+│ 
+│ Use numeric instead.
+│ 
+│ <span class=o>(</span>and one more similar warning elsewhere<span class=o>)</span>
+╵
+
+Destroy complete! Resources: <span class=m>36</span> destroyed.
+</code></pre></div> <h2 id=4-summary>4. Summary<a class=headerlink href=#4-summary title="Permanent link">&para;</a></h2> <p>The <code>IasCable</code> and the <a href=https://modules.cloudnativetoolkit.dev/ ><code>Modules</code></a> (from the Software Everywhere project) which are all from the Cloud Native Toolkit providing a good concept for a framework to provide reusable components to install and configure cloud infrastructure. This was just a getting started. There is more to learn.</p> </article> </div> </div> </main> <!-- Footer --> <footer class=md-footer> <!-- Further information --> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-column> <div class=md-footer-text><a href=https://cloudnativetoolkit.dev/contribute/contribute/ >Contribute</a> to the Cloud-Native Toolkit</div> <div class=md-footer-text>Site licensed under <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ >CC BY-NC-SA 4.0</a></div> </div> <div class=md-footer-column> <div class=md-footer-text>Have questions? open an issue on <a href=https://github.com/cloud-native-toolkit/planning/issues/new/choose>GitHub</a>.</div> <!-- Copyright and theme information --> <div class=md-footer-text> Copyright © 2022 Cloud-Native Toolkit </div> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": ["navigation.instant", "navigation.tracking"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.b0710199.min.js", "version": null}</script> <script src=../../assets/javascripts/bundle.76f349be.min.js></script> </body> </html>
