@@ -21,7 +21,7 @@ Simplified we can say a [BOM is specified](https://github.com/cloud-native-toolk
 
 Here is a simplified overview diagram of the dependencies:
 
-![](../../images/iascale-bom-overview.drawio.png)
+![](../../images/iascable-bom-overview.drawio.png)
 
 Here is a simplified activity diagram that shows the activities carried out by the user and the `IasCable` framework.
 
@@ -31,7 +31,7 @@ Here is a simplified activity diagram that shows the activities carried out by t
 
 Simplified we can say, we have two basic roles in that context:
 
-1. `Creaters` (Architect, Developer
+1. `Creators` (Architect, Developer
 or Operator) defining [Bill of Materials](https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure) to create Terraform automation for creating specific infrastructure based on reusing existing Terraform modules.
 2. `Consumers` who using the create Terraform automation based on the `BOM` definition.
 
