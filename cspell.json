@@ -16,6 +16,11 @@
     ],
     // words - list of words to be always considered correct
     "words": [
+        "iascable",
+        "Graphviz",
+        "tfvars",
+        "tfstate",
+        "preconfigure",
         "Kubernetes",
         "kubectl",
         "Kube",
