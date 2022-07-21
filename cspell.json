@@ -19,6 +19,7 @@
         "iascable",
         "Graphviz",
         "tfvars",
+        "tfstate",
         "preconfigure",
         "Kubernetes",
         "kubectl",
