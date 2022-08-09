@@ -36,7 +36,7 @@ git clone https://github.com/IBM/automation-turbonomic.git
 ![](../images/Automation-Turbo.png)
 
 
-(1)  Copy the .github to the IBM Github which will trigger the Action/Test in the IBM Github Repo where software module to be tested.
+(3)  Ensure .github folder exist in the automation-turbonomic which will trigger the Action/Test in the IBM Github Repo where software module to be tested.
 ```
     - workflows
        - verify-pr.yaml
@@ -46,7 +46,7 @@ git clone https://github.com/IBM/automation-turbonomic.git
    - release-drafter.yaml 
 ```
 
- (2) Add the end to end test logic in the verify-workflow.yaml of the Software module to be tested
+ (4) Add the end to end test logic in the verify-workflow.yaml of the Software module to be tested
   
   ```
    Strategy: 
@@ -58,18 +58,18 @@ git clone https://github.com/IBM/automation-turbonomic.git
            - portworx 
    ```
 
-(3) Add environment variables needed for this module in the verify-pr.yaml
+(5) Add environment variables needed for this module in the verify-pr.yaml
 ```
     env:
          Home: 
          IBMCloud_API_Key
 ```
 
-(4) Steps represents a sequence of tasks that will be executed as part of job
+(6) Steps represents a sequence of tasks that will be executed as part of job
   - Add the steps which needs to be executed in the sequence 
 
 
-(5) Modify the 200-openshift-gitops BOM to support Gitea
+(7) Modify the 200-openshift-gitops BOM to support Gitea
   - Make sure generated main.tf is referrencing the Gitea variables inside Gitops Module in the main.tf
 
 ```
@@ -85,5 +85,5 @@ git clone https://github.com/IBM/automation-turbonomic.git
   }
 ```
 
-(6) Trigger the module build which will kick off the end-to-end test for the software to be tested.
+(8) Trigger the module build which will kick off the end-to-end test for the software to be tested.
   - Watch the Github Actions TAB 
