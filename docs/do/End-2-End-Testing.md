@@ -16,7 +16,7 @@ Follow the steps to implement the end-to-end testing for Turbonomic / CP4I
    - release-drafter.yaml 
 ```
 
- (2) Add the end to end test logic in the verify-pr.yaml of the Software module to be tested
+ (2) Add the end to end test logic in the verify-workflow.yaml of the Software module to be tested
   
   ```
    Strategy: 
