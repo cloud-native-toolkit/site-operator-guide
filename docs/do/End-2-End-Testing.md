@@ -40,7 +40,7 @@ Follow the steps to implement the end-to-end testing for Turbonomic / CP4I
 
 
 (5) Modify the 200-openshift-gitops BOM to support Gitea
-  - Make sure generated main.tf is referrencing the Gitea variables inside Gitops Module in the main.tf
+  - Make sure generated main.tf is referrencing the Gitea variables inside Gitops Module in the main.tf
 
 ```
   module "gitops_repo" {
