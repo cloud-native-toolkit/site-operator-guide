@@ -5,6 +5,36 @@ Turbonomic Repo - https://github.com/IBM/automation-turbonomic
 
 Follow the steps to implement the end-to-end testing for Turbonomic / CP4I
 
+(1) Checkout the Git repo from the https://github.com/cloud-native-toolkit/automation-solutions
+
+``` 
+git clone https://github.com/cloud-native-toolkit/automation-solutions.git
+
+```
+
+Output from above Git Clone CLI
+
+```
+Cloning into 'automation-solutions'...
+remote: Enumerating objects: 3778, done.
+remote: Counting objects: 100% (1114/1114), done.
+remote: Compressing objects: 100% (326/326), done.
+remote: Total 3778 (delta 722), reused 1070 (delta 700), pack-reused 2664
+Receiving objects: 100% (3778/3778), 10.72 MiB | 10.41 MiB/s, done.
+Resolving deltas: 100% (2441/2441), done
+```
+
+(2) Clone the Git repo for the software (such as turbonomic) which needs to be end-to-end testing
+
+``` 
+git clone https://github.com/IBM/automation-turbonomic.git
+
+```
+
+***Note:*** Make sure the you keep the automation solutions and automation-turbonomic in the same level directory since we will be generating the files that will go directly to automation-turbonomic folder. Otherwise, you need to copy the files and manually move to automation-turbonomic folder.
+
+![](../images/Automation-Turbo.jpg)
+
 
 (1)  Copy the .github to the IBM Github which will trigger the Action/Test in the IBM Github Repo where software module to be tested.
 ```
