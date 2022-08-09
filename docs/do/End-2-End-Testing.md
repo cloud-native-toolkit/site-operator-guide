@@ -33,7 +33,7 @@ git clone https://github.com/IBM/automation-turbonomic.git
 
 ***Note:*** Make sure the you keep the automation solutions and automation-turbonomic in the same level directory since we will be generating the files that will go directly to automation-turbonomic folder. Otherwise, you need to copy the files and manually move to automation-turbonomic folder.
 
-![](../images/Automation-Turbo.jpg)
+![](../images/Automation-Turbo.png)
 
 
 (1)  Copy the .github to the IBM Github which will trigger the Action/Test in the IBM Github Repo where software module to be tested.
