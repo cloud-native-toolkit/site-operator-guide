@@ -37,7 +37,8 @@ Follow the steps to implement the end-to-end testing for Turbonomic / CP4I
 
 (4) Steps represents a sequence of tasks that will be executed as part of job
   - Add the steps which needs to be executed in the sequence 
-  
+
+
 (5) Modify the 200-openshift-gitops BOM to support Gitea
   - Make sure generated main.tf is referrencing the Gitea variables inside Gitops Module in the main.tf
 
