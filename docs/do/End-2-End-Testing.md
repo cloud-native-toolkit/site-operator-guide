@@ -56,4 +56,4 @@ Follow the steps to implement the end-to-end testing for Turbonomic / CP4I
 ```
 
 (6) Trigger the module build which will kick off the end-to-end test for the software to be tested.
-     - Watch the Github Actions TAB 
+  - Watch the Github Actions TAB 
