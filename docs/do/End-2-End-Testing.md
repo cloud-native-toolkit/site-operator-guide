@@ -101,7 +101,7 @@ Copying Configuration
 (8) Copy the .mocks folder which has the configuration for BOM layer dependency.
   - If you have any specific dependency between layers, you can describe in the terragrunt.hcl
 
-Note: You can also validate the dependency if its configured properly by launching the container (.launch.sh) and run the CLI terragrunt graph-dependencies which displays the dependency graph
+**Note:** You can also validate the dependency if its configured properly by launching the container (.launch.sh) and run the CLI terragrunt graph-dependencies which displays the dependency graph
 
 ![](../images/terragrunt-dependency.png)
 
