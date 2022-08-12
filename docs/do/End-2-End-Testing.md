@@ -2,9 +2,7 @@
 
 Turbonomic Repo - https://github.com/IBM/automation-turbonomic
 
-
 Follow the steps to implement the end-to-end testing for Turbonomic / CP4I
-
 (1) Checkout the Git repo from the https://github.com/cloud-native-toolkit/automation-solutions
 
 ``` 
@@ -64,7 +62,7 @@ Copying Configuration
 
 - Below example strategy with do the end-to-end testing for the Turbonomic software on IBM Cloud infrastructure with the storage ODF and Portworx.
   
-  ```
+```
    Strategy: 
       matrix:
         flavor:
@@ -84,10 +82,9 @@ Copying Configuration
 (6) Steps represents a sequence of tasks that will be executed as part of job
   - Add the steps which needs to be executed in the sequence 
 
-
 (7) Modify the 200-openshift-gitops BOM to support Gitea
-  - Make sure generated main.tf is referrencing the Gitea variables inside Gitops Module in the main.tf
-
+- Make sure generated main.tf is referrencing the Gitea variables inside Gitops Module in the main.tf
+  
 ```
   module "gitops_repo" {
   source = "github.com/cloud-native-toolkit/terraform-tools-gitops?ref=v1.21.0"
