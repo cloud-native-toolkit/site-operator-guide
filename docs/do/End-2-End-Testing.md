@@ -54,7 +54,7 @@ Copying Files
 Copying Configuration
 ```
 
-**Note:** Every software layer which requires common BOM such as Gitops, Storage etc will have symbolic to the IBM Infrastructure BOM.
+**Note:** Every software layer which requires common layer such as Gitops, Storage as well as configuration will have symbolic to the Shared location.
 
 (4) Navigate to the software (automation-turbonomic) and verify the files are generated as well as .github folder exist which is requires for the end-to-end test to run.
 
@@ -100,6 +100,8 @@ Copying Configuration
   ——
   }
 ```
+
+(8) Copy the .mocks folder which has the configuration for BOM layer dependency.
 
 (8) Trigger the module build which will kick off the end-to-end test for the software to be tested.
   - Watch the Github Actions TAB 
