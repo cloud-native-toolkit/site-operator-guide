@@ -1,8 +1,11 @@
-# End To End Testing for any software module
+# End To End Testing for any Software Module
 
-Turbonomic Repo - https://github.com/IBM/automation-turbonomic
+I have provided step by step instructions for the end to end testing for software (Turbonomic) module which can be replicated for any software such as CP4I, CP4D etc.
 
-Follow the steps to implement the end-to-end testing for Turbonomic / CP4I
+- Turbonomic Repo - https://github.com/IBM/automation-turbonomic
+
+### Follow the steps to implement the end-to-end testing
+
 (1) Checkout the Git repo from the https://github.com/cloud-native-toolkit/automation-solutions
 
 ``` 
