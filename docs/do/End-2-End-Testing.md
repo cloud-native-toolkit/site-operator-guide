@@ -35,24 +35,40 @@ git clone https://github.com/IBM/automation-turbonomic.git
 
 ![](../images/Automation-Turbo.png)
 
+(3) Navigate to the software folder named "Turbonomic" in my case and launch the script "generate.sh"
 
-(3)  Ensure .github folder exist in the automation-turbonomic which will trigger the Action/Test in the IBM Github Repo where software module to be tested.
 ```
-    - workflows
-       - verify-pr.yaml
-       - verify-schedule.yaml
-       - verify-workflow.yaml
-       - verify.yaml
-   - release-drafter.yaml 
+.\generate.sh
 ```
 
- (4) Add the end to end test logic in the verify-workflow.yaml of the Software module to be tested
+Output from the above CLI 
+
+```
+Loading catalog from url: https://modules.cloudnativetoolkit.dev/index.yaml
+Name: 200-openshift-gitops
+Writing output to: ../../../../automation-turbonomic
+Loading catalog from url: https://modules.cloudnativetoolkit.dev/index.yaml
+Name: 250-turbonomic-multicloud
+Writing output to: ../../../../automation-turbonomic
+Copying Files
+Copying Configuration
+```
+
+**Note:** Every software layer which requires common BOM such as Gitops, Storage etc will have symbolic to the IBM Infrastructure BOM.
+
+(4) Navigate to the software (automation-turbonomic) and verify the files are generated as well as .github folder exist which is requires for the end-to-end test to run.
+
+![](../images/Turbonomic-generated.png)
+
+(5) Add the end to end test logic in the verify-workflow.yaml (automation-turbonomic\.github\workflows) of the Software module to be tested
+
+- Below example strategy with do the end-to-end testing for the Turbonomic software on IBM Cloud infrastructure with the storage ODF and Portworx.
   
   ```
    Strategy: 
       matrix:
         flavor:
-          - quickstart
+          - ibm
         storage:
            - odf
            - portworx 
