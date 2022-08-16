@@ -70,5 +70,7 @@ nav:
       - Overview: resources/index.md
       - ASCENT: resources/ascent.md
       - Automation bundles: resources/automation-bundles.md
+      - Automation Runtimes: resources/automation-runtimes.md
+      - Troubleshooting: resources/troubleshooting.md
       - Module catalog: resources/module-catalog.md
 
