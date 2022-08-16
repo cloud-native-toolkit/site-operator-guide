@@ -66,6 +66,7 @@ nav:
 #      - Overview: learn/index.md
   - Do: do/index.md
 #      - Overview: do/index.md
+       - End-To-End Testing :do/End-2-End-Testing.md
   - Resources:
       - Overview: resources/index.md
       - ASCENT: resources/ascent.md
