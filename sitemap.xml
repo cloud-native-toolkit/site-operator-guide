@@ -2,62 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://cloudnativetoolkit.dev/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/do/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://cloudnativetoolkit.dev/do/End-2-End-Testing/</loc>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/getting-started/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/getting-started/lab1/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/getting-started/lab2/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/getting-started/lab3/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/getting-started/whats-new/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/learn/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/resources/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/resources/ascent/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/resources/automation-bundles/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://cloudnativetoolkit.dev/resources/automation-runtimes/</loc>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://cloudnativetoolkit.dev/resources/module-catalog/</loc>
-         <lastmod>2022-07-21</lastmod>
+         <lastmod>2022-08-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://cloudnativetoolkit.dev/resources/troubleshooting/</loc>
+         <lastmod>2022-08-16</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
