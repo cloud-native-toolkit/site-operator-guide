@@ -45,7 +45,7 @@ git clone https://github.com/IBM/automation-turbonomic.git
 .\generate.sh
 ```
 
-Output from the above CLI 
+Output from the generate.sh CLI 
 
 ```
 Loading catalog from url: https://modules.cloudnativetoolkit.dev/index.yaml
@@ -90,7 +90,7 @@ Copying Configuration
 
 - Add the steps which needs to be executed in the sequence 
 
-(7) Modify the 200-openshift-gitops BOM to support Gitea
+(8) Modify the 200-openshift-gitops BOM to support Gitea
 
 - Make sure generated main.tf is referencing the Gitea variables inside Gitops Module in the main.tf
   
@@ -107,7 +107,7 @@ Copying Configuration
   }
 ```
 
-(8) Copy the .mocks folder which has the configuration for BOM layer dependency.
+(9) Copy the .mocks folder which has the configuration for BOM layer dependency.
   - If you have any specific dependency between layers, you can describe in the terragrunt.hcl
 
 **Note:** You can also validate the dependency if its configured properly by launching the container (.launch.sh) and run the CLI terragrunt graph-dependencies which displays the dependency graph
@@ -115,5 +115,5 @@ Copying Configuration
 ![](../images/terragrunt-dependency.png)
 
 
-(9) Trigger the module build which will kick off the end-to-end test for the software to be tested.
+(10) Trigger the module build which will kick off the end-to-end test for the software to be tested.
   - Watch the Github Actions TAB 
