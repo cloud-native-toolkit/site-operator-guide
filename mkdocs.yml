@@ -64,8 +64,10 @@ nav:
         -  Lab 3 - Setup initial GitOps on a Red Hat OpenShift Cluster in a Virtual Private Cloud on IBM Cloud : getting-started/lab3.md
   - Learn: learn/index.md
 #      - Overview: learn/index.md
-  - Do: do/index.md
-#      - Overview: do/index.md
+  - Do: 
+      # do/index.md
+      - Overview: resources/index.md
+      - End-To-End Testing: do/End-2-End-Testing.md
   - Resources:
       - Overview: resources/index.md
       - ASCENT: resources/ascent.md
