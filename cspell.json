@@ -16,6 +16,15 @@
     ],
     // words - list of words to be always considered correct
     "words": [
+        "Turbonomic",
+        "gitea",
+        "portworx",
+        "ABCXYZ",
+        "finalizer",
+        "finalizers",
+        "terragrunt",
+        "Multipass",
+        "multipassd",
         "iascable",
         "Graphviz",
         "tfvars",

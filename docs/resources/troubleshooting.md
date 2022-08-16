@@ -11,7 +11,7 @@ To uninstall this solution:
   ```
 - There are 2 ways you can uninstall this solution:
   - Use the `/destroy-all.sh` script to uninstall all layers of the solution
-  - Navigate into the specific subdirectories of the solution and remove specific layers.  These steps should be applied for all layers, in reverse order, starting with the highest-numbered layer first.  Repeat for all layers/subfolders in your solution.
+  - Navigate into the specific subdirectories of the solution and remove specific layers.  These steps should be applied for all layers, in reverse order, starting with the highest-numbered layer first.  Repeat for all layers/sub-folders in your solution.
     ```
     cd 200-openshift-gitops 
     terraform init
@@ -19,24 +19,6 @@ To uninstall this solution:
     ```
 
 
-
-## Credentials not working
-
-If you encounter unexpected behavior on login or see error message similar to the following, then its likely that your credentials are invalid.
-```
-The ApiKey property is invalid.  Please remove any surrounding {, }, or \" characters.
-```
-
-This normally happens if the credentials inside of the `credentials.properties` file are wrapped with quotes.   All values inside the `credentials.properties` should *not* be wrapped in quotes.
-
-To remedy this scenario:
-
-- If you are inside the container that is created using the `launch.sh` script, exit by using the `exit` command.
-- Modify the contents of the `credentials.properties` file and ensure that values are *not* wrapped in quotes.
-  - `TF_VAR_ibmcloud_api_key="ABCXYZ"` is **incorrect**
-  - `TF_VAR_ibmcloud_api_key=ABCXYZ` is **correct** 
-- Re-launch the `launch.sh` script.
-- Navigate to the `/workspaces/current` folder and continue the task where you encountered issues.
 
 ## Variables may not be used here.
 
@@ -116,5 +98,5 @@ You should *never* use the `sudo` command to execute this automation.  If you ha
 
 # That didn't work, what next?
 
-If you continue to experience issues with this automation, please [file an issue](https://github.com/IBM/automation-solutions/issues) or reach out on our [public Dischord server](https://discord.com/channels/955514069815808010/955514069815808013).
+If you continue to experience issues with this automation, please [file an issue](https://github.com/IBM/automation-solutions/issues) or reach out on our [public Discord server](https://discord.com/channels/955514069815808010/955514069815808013).
 
