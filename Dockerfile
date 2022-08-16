@@ -12,7 +12,7 @@ RUN npm ci
 
 RUN npm run build
 
-FROM quay.io/bitnami/nginx
+FROM docker.io/bitnami/nginx
 
 EXPOSE 8080 8443
 COPY --from=builder /site/public /app

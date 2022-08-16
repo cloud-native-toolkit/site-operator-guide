@@ -86,7 +86,7 @@ Copying Configuration
   - Add the steps which needs to be executed in the sequence 
 
 (7) Modify the 200-openshift-gitops BOM to support Gitea
-- Make sure generated main.tf is referrencing the Gitea variables inside Gitops Module in the main.tf
+- Make sure generated main.tf is referencing the Gitea variables inside Gitops Module in the main.tf
   
 ```
   module "gitops_repo" {
