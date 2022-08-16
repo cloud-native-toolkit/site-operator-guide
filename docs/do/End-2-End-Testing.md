@@ -32,7 +32,10 @@ git clone https://github.com/IBM/automation-turbonomic.git
 
 ```
 
-***Note:*** Make sure the you keep the automation solutions and automation-turbonomic in the same level directory since we will be generating the files that will go directly to automation-turbonomic folder. Otherwise, you need to copy the files and manually move to automation-turbonomic folder.
+***Note:*** 
+
+- Make sure the you keep the automation solutions and automation-turbonomic in the same level directory since we will be generating the files that will go directly to automation-turbonomic folder. 
+- Otherwise, you need to copy the files and manually move to automation-turbonomic folder.
 
 ![](../images/Automation-Turbo.png)
 
@@ -73,19 +76,22 @@ Copying Configuration
         storage:
            - odf
            - portworx 
-   ```
+```
 
-(5) Add environment variables needed for this module in the verify-pr.yaml
+(6) Add environment variables needed for this module in the verify-pr.yaml
+
 ```
     env:
          Home: 
          IBMCloud_API_Key
 ```
 
-(6) Steps represents a sequence of tasks that will be executed as part of job
-  - Add the steps which needs to be executed in the sequence 
+(7) Steps represents a sequence of tasks that will be executed as part of job
+
+- Add the steps which needs to be executed in the sequence 
 
 (7) Modify the 200-openshift-gitops BOM to support Gitea
+
 - Make sure generated main.tf is referencing the Gitea variables inside Gitops Module in the main.tf
   
 ```
