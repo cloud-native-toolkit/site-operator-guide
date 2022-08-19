@@ -21,7 +21,7 @@ Once installed, use the automation template's `launch.sh` script to launch an in
 
 ### Multipass
 
-[Multipass](https://multipass.run/) is a simplified Ubuntu Linux Virtual Machine that you can spin up with a single command.   With this option you spin up a virtual machine with a predefined configuration that is ready to run the Terraform automation.  
+[Multipass](https://multipass.run/) is a simplified Ubuntu Linux Virtual Machine that you can spin up with a single command.   With this option you spin up a virtual machine with a predifined configuration that is ready to run the Terraform automation.  
 
 You can download and install Multipass from <https://multipass.run/install>
 
@@ -87,7 +87,7 @@ Once in the shell, `cd` into the `/automation/{template}` folder, where `{templa
 source credentials.properties
 ```
 
-Once complete, you will be in an interactive shell that is pre-configured with all dependencies necessary to execute the Terraform automation.
+Once complete, you will be in an interactive shell that is preconfigured with all dependencies necessary to execute the Terraform automation.
 
 ----
 
@@ -115,7 +115,7 @@ Known issues include:
 
 ### Podman instructions
 
-Unlike Docker which traditionally has separated a cli from a daemon-based container engine, [Podman](https://podman.io) is a daemon-less container engine originally developed for [Linux](#getting-started-with-podman-for-linux) systems. There is a [MacOS](#getting-started-with-podman-for-macos) port which has sufficient features to support running the automation based on container images. Podman can run containers in root or rootless mode. Current permissions setup in the `launch.sh` script will require root mode.
+Unlike Docker which traditionally has separated a cli from a daemon-based container engine, [Podman](https://podman.io) is a daemonless container engine originally developed for [Linux](#getting-started-with-podman-for-linux) systems. There is a [MacOS](#getting-started-with-podman-for-macos) port which has sufficent features to support running the automation based on container images. Podman can run containers in root or rootless mode. Current permissions setup in the `launch.sh` script will require root mode.
 
 #### Getting started with Podman for MacOS
 
@@ -138,7 +138,7 @@ Once the podman vm is started, use the automation template's `launch.sh` script 
 
 ##### Dealing with known issues for Podman on MacOS
 
-- When resuming from suspend, if the podman machine is left running, it will not automatically synchronize to the host clock. This will cause the podman machine to lose time. Either stop/restart the podman machine or define an alias like this in your startup scripts:
+- When resuming from suspend, if the podman machine is left running, it will not automatically syncronize to the host clock. This will cause the podman machine to lose time. Either stop/restart the podman machine or define an alias like this in your startup scripts:
 
     ```shell
     alias fpt="podman machine ssh \"sudo chronyc -m 'burst 4/4' makestep; date -u\""
