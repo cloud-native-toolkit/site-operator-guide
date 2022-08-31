@@ -48,11 +48,11 @@ This is our simplified target architecture for our objective to create a customi
 
     * There will be no initial setup for a [Tekton pipeline](https://tekton.dev/docs/pipelines/pipelines/) at the moment.
 
-  ![](docs/images/SoftwareEverywhere-GitOps.drawio.png)
+  ![](../../../images/SoftwareEverywhere-GitOps.drawio.png)
 
 * `IBM Cloud infrastructure` with `Red Hat OpenShift` in a `Virtual Private Cloud` 
 
-  ![](docs/images/SoftwareEverywhere-OpenShift-Infrastructure.drawio.png)
+  ![](../../../images/SoftwareEverywhere-OpenShift-Infrastructure.drawio.png)
 
 ## 2. Identify the needed `Software Everywhere` Terraform modules for the target architecture
 
@@ -376,34 +376,34 @@ Apply complete! Resources: 91 added, 0 changed, 0 destroyed.
   * Cloud infrastructure/services resources
 
     * 1 x VPC
-      ![](docs/images/resources-02-vpc.png)
+      ![](../../../images/resources-02-vpc.png)
     * 1 x Subnet
-      ![](docs/images/resources-03-subnet.png)
+      ![](../../../images/resources-03-subnet.png)
     * 4 Security groups
       Two were created during the subnet creation and two are related to the created Red Hat OpenShift cluster.
-      ![](docs/images/resources-04-security-groups.png)
+      ![](../../../images/resources-04-security-groups.png)
     * 1 x Virtual Private Endpoint
-      ![](docs/images/resources-05-virtual-private-endpoint.png)
+      ![](../../../images/resources-05-virtual-private-endpoint.png)
     * 1 x Public Gateway
-      ![](docs/images/resources-06-public-gateway.png)
+      ![](../../../images/resources-06-public-gateway.png)
     * 2 x Access Control Lists
       One was created for the VPC module and one during the creation by the subnet module.
-      ![](docs/images/resources-07-access-control-list.png)
+      ![](../../../images/resources-07-access-control-list.png)
     * 1 x Routing Table
-      ![](docs/images/resources-08-routing-table.png)
+      ![](../../../images/resources-08-routing-table.png)
     * 1 x Red Hat OpenShift Cluster
-      ![](docs/images/resources-09-openshift-cluster.png)
+      ![](../../../images/resources-09-openshift-cluster.png)
     * 1 x Object Storage
-      ![](docs/images/resources-10-object-storage.png)
+      ![](../../../images/resources-10-object-storage.png)
   
   * Cluster and GitOps configuration
 
      * `Red Hat OpenShift GitOps` operator and `Red Hat OpenShift Pipelines`  operator
-      ![](docs/images/cluster-configuration-01-operators.png)
+      ![](../../../images/cluster-configuration-01-operators.png)
     * `GitHub` project as ArgoCD repository
-      ![](docs/images/cluster-configuration-02-github-project.png)
+      ![](../../../images/cluster-configuration-02-github-project.png)
     * Preconfigure ArgoCD project
-      ![](docs/images/cluster-configuration-03-argocd-project.png)
+      ![](../../../images/cluster-configuration-03-argocd-project.png)
       
 The invoked `apply.sh` script will create following files or folders:
 

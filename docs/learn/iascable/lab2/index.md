@@ -40,7 +40,7 @@ This is a step by step example setup to create a [`Virtual Private Cloud`](https
 
 * Simplified architecture overview
 
-![](docs/images/VPC-RedHatOpenShift.drawio.png)
+![](../../../images/VPC-RedHatOpenShift.drawio.png)
 
 ### Step 1: Write the `Bill of Material` BOM file
 
@@ -195,7 +195,7 @@ Added modules based on module dependencies:
 
 We can verify the dependencies with the `dependencies.dot` content for example in [Graphviz Online](https://dreampuf.github.io/GraphvizOnline/).
 
-![](docs/images/dependency-graph.png)
+![](../../../images/dependency-graph.png)
 
 ### Step 4: Execute the `terraform init` command
 
