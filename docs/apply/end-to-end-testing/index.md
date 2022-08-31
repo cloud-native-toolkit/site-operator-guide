@@ -25,7 +25,7 @@ The following provides step-by-step instructions for the end-to-end testing of s
 
     ![](../../images/Automation-Turbo.png)
 
-3. From the command-line, change dirctory to the the `automation-solutions` repository. Navigate to the folder containing the layers that will be generated. For Turbonomic the path is `boms/software/turbonomic`.
+3. From the command-line, change directory to the the `automation-solutions` repository. Navigate to the folder containing the layers that will be generated. For Turbonomic the path is `boms/software/turbonomic`.
 
 4. Run the generate script to create the automation output. 
 
