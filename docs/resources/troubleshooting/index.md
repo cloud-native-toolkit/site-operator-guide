@@ -4,7 +4,7 @@
 
 To uninstall this solution:
 
-- Use the `./launch.sh` script to enter the docker container that was used to install this software package as described in [README.md](./README.md)
+- Use the `./launch.sh` script to enter the docker container that was used to install this software package as described in the README file in the repository
 - Navigate to the `/workspaces/current` folder:
   ```
   cd /workspaces/current
@@ -92,7 +92,7 @@ To do this:
 - Delete the `workspace` volume using `docker volume rm workspace`
   - If this command fails, you may first have to remove containers that reference the volume.   User `docker ps` to list containers and `docker rm <container>` to remove a container.  After you delete the container, re-run `docker volume rm workspace` to delete the `workspace` volume.
 - Use the `launch.sh` script reenter the container.
-- Use the `setupWorkspace.sh` script as described in the [README.md](./README.md) to reconfigure your workspace and continue with the installation process.
+- Use the `setupWorkspace.sh` script as described in the README in the repository to reconfigure your workspace and continue with the installation process.
 
 You should *never* use the `sudo` command to execute this automation.  If you have to use `sudo`, then something is wrong with your configuration.
 

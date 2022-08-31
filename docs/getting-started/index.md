@@ -1,12 +1,5 @@
 # Getting started
 
-The getting started section provides you three initial getting started with [`IasCable`](https://github.com/cloud-native-toolkit/iascable) and [`Software Everywhere`](https://github.com/cloud-native-toolkit/software-everywhere).
+The Cloud-Native Toolkit provides automation and guidance to help operations and SRE teams provision and manage complex, hybrid-cloud environments from pilot to production. This site is structured to give hands-on experience first through controlled lab exercises in the [Learn](../learn/) section. From there, the [Apply](../apply/) section provides more detailed guides to move from "Hello World" to real world. Along the way, there are a number of [Resources](../resources/) available to support and accelerate your journey.
 
- * [Lab 1: Getting started with the basics](lab1.md)
-    Deploy a `Virtual Private Cloud` in `IBM Cloud` with [`IasCable`](https://github.com/cloud-native-toolkit/iascable)
-    and initial Terraform modules from [`Software Everywhere`](https://github.com/cloud-native-toolkit/software-everywhere).
-
- * [Lab 2: Use IasCable to create a VPC and a Red Hat OpenShift cluster on IBM Cloud](lab2.md)
-
- * [Lab3: Use `Software Everywhere` and `IasCable` to setup `GitOps` on a `Red Hat OpenShift Cluster` in a `Virtual Private Cloud` on `IBM Cloud`](lab3.md)
-
+In terms of the overall lifecycle, this guide is focused on Day 0 provisioning and Day 2 operations. The information on the [develop](https://develop.cloudnativetoolkit.dev) site covers Day 1 functions. 

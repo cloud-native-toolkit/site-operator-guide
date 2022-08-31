@@ -1,8 +1,8 @@
 [filtering]
 checkextern=1
 ignore=
-  ^https://cloudnativetoolkit.dev
-  ^https://github.com/cloud-native-toolkit/developer-guide/edit
+  ^https://operate.cloudnativetoolkit.dev
+  ^https://github.com/cloud-native-toolkit/site-operator-guide/edit
   xml.gz$
   ^https://ccp-ui.csplab.intranet.ibm.com
   ^https://ccp-ui.apps.labprod.ocp.csplab.local

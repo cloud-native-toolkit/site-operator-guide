@@ -16,16 +16,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: generate site
+
+      - name: Generate site
         uses: ./.github/actions/
-      - name: Set CNAME
-        run: sudo chmod 777 ./public/CNAME && echo "operate.cloudnativetoolkit.dev" > ./public/CNAME
-        
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.TOKEN }}
           publish_dir: ./public
+          cname: operate.cloudnativetoolkit.dev
 
   release:
     needs:

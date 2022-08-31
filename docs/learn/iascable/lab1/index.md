@@ -8,24 +8,24 @@ This is just a starting point to use `IasCable`.
 
 Let us have first a look the basic components of the `IasCable` framework.
 
-### [Bill of Material](https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure) and [Modules](https://modules.cloudnativetoolkit.dev/)
+### [Bill of Material](../../../apply/bill-of-material-reference/) and [Modules](https://modules.cloudnativetoolkit.dev/)
 
-The IasCable uses a [`Bill of Material`](https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure) and [`Modules`](https://modules.cloudnativetoolkit.dev/)(from the [Software Everywhere project](https://github.com/cloud-native-toolkit/software-everywhere)), which you need to understand. These two parts are the heart of the framework we could say to realize the objective to  build an installable component infrastructure based on components from a catalog of available modules.
+The IasCable uses a [`Bill of Material`](../../../apply/bill-of-material-reference/) and [`Modules`](https://modules.cloudnativetoolkit.dev/)(from the [Software Everywhere project](https://github.com/cloud-native-toolkit/software-everywhere)), which you need to understand. These two parts are the heart of the framework we could say to realize the objective to  build an installable component infrastructure based on components from a catalog of available modules.
 
 > Please visit the linked resources for more details.
 
 Simplified we can say a  by modules it uses, variables you can define and providers you can define.
 It is good to know that modules can depend on other modules, if this is the case the related modules will be included by the framework, as far as I understand.
 
-Simplified we can say a [BOM is specified](https://github.com/cloud-native-toolkit/iascable#bom-spec) by modules it uses. In addition you have the option to use variables and providers definitions related to a BOM specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.
+Simplified we can say a [BOM is specified](../../../apply/bill-of-material-reference/#bom-spec) by modules it uses. In addition you have the option to use variables and providers definitions related to a BOM specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.
 
 Here is a simplified overview diagram of the dependencies:
 
-![](../../images/iascable-bom-overview.drawio.png)
+![](../../../images/iascable-bom-overview.drawio.png)
 
 Here is a simplified activity diagram that shows the activities carried out by the user and the `IasCable` framework.
 
-![](../../images/activity-diagram.drawio.png)
+![](../../../images/activity-diagram.drawio.png)
 
 ### Realize [Software Everywhere](https://github.com/cloud-native-toolkit/software-everywhere) with [Bill of Material](https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure) and [Modules](https://modules.cloudnativetoolkit.dev/)
 
@@ -42,7 +42,7 @@ And we have two major elements to define and create the needed Terraform automat
 
 The following diagram shows some high level dependencies.
 
-![](../images/software-everywhere-getting-started.drawio.png)
+![](../../../images/software-everywhere-getting-started.drawio.png)
 
 ## 2. Pre-requisites for the example
 
@@ -67,13 +67,13 @@ This is a step by step example setup to create a `Virtual Private Cloud` with th
 
 * Simplified architecture overview
 
-![](../../images/vpc-example.drawio.png)
+![](../../../images/vpc-example.drawio.png)
 
 
 ### Step 1: Install CLI
 
 ```sh
-curl -sL https://raw.githubusercontent.com/cloud-native-toolkit/iascable/main/install.sh | sh
+curl -sL https://iascable.cloud-native-toolkit.dev/install.sh | sh
 ```
 
 ### Step 2: Verify the installation
@@ -215,7 +215,7 @@ That file simply executes the `terraform init` and
 
 That file contains the dependencies which can be visualized for example with [Graphviz Online](https://dreampuf.github.io/GraphvizOnline/).
 
-Example: ![](../../images/digraph-dependencies.png)
+Example: ![](../../../images/digraph-dependencies.png)
 
 * The `output/bom.yaml` file
 

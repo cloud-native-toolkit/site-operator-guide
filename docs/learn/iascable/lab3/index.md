@@ -48,11 +48,11 @@ This is our simplified target architecture for our objective to create a customi
 
     * There will be no initial setup for a [Tekton pipeline](https://tekton.dev/docs/pipelines/pipelines/) at the moment.
 
-  ![](../../images/SoftwareEverywhere-GitOps.drawio.png)
+  ![](../../../images/SoftwareEverywhere-GitOps.drawio.png)
 
 * `IBM Cloud infrastructure` with `Red Hat OpenShift` in a `Virtual Private Cloud` 
 
-  ![](../../images/SoftwareEverywhere-OpenShift-Infrastructure.drawio.png)
+  ![](../../../images/SoftwareEverywhere-OpenShift-Infrastructure.drawio.png)
 
 ## 2. Identify the needed `Software Everywhere` Terraform modules for the target architecture
 
@@ -174,7 +174,7 @@ spec:
 
 The `BOM` will result later in following overall dependencies for the used `Terraform modules` after the usage of `IasCable`. The dependencies are given in automatic created `dependencies.dot` file later. 
 
-![](images/dependency-graph-lab3.png)
+![](../../../images/dependency-graph-lab3.png)
 
 > Note: You can use [GraphvizOnline](https://dreampuf.github.io/GraphvizOnline) for the visualization.
 
@@ -376,34 +376,34 @@ Apply complete! Resources: 91 added, 0 changed, 0 destroyed.
   * Cloud infrastructure/services resources
 
     * 1 x VPC
-      ![](../../images/resources-02-vpc.png)
+      ![](../../../images/resources-02-vpc.png)
     * 1 x Subnet
-      ![](../../images/resources-03-subnet.png)
+      ![](../../../images/resources-03-subnet.png)
     * 4 Security groups
       Two were created during the subnet creation and two are related to the created Red Hat OpenShift cluster.
-      ![](../../images/resources-04-security-groups.png)
+      ![](../../../images/resources-04-security-groups.png)
     * 1 x Virtual Private Endpoint
-      ![](../../images/resources-05-virtual-private-endpoint.png)
+      ![](../../../images/resources-05-virtual-private-endpoint.png)
     * 1 x Public Gateway
-      ![](../../images/resources-06-public-gateway.png)
+      ![](../../../images/resources-06-public-gateway.png)
     * 2 x Access Control Lists
       One was created for the VPC module and one during the creation by the subnet module.
-      ![](../../images/resources-07-access-control-list.png)
+      ![](../../../images/resources-07-access-control-list.png)
     * 1 x Routing Table
-      ![](../../images/resources-08-routing-table.png)
+      ![](../../../images/resources-08-routing-table.png)
     * 1 x Red Hat OpenShift Cluster
-      ![](../../images/resources-09-openshift-cluster.png)
+      ![](../../../images/resources-09-openshift-cluster.png)
     * 1 x Object Storage
-      ![](../../images/resources-10-object-storage.png)
+      ![](../../../images/resources-10-object-storage.png)
   
   * Cluster and GitOps configuration
 
      * `Red Hat OpenShift GitOps` operator and `Red Hat OpenShift Pipelines`  operator
-      ![](../../images/cluster-configuration-01-operators.png)
+      ![](../../../images/cluster-configuration-01-operators.png)
     * `GitHub` project as ArgoCD repository
-      ![](../../images/cluster-configuration-02-github-project.png)
+      ![](../../../images/cluster-configuration-02-github-project.png)
     * Preconfigure ArgoCD project
-      ![](../../images/cluster-configuration-03-argocd-project.png)
+      ![](../../../images/cluster-configuration-03-argocd-project.png)
       
 The invoked `apply.sh` script will create following files or folders:
 
