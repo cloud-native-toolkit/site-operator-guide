@@ -68,6 +68,7 @@ nav:
           - "Lab 3: GitOps": learn/iascable/lab3/index.md
   - Apply:
       - Overview: apply/index.md
+      - Bill of Material: apply/bill-of-material-reference/index.md
       - Multiple module catalogs:
           - Overview: apply/multi-catalog/index.md
           - Generating automation: apply/multi-catalog/iascable/index.md
