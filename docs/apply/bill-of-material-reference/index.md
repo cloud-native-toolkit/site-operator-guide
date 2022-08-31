@@ -70,7 +70,7 @@ spec:
   - name: ibm-vpc-ocp
 ```
 
-The `ibm-vpc-subnets` module depends on `ibm-vpc`. An explicit declaration of the dependency is not required here though because the `ibm-vpc` module is the default instance and all of the `ibm-vpc-subnets` are auto-wired to that instance. (In fact the `ibm-vpc` module doesn't even need to be explictly listed in the BOM in this case, but it is added for completeness.) The `ibm-vpc-ocp` module depends on `ibm-vpc-subnets` to identify where the cluster should be deployed. In this configuration, a default `ibm-vpc-subnets` instance has not been defined. As a result, `iascable` will automatically pull in 4th `ibm-vpc-subnets` instance to satisfy the dependency. This is probably not the desired result and we will want to explicitly define the dependency in the BOM. The updated BOM would look like the following:
+The `ibm-vpc-subnets` module depends on `ibm-vpc`. An explicit declaration of the dependency is not required here though because the `ibm-vpc` module is the default instance and all of the `ibm-vpc-subnets` are auto-wired to that instance. (In fact the `ibm-vpc` module doesn't even need to be explicitly listed in the BOM in this case, but it is added for completeness.) The `ibm-vpc-ocp` module depends on `ibm-vpc-subnets` to identify where the cluster should be deployed. In this configuration, a default `ibm-vpc-subnets` instance has not been defined. As a result, `iascable` will automatically pull in 4th `ibm-vpc-subnets` instance to satisfy the dependency. This is probably not the desired result and we will want to explicitly define the dependency in the BOM. The updated BOM would look like the following:
 
 ```yaml
 spec:
@@ -88,9 +88,9 @@ spec:
         ref: cluster_subnets
 ```
 
-The `subnets` identifier in the dependencies array refers to the dependency identifier in the module metadata for the `ibm-vpc-ocp` module. The `clsuter_subnets` value refers to the alias of the target `ibm-vpc-subnets` module instance.
+The `subnets` identifier in the dependencies array refers to the dependency identifier in the module metadata for the `ibm-vpc-ocp` module. The `cluster_subnets` value refers to the alias of the target `ibm-vpc-subnets` module instance.
 
-**Note:** The only exception to `iascable` automatically pulling dependent modules into the BOM is if there are multiple module options that satisfy the dependency. In this case one of the modules that satisfies dependency must be explicitly added to the BOM. Otherwise the `iasable build` command will give an error that the dependency cannot be resolved.
+**Note:** The only exception to `iascable` automatically pulling dependent modules into the BOM is if there are multiple module options that satisfy the dependency. In this case one of the modules that satisfies dependency must be explicitly added to the BOM. Otherwise the `iascable build` command will give an error that the dependency cannot be resolved.
 
 #### BOM Module variables
 
