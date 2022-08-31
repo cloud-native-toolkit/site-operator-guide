@@ -62,16 +62,16 @@ nav:
   - Learn:
       - Overview: learn/index.md
       - Iascable:
-          - Overview: iascable/index.md
-          - "Lab 1: The basics": iascable/lab1/index.md
-          - "Lab 2: Infrastructure": iascable/lab2/index.md
-          - "Lab 3: GitOps": iascable/lab3/index.md
+          - Overview: learn/iascable/index.md
+          - "Lab 1: The basics": learn/iascable/lab1/index.md
+          - "Lab 2: Infrastructure": learn/iascable/lab2/index.md
+          - "Lab 3: GitOps": learn/iascable/lab3/index.md
   - Apply:
       - Overview: apply/index.md
       - Multiple module catalogs:
-          - Overview: multi-catalog/index.md
-          - Generating automation: multi-catalog/iascable/index.md
-          - Creating a catalog: multi-catalog/custom-catalog/index.md
+          - Overview: apply/multi-catalog/index.md
+          - Generating automation: apply/multi-catalog/iascable/index.md
+          - Creating a catalog: apply/multi-catalog/custom-catalog/index.md
       - End-To-End Testing: apply/end-to-end-testing/index.md
   - Resources:
       - Overview: resources/index.md
