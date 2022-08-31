@@ -1,78 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://cloudnativetoolkit.dev/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/do/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/apply/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/do/End-2-End-Testing/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/apply/bill-of-material-reference/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/getting-started/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/apply/end-to-end-testing/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/getting-started/lab1/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/apply/module-metadata-reference/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/getting-started/lab2/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/apply/multi-catalog/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/getting-started/lab3/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/apply/multi-catalog/ascent/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/getting-started/whats-new/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/apply/multi-catalog/custom-catalog/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/learn/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/apply/multi-catalog/iascable/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/resources/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/getting-started/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/resources/ascent/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/getting-started/whats-new/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/resources/automation-bundles/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/learn/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/resources/automation-runtimes/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/learn/iascable/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/resources/module-catalog/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/learn/iascable/lab1/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://cloudnativetoolkit.dev/resources/troubleshooting/</loc>
-         <lastmod>2022-08-16</lastmod>
+         <loc>https://operate.cloudnativetoolkit.dev/learn/iascable/lab2/</loc>
+         <lastmod>2022-08-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://operate.cloudnativetoolkit.dev/learn/iascable/lab3/</loc>
+         <lastmod>2022-08-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://operate.cloudnativetoolkit.dev/resources/</loc>
+         <lastmod>2022-08-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://operate.cloudnativetoolkit.dev/resources/ascent/</loc>
+         <lastmod>2022-08-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://operate.cloudnativetoolkit.dev/resources/automation-bundles/</loc>
+         <lastmod>2022-08-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://operate.cloudnativetoolkit.dev/resources/automation-runtimes/</loc>
+         <lastmod>2022-08-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://operate.cloudnativetoolkit.dev/resources/module-catalog/</loc>
+         <lastmod>2022-08-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://operate.cloudnativetoolkit.dev/resources/troubleshooting/</loc>
+         <lastmod>2022-08-31</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
