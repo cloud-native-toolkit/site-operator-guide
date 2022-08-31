@@ -37,7 +37,7 @@ git clone https://github.com/IBM/automation-turbonomic.git
 - Make sure the you keep the automation solutions and automation-turbonomic in the same level directory since we will be generating the files that will go directly to automation-turbonomic folder. 
 - Otherwise, you need to copy the files and manually move to automation-turbonomic folder.
 
-![](../images/Automation-Turbo.png)
+![](docs/images/Automation-Turbo.png)
 
 (3) Navigate to the software folder named "Turbonomic" in my case and launch the script "generate.sh"
 
@@ -62,7 +62,7 @@ Copying Configuration
 
 (4) Navigate to the software (automation-turbonomic) and verify the files are generated as well as .github folder exist which is requires for the end-to-end test to run.
 
-![](../images/Turbonomic-generated.png)
+![](docs/images/Turbonomic-generated.png)
 
 (5) Add the end to end test logic in the verify-workflow.yaml (automation-turbonomic\.github\workflows) of the Software module to be tested
 
@@ -112,7 +112,7 @@ Copying Configuration
 
 **Note:** You can also validate the dependency if its configured properly by launching the container (.launch.sh) and run the CLI terragrunt graph-dependencies which displays the dependency graph
 
-![](../images/terragrunt-dependency.png)
+![](docs/images/terragrunt-dependency.png)
 
 
 (10) Trigger the module build which will kick off the end-to-end test for the software to be tested.

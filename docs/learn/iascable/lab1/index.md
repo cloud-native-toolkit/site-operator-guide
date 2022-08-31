@@ -21,11 +21,11 @@ Simplified we can say a [BOM is specified](https://github.com/cloud-native-toolk
 
 Here is a simplified overview diagram of the dependencies:
 
-![](../../images/iascable-bom-overview.drawio.png)
+![](docs/images/iascable-bom-overview.drawio.png)
 
 Here is a simplified activity diagram that shows the activities carried out by the user and the `IasCable` framework.
 
-![](../../images/activity-diagram.drawio.png)
+![](docs/images/activity-diagram.drawio.png)
 
 ### Realize [Software Everywhere](https://github.com/cloud-native-toolkit/software-everywhere) with [Bill of Material](https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure) and [Modules](https://modules.cloudnativetoolkit.dev/)
 
@@ -42,7 +42,7 @@ And we have two major elements to define and create the needed Terraform automat
 
 The following diagram shows some high level dependencies.
 
-![](../images/software-everywhere-getting-started.drawio.png)
+![](docs/images/software-everywhere-getting-started.drawio.png)
 
 ## 2. Pre-requisites for the example
 
@@ -67,7 +67,7 @@ This is a step by step example setup to create a `Virtual Private Cloud` with th
 
 * Simplified architecture overview
 
-![](../../images/vpc-example.drawio.png)
+![](docs/images/vpc-example.drawio.png)
 
 
 ### Step 1: Install CLI
@@ -215,7 +215,7 @@ That file simply executes the `terraform init` and
 
 That file contains the dependencies which can be visualized for example with [Graphviz Online](https://dreampuf.github.io/GraphvizOnline/).
 
-Example: ![](../../images/digraph-dependencies.png)
+Example: ![](docs/images/digraph-dependencies.png)
 
 * The `output/bom.yaml` file
 

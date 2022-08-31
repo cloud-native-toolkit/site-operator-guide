@@ -106,3 +106,11 @@ article.md-content__inner.md-typeset {
 .md-content {
   padding-bottom: 0;
 }
+
+.card {
+  padding: 10px 10px;
+}
+
+.card div {
+  font-size: large;
+}

@@ -1,4 +1,4 @@
-FROM squidfunk/mkdocs-material:7.1.8 as builder
+FROM docker.io/squidfunk/mkdocs-material:8.4.2 as builder
 
 RUN apk add --no-cache --update nodejs npm
 
@@ -12,7 +12,7 @@ RUN npm ci
 
 RUN npm run build
 
-FROM docker.io/bitnami/nginx
+FROM docker.io/bitnami/nginx:1.23.1
 
 EXPOSE 8080 8443
 COPY --from=builder /site/public /app

@@ -1,7 +1,7 @@
 site_name: "Cloud-Native Toolkit: Operate"
 site_description: >-
   The Cloud-Native Toolkit is an open-source collection of assets that enable application development and support teams to deliver business value quickly using Red Hat OpenShift or Kubernetes
-site_url: https://cloudnativetoolkit.dev
+site_url: https://operate.cloudnativetoolkit.dev
 site_author: Cloud-Native Toolkit development team
 repo_name: ""
 repo_url: https://github.com/cloud-native-toolkit/site-operator-guide
@@ -52,27 +52,32 @@ extra_css:
     - css/toolkit-code.css
 extra:
   generator: false
+  analytics:
+    provider: google
+    property: UA-153689700-1
 copyright: Copyright © 2022 Cloud-Native Toolkit
-google_analytics: ['UA-153689700-1', 'operate.cloudnativetoolkit.dev']
 nav:
   - Home: index.md
-  - Getting started:
-      - Overview: getting-started/index.md
-      - Labs:
-        -  Lab 1 - Getting started with the basics  : getting-started/lab1.md
-        -  Lab 2 - Use IasCable to create a VPC and a Red Hat OpenShift cluster on IBM Cloud  : getting-started/lab2.md
-        -  Lab 3 - Setup initial GitOps on a Red Hat OpenShift Cluster in a Virtual Private Cloud on IBM Cloud : getting-started/lab3.md
-  - Learn: learn/index.md
-#      - Overview: learn/index.md
-  - Do: 
-      # do/index.md
-      - Overview: resources/index.md
-      - End-To-End Testing: do/End-2-End-Testing.md
+  - Getting started: getting-started/index.md
+  - Learn:
+      - Overview: learn/index.md
+      - Iascable:
+          - Overview: iascable/index.md
+          - "Lab 1: The basics": iascable/lab1/index.md
+          - "Lab 2: Infrastructure": iascable/lab2/index.md
+          - "Lab 3: GitOps": iascable/lab3/index.md
+  - Apply:
+      - Overview: apply/index.md
+      - Multiple module catalogs:
+          - Overview: multi-catalog/index.md
+          - Generating automation: multi-catalog/iascable/index.md
+          - Creating a catalog: multi-catalog/custom-catalog/index.md
+      - End-To-End Testing: apply/end-to-end-testing/index.md
   - Resources:
       - Overview: resources/index.md
-      - ASCENT: resources/ascent.md
-      - Automation bundles: resources/automation-bundles.md
-      - Automation Runtimes: resources/automation-runtimes.md
-      - Troubleshooting: resources/troubleshooting.md
-      - Module catalog: resources/module-catalog.md
+      - ASCENT: resources/ascent/index.md
+      - Automation bundles: resources/automation-bundles/index.md
+      - Automation Runtimes: resources/automation-runtimes/index.md
+      - Troubleshooting: resources/troubleshooting/index.md
+      - Module catalog: resources/module-catalog/index.md
 
