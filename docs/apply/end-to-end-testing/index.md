@@ -1,119 +1,105 @@
 # End To End Testing for any Software Module
 
-I have provided step by step instructions for the end to end testing for software (Turbonomic) module which can be replicated for any software such as CP4I, CP4D etc.
+The following provides step-by-step instructions for the end-to-end testing of software BOMs (e.g. Turbonomic) which can be replicated for any software such as CP4I, CP4D etc.
 
 - Turbonomic Repo - https://github.com/IBM/automation-turbonomic
 
-### Follow the steps to implement the end-to-end testing
+## Follow the steps to implement the end-to-end testing
 
-(1) Checkout the Git repo from the https://github.com/cloud-native-toolkit/automation-solutions
+1. Checkout the Git repo from the https://github.com/cloud-native-toolkit/automation-solutions
 
-``` 
-git clone https://github.com/cloud-native-toolkit/automation-solutions.git
+    ```shell
+    git clone https://github.com/cloud-native-toolkit/automation-solutions.git
+    ```
 
-```
+2. Clone the Git repo for the software (such as turbonomic) which needs to be tested end-to-end
 
-Output from above Git Clone CLI
+    ```shell
+    git clone https://github.com/IBM/automation-turbonomic.git
+    ```
 
-```
-Cloning into 'automation-solutions'...
-remote: Enumerating objects: 3778, done.
-remote: Counting objects: 100% (1114/1114), done.
-remote: Compressing objects: 100% (326/326), done.
-remote: Total 3778 (delta 722), reused 1070 (delta 700), pack-reused 2664
-Receiving objects: 100% (3778/3778), 10.72 MiB | 10.41 MiB/s, done.
-Resolving deltas: 100% (2441/2441), done
-```
+    !!! note 
+    
+        - Make sure the you keep the automation solutions and automation-turbonomic in the same level directory since we will be generating the files that will go directly to automation-turbonomic folder. 
+        - Otherwise, you need to copy the files and manually move to automation-turbonomic folder.
 
-(2) Clone the Git repo for the software (such as turbonomic) which needs to be end-to-end testing
+    ![](../../images/Automation-Turbo.png)
 
-``` 
-git clone https://github.com/IBM/automation-turbonomic.git
+3. From the command-line, change dirctory to the the `automation-solutions` repository. Navigate to the folder containing the layers that will be generated. For Turbonomic the path is `boms/software/turbonomic`.
 
-```
+4. Run the generate script to create the automation output. 
 
-***Note:*** 
+    ```shell
+    ./generate.sh
+    ```
 
-- Make sure the you keep the automation solutions and automation-turbonomic in the same level directory since we will be generating the files that will go directly to automation-turbonomic folder. 
-- Otherwise, you need to copy the files and manually move to automation-turbonomic folder.
+    The output will look something like the following: 
+    
+    ```shell
+    Loading catalog from url: https://modules.cloudnativetoolkit.dev/index.yaml
+    Name: 200-openshift-gitops
+    Writing output to: ../../../../automation-turbonomic
+    Loading catalog from url: https://modules.cloudnativetoolkit.dev/index.yaml
+    Name: 250-turbonomic-multicloud
+    Writing output to: ../../../../automation-turbonomic
+    Copying Files
+    Copying Configuration
+    ```
 
-![](../../images/Automation-Turbo.png)
+    !!! note
+    
+        Every software layer which requires common layer such as gitops or storage as well as configuration will have a symbolic link to the file(s) in the shared location.
 
-(3) Navigate to the software folder named "Turbonomic" in my case and launch the script "generate.sh"
+4. Navigate to the software (automation-turbonomic) and verify the files are generated as well as .github folder exist which is requires for the end-to-end test to run.
 
-```
-.\generate.sh
-```
+    ![](../../images/Turbonomic-generated.png)
 
-Output from the generate.sh CLI 
+5. Add the end to end test logic in the verify-workflow.yaml (automation-turbonomic\.github\workflows) of the Software module to be tested
 
-```
-Loading catalog from url: https://modules.cloudnativetoolkit.dev/index.yaml
-Name: 200-openshift-gitops
-Writing output to: ../../../../automation-turbonomic
-Loading catalog from url: https://modules.cloudnativetoolkit.dev/index.yaml
-Name: 250-turbonomic-multicloud
-Writing output to: ../../../../automation-turbonomic
-Copying Files
-Copying Configuration
-```
+    - Below example strategy with do the end-to-end testing for the Turbonomic software on IBM Cloud infrastructure with the storage ODF and Portworx.
 
-**Note:** Every software layer which requires common layer such as Gitops, Storage as well as configuration will have symbolic to the Shared location.
+    ```yaml
+      strategy:
+        matrix:
+          flavor:
+            - ibm
+          storage:
+            - odf
+            - portworx
+    ```
 
-(4) Navigate to the software (automation-turbonomic) and verify the files are generated as well as .github folder exist which is requires for the end-to-end test to run.
+7. Add environment variables needed for this module in the verify-pr.yaml
 
-![](../../images/Turbonomic-generated.png)
+    ```yaml
+      env:
+        HOME: ""
+        IBMCLOUD_API_KEY: ""
+    ```
 
-(5) Add the end to end test logic in the verify-workflow.yaml (automation-turbonomic\.github\workflows) of the Software module to be tested
+8. The `steps` section represents a sequence of tasks that will be executed as part of job. Add the steps which needs to be executed in the sequence.
 
-- Below example strategy with do the end-to-end testing for the Turbonomic software on IBM Cloud infrastructure with the storage ODF and Portworx.
-  
-```
-   Strategy: 
-      matrix:
-        flavor:
-          - ibm
-        storage:
-           - odf
-           - portworx 
-```
+9. Modify the 200-openshift-gitops BOM to support Gitea. (If you are using the shared gitops BOM then this step isn't necessary.)
 
-(6) Add environment variables needed for this module in the verify-pr.yaml
-
-```
-    env:
-         Home: 
-         IBMCloud_API_Key
-```
-
-(7) Steps represents a sequence of tasks that will be executed as part of job
-
-- Add the steps which needs to be executed in the sequence 
-
-(8) Modify the 200-openshift-gitops BOM to support Gitea
-
-- Make sure generated main.tf is referencing the Gitea variables inside Gitops Module in the main.tf
+    - Make sure generated main.tf is referencing the Gitea variables inside Gitops Module in the main.tf
   
-```
-  module "gitops_repo" {
-  source = "github.com/cloud-native-toolkit/terraform-tools-gitops?ref=v1.21.0"
-  branch = var.gitops_repo_branch
-  debug = var.debug
-  gitea_host = module.gitea.host
-  gitea_org = module.gitea.org
-  gitea_token = module.gitea.token
-  gitea_username = module.gitea.username
-  ——
-  }
-```
+    ```hcl
+    module "gitops_repo" {
+      source = "github.com/cloud-native-toolkit/terraform-tools-gitops?ref=v1.21.0"
+      branch = var.gitops_repo_branch
+      debug = var.debug
+      gitea_host = module.gitea.host
+      gitea_org = module.gitea.org
+      gitea_token = module.gitea.token
+      gitea_username = module.gitea.username
+    }
+    ```
 
-(9) Copy the .mocks folder which has the configuration for BOM layer dependency.
-  - If you have any specific dependency between layers, you can describe in the terragrunt.hcl
+10. Copy the .mocks folder which has the configuration for BOM layer dependency. If you have any specific dependency between layers, you can describe in the terragrunt.hcl
 
-**Note:** You can also validate the dependency if its configured properly by launching the container (.launch.sh) and run the CLI terragrunt graph-dependencies which displays the dependency graph
+    !!! note
+    
+        You can also validate the dependency if its configured properly by launching the container (.launch.sh) and run the CLI terragrunt graph-dependencies which displays the dependency graph
+    
+    ![](../../images/terragrunt-dependency.png)
 
-![](../../images/terragrunt-dependency.png)
-
-
-(10) Trigger the module build which will kick off the end-to-end test for the software to be tested.
-  - Watch the Github Actions TAB 
+11. Trigger the module build which will kick off the end-to-end test for the software to be tested. You can watch the progress from the GitHub Actions tab.
