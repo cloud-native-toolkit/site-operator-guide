@@ -1,7 +1,5 @@
 # Lab 2: Use IasCable to create a VPC and a Red Hat OpenShift cluster on IBM Cloud
 
-> That lab uses following resource as input: From [IasCable](https://github.com/cloud-native-toolkit/iascable) and [that blog post](https://suedbroecker.net/2022/07/07/use-iascable-to-create-a-virtual-private-cloud-and-a-red-hat-openshift-cluster-on-ibm-cloud/).
-
 The following list represents the modules which are referenced in the example [IBM ROKS Bill of Materials](https://github.com/cloud-native-toolkit/iascable#ibm-roks-bill-of-materials) for [IasCable](https://github.com/cloud-native-toolkit/iascable).
 
 * [IBM VPC `ibm-vpc`](https://github.com/cloud-native-toolkit/terraform-ibm-vpc)
