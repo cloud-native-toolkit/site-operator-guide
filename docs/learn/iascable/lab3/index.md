@@ -1,7 +1,5 @@
 # Lab 3: Use `Software Everywhere` and `IasCable` to setup `GitOps` on a `Red Hat OpenShift Cluster` in a `Virtual Private Cloud` on `IBM Cloud`
 
-> That lab uses following resource as input: From [IasCable](https://github.com/cloud-native-toolkit/iascable) and [that blog post](https://suedbroecker.net/2022/07/18/use-software-everywhere-and-iascable-to-setup-gitops-on-a-red-hat-openshift-cluster-in-a-virtual-private-cloud-on-ibm-cloud/).
-
 Our objective is to create a customized initial [GitOps](https://www.ibm.com/garage/method/practices/run/gitops/) setup in an [`IBM Cloud`](https://cloud.ibm.com/login) environment.
 
 The [`Software Everywhere`](https://github.com/cloud-native-toolkit/software-everywhere) project and [`IasCable`](https://github.com/cloud-native-toolkit/iascable) CLI do provide an awesome way to eliminate writing [`Terraform`](https://www.terraform.io/) modules for various clouds such as [`IBM Cloud`](https://cloud.ibm.com/login), [`AWS`](https://aws.amazon.com/) or [`Azure`](https://azure.microsoft.com/) to create and configure resources. We are going to reuse Terraform modules which the [`Software Everywhere` catalog](https://modules.cloudnativetoolkit.dev/) does provide.
