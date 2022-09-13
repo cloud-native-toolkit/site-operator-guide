@@ -1,8 +1,6 @@
 # Lab 1: Getting start with the basics
 
-> That lab project uses following resource as input: From [IasCable](https://github.com/cloud-native-toolkit/iascable) and [that blog post](https://suedbroecker.net/2022/07/06/get-started-with-an-installable-component-infrastructure-by-selecting-components-from-a-catalog-of-available-modules-with-iascable/).
-
-This is just a starting point to use `IasCable`.
+This is just a starting point to use `[IasCable](https://github.com/cloud-native-toolkit/iascable)`.
 
 ## 1. The `IasCable` framework
 
