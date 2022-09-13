@@ -73,7 +73,7 @@ This is a step by step example setup to create a `Virtual Private Cloud` with th
 ### Step 1: Install CLI
 
 ```sh
-curl -sL https://iascable.cloud-native-toolkit.dev/install.sh | sh
+curl -sL https://iascable.cloudnativetoolkit.dev/install.sh | sh
 ```
 
 ### Step 2: Verify the installation
