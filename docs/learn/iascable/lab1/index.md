@@ -14,8 +14,7 @@ The IasCable uses a [`Bill of Material`](../../../apply/bill-of-material-referen
 
 > Please visit the linked resources for more details.
 
-Simplified we can say a  by modules it uses, variables you can define and providers you can define.
-It is good to know that modules can depend on other modules, if this is the case the related modules will be included by the framework, as far as I understand.
+Simplified we can say a `BOM` is specified by modules it uses, variables you can define and providers you can define. In addition you have the option to use variables and providers definitions related to a `BOM` specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.
 
 Simplified we can say a [BOM is specified](../../../apply/bill-of-material-reference/#bom-spec) by modules it uses. In addition you have the option to use variables and providers definitions related to a BOM specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.
 
