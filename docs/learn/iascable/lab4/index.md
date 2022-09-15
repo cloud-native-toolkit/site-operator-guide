@@ -505,3 +505,717 @@ The following diagram shows the simplified dependencies of `module`, `catalog` a
             - tools
             - gitops
           versions: []
+          id: github.com/cloud-native-toolkit/terraform-gitops-ocs-operator
+          group: ""
+          displayName: ocs-operator
+    - category: iam
+    - category: image-registry
+    - category: infrastructure
+    ...
+  aliases:
+    - id: github.com/terraform-ibm-modules/terraform-ibm-toolkit-mongodb
+    ...
+  providers:
+    - name: ibm
+      source: ibm-cloud/ibm
+      variables:
+        - name: ibmcloud_api_key
+          scope: global
+        - name: region
+          scope: global
+  ```
+
+### 5.4 Inspect the module section of the catalog file in more detail
+
+  We see that the `modules section` does contain following `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type` which are not a part of the `module.yaml`. After these entries we insert content of the `module.yaml`.
+
+  [Current `gitops` template](https://github.com/cloud-native-toolkit/template-terraform-gitops).
+
+### 5.5 Create a custom catalog
+
+#### Step 1: Create a `terraform-gitops-ubi-catalog.yml` and insert following content
+
+> Note: Ensure that the github project has a tag and a release!
+
+**The right value of the release** must be reference in the catalog! (Example `version: v0.0.1`).
+
+```yaml
+apiVersion: cloudnativetoolkit.dev/v1alpha1
+kind: Catalog
+categories:
+  - category: examples
+    categoryName: examples
+    selection: multiple
+    modules:
+      - cloudProvider: ""
+        softwareProvider: ""
+        type: gitops
+        id: github.com/Vishal-Ramani/terraform-gitops-ubi
+        group: ""
+        displayName: terraform-gitops-ubi
+        name: terraform-gitops-ubi
+        description: "That module will add a new 'Argo CD config' to deploy a 'ubi' container to OpenShift"
+        tags:
+          - tools
+          - gitops
+        versions:
+          - platforms:
+              - kubernetes
+              - ocp3
+              - ocp4
+            version: v0.0.2
+            dependencies:
+              - id: gitops
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-tools-gitops.git
+                    version: '>= 1.1.0'
+              - id: namespace
+                refs:
+                  - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
+                    version: '>= 1.0.0'
+            variables:
+              - name: gitops_config
+                type: |-
+                  object({
+                      boostrap = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      infrastructure = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      services = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                      applications = object({
+                        argocd-config = object({
+                          project = string
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                        payload = object({
+                          repo = string
+                          url = string
+                          path = string
+                        })
+                      })
+                    })
+                description: Config information regarding the gitops repo structure
+                moduleRef:
+                  id: gitops
+                  output: gitops_config
+              - name: git_credentials
+                type: |-
+                  list(object({
+                      repo = string
+                      url = string
+                      username = string
+                      token = string
+                    }))
+                description: The credentials for the gitops repo(s)
+                sensitive: true
+                moduleRef:
+                  id: gitops
+                  output: git_credentials
+              - name: namespace
+                type: string
+                description: The namespace where the application should be deployed
+                moduleRef:
+                  id: namespace
+                  output: name
+              - name: kubeseal_cert
+                type: string
+                description: The certificate/public key used to encrypt the sealed secrets
+                default: ""
+                moduleRef:
+                  id: gitops
+                  output: sealed_secrets_cert
+              - name: server_name
+                type: string
+                description: The name of the server
+                default: default
+                moduleRef:
+                  id: gitops
+                  output: server_name
+              - name: cluster_type
+                description: The cluster type (openshift or kubernetes)
+                default: '"openshift"'
+            outputs:
+              - name: name
+                description: The name of the module
+              - name: branch
+                description: The branch where the module config has been placed
+              - name: namespace
+                description: The namespace where the module will be deployed
+              - name: server_name
+                description: The server where the module will be deployed
+              - name: layer
+                description: The layer where the module is deployed
+              - name: type
+                description: The type of module where the module is deployed  
+```
+
+### 5.6. `BOM` that we will use `terraform-gitops-ubi module`
+
+#### Step 1: Clone the project with the example [`BOM`](https://github.com/Vishal-Ramani/UBI-helm-module-example.git/blob/main/example/ibm-vpc-roks-argocd-ubi.yaml) configuration 
+
+```sh
+git clone https://github.com/Vishal-Ramani/UBI-helm-module-example.git
+cd example
+```
+
+#### Step 2: Verify the [`ibm-vpc-roks-argocd-ubi.yaml`](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/ibm-vpc-roks-argocd-ubi.yaml) `BOM` file
+
+This is the simplified target architecture what our  `BOM` will create as terraform code for initial setup.
+
+A customized IBM Cloud environment for `GitOps` and our `terraform-gitops-ubi` module.
+
+* For the configuration of GitOps in Red Hat OpenShift. We will use two operators:
+
+  * [Red Hat OpenShift GitOps operator](https://github.com/redhat-developer/gitops-operator)
+
+    We will create one ArgoCD instance with the Red at OpenShift GitOps operator, that ArgoCD instance will bin initial configured by a newly created GitHub project configure by a Cloud Native Toolkit template for GitOps repositories.
+
+  * [Red Hat OpenShift Pipelines operator](https://catalog.redhat.com/software/operators/detail/5ec54a4628834587a6b85ca5)
+
+    There will be no initial setup for a Tekton pipeline at the moment.
+
+  That images show a simplified view of the Argo CD basic configuration.
+
+  ![](../../../images/develop-own-module-07.png)
+
+* IBM Cloud infrastructure with Red Hat OpenShift in a Virtual Private Cloud
+  
+   ![](../../../images/develop-own-module-08.png)
+
+This is the structure of the `BOM` we are going to use: 
+
+* Virtual Private Cloud - related
+* ROKS - related (RedHat OpenShift on IBM Cloud)
+* GitOps and Bootstrap of GitOps 
+* Our own module called `terraform-gitops-ubi`
+
+> Note: You need configure variables to your needs, when you share your IBM Cloud environment with others. 
+
+We commented out the `#  version: v0.0.5` of our module, because we will configure only one version in our `catalog.yaml` which we will define later.
+
+```yaml
+apiVersion: cloudnativetoolkit.dev/v1alpha1
+kind: BillOfMaterial
+metadata:
+  name: ibm-vpc-roks-argocd-ubi
+spec:
+  modules:
+    # Virtual Private Cloud - related
+    # - subnets
+    # - gateways
+    - name: ibm-vpc
+      alias: ibm-vpc
+      version: v1.16.1
+      variables:
+      - name: name
+        value: "tsued-gitops-ubi"
+      - name: tags
+        value: ["tsuedro"]
+    - name: ibm-vpc-subnets
+      alias: ibm-vpc-subnets
+      version: v1.13.2
+      variables:
+        - name: _count
+          value: 1
+        - name: name
+          value: "tsued-gitops-ubi"
+        - name: tags
+          value: ["tsuedro"]
+    - name: ibm-vpc-gateways
+    # ROKS - related
+    # - objectstorage
+    - name: ibm-ocp-vpc
+      alias: ibm-ocp-vpc
+      version: v1.15.7
+      variables:
+        - name: name
+          value: "tsued-gitops-ubi"
+        - name: worker_count
+          value: 2
+        - name: tags
+          value: ["tsuedro"]
+    - name: ibm-object-storage
+      alias: ibm-object-storage
+      version: v4.0.3
+      variables:
+        - name: name
+          value: "cos_tsued_ubi"
+        - name: tags
+          value: ["tsuedro"]
+        - name: label
+          value: ["cos_tsued_ubi"]
+    # Install OpenShift GitOps and Bootstrap GitOps (aka. ArgoCD) - related
+    # - argocd
+    # - gitops
+    - name: argocd-bootstrap
+      alias: argocd-bootstrap
+      version: v1.12.0
+      variables:
+        - name: repo_token
+    - name: gitops-repo
+      alias: gitops-repo
+      version: v1.20.2
+      variables:
+        - name: host
+          value: "github.com"
+        - name: type
+          value: "GIT"
+        - name: org
+          value: "thomassuedbroecker"
+        - name: username
+          value: "thomassuedbroecker"
+        - name: project
+          value: "iascable-gitops-ubi"
+        - name: repo
+          value: "iascable-gitops-ubi"
+    # Install ubi
+    # New custom module linked be the custom catalog
+    - name: terraform-gitops-ubi
+      alias: terraform-gitops-ubi
+      #  version: v0.0.5
+```
+
+## 6. Create terraform code and create the resources
+
+Use [`iascable`](https://github.com/cloud-native-toolkit/iascable) to create the terraform code.
+
+
+### Step 1: Create a `credentials.properties` file and edit the file
+
+```sh
+cd example
+cp ./credentials.properties-template ./credentials.properties
+nano credentials.properties
+```
+
+Provide the your GitHub access token and IBM Cloud API key.
+
+```sh
+export TF_VAR_gitops_repo_token=XXX
+export TF_VAR_ibmcloud_api_key=XXX
+```
+
+### Step 2: Execute following commands
+
+```sh
+BASE_CATALOG=https://modules.cloudnativetoolkit.dev/index.yaml
+CUSTOM_CATALOG=https://raw.githubusercontent.com/Vishal-Ramani/UBI-helm-module-example/main/example/catalog/ubi-helm-catalog.yaml
+
+iascable build -i ibm-vpc-roks-argocd-ubi.yaml -c $BASE_CATALOG -c $CUSTOM_CATALOG
+```
+
+### Step 3: Verify the created files and folders
+
+```sh
+tree .
+```
+
+* Example output:
+
+```sh
+.
+├── catalog
+│   └── ubi-helm-catalog.yaml
+├── credentials.properties
+├── credentials.properties-template
+├── ibm-vpc-roks-argocd-ubi.yaml
+└── output
+    ├── ibm-vpc-roks-argocd-ubi
+    │   ├── apply.sh
+    │   ├── bom.yaml
+    │   ├── dependencies.dot
+    │   ├── destroy.sh
+    │   └── terraform
+    │       ├── docs
+    │       │   ├── argocd-bootstrap.md
+    │       │   ├── gitops-namespace.md
+    │       │   ├── gitops-repo.md
+    │       │   ├── ibm-object-storage.md
+    │       │   ├── ibm-ocp-vpc.md
+    │       │   ├── ibm-resource-group.md
+    │       │   ├── ibm-vpc-gateways.md
+    │       │   ├── ibm-vpc-subnets.md
+    │       │   ├── ibm-vpc.md
+    │       │   ├── olm.md
+    │       │   ├── sealed-secret-cert.md
+    │       │   └── terraform-gitops-ubi.md
+    │       ├── ibm-vpc-roks-argocd-ubi.auto.tfvars
+    │       ├── main.tf
+    │       ├── providers.tf
+    │       ├── variables.tf
+    │       └── version.tf
+    └── launch.sh
+
+5 directories, 26 files
+```
+
+### Step 4: Navigate to the `output` folder
+
+```sh
+cd output
+```
+
+### Step 5: Copy the `credentials.properties` into the `output` folder
+
+```sh
+CURRENT_PATH=$(pwd)
+PROJECT=ibm-vpc-roks-argocd-ubi
+cp $CURRENT_PATH/../credentials.properties $CURRENT_PATH/ibm-vpc-roks-argocd-ubi/credentials.properties
+```
+
+### Step 6: Map the current folder to the Multpass cli-tools VM
+
+Ensure you started the `Multipass cli-tools VM` before you execute the following command:
+
+```sh
+multipass mount $PWD cli-tools:/automation
+```
+
+Now we have mapped the `output` folder to the `cli-tools VM`. We can use the installed [`CLI tools`](https://github.com/cloud-native-toolkit/image-cli-tools) inside the `cli-tools VM` to apply the Terraform code. 
+
+> All changes we made in with `cli-tools VM` will be saved in the mapped `output` folder on our local machine.
+
+
+### Step 7: Open the interactive shell
+
+```sh
+multipass shell cli-tools
+```
+
+* Example output:
+
+```sh
+Last login: Mon Sep 12 18:06:24 2022 from 192.168.64.1
+ubuntu@cli-tools:~$ 
+```
+
+### Step 8: In the virtual machine navigate to the automation folder
+
+```sh
+cd ../../automation
+ls
+```
+
+### Step 9: Now navigate to the `ibm-vpc-roks-argocd-ubi` folder
+
+```sh
+cd ibm-vpc-roks-argocd-ubi/
+ls
+```
+
+### Step 10: Source the `credentials.properties` as environment variables and show one variable
+
+```sh
+source credentials.properties
+echo $TF_VAR_ibmcloud_api_key
+```
+
+### Step 11: Execute `./apply.sh`
+
+```sh
+./apply.sh
+```
+
+### Step 12: Enter `yes` to apply the Terraform code
+
+```sh
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value:
+```
+
+### Step 13: Interactive terminal actions
+
+These values you need to edit:
+
+  * Namespace: `ubi-helm`
+  * Region: `eu-de`
+  * Resource group: `default`
+  * gitops-repo_token: `XXX`
+
+```sh
+Variables can be provided in a yaml file passed as the first argument
+
+Provide a value for 'gitops-repo_host':
+  The host for the git repository. The git host used can be a GitHub, GitHub Enterprise, Gitlab, Bitbucket, Gitea or Azure DevOps server. If the host is null assumes in-cluster Gitea instance will be used.
+> (github.com) 
+Provide a value for 'gitops-repo_org':
+  The org/group where the git repository exists/will be provisioned. If the value is left blank then the username org will be used.
+> (thomassuedbroecker) 
+Provide a value for 'gitops-repo_project':
+  The project that will be used for the git repo. (Primarily used for Azure DevOps repos)
+> (iascable-gitops-ubi) 
+Provide a value for 'gitops-repo_username':
+  The username of the user with access to the repository
+> (thomassuedbroecker) 
+Provide a value for 'gitops-repo_token':
+  The personal access token used to access the repository
+> XXXX
+> Provide a value for 'region':
+> eu-de
+Provide a value for 'worker_count':
+  The number of worker nodes that should be provisioned for classic infrastructure
+> (2) 
+Provide a value for 'ibm-ocp-vpc_flavor':
+  The machine type that will be provisioned for classic infrastructure
+> (bx2.4x16) 
+Provide a value for 'common_tags':
+  Common tags that should be added to the instance
+> ([])
+Provide a value for 'ibm-vpc-subnets__count':
+  The number of subnets that should be provisioned
+> (1) 
+Provide a value for 'resource_group_name':
+  The name of the resource group
+> default
+Provide a value for 'namespace_name':
+  The value that should be used for the namespace
+> ubi-helm
+```
+
+#### Step 14: Verify the output of terraform execution
+
+After some time you should get following output:
+
+```sh
+Apply complete! Resources: 103 added, 0 changed, 0 destroyed.
+```
+
+#### Step 15: Open Argo CD in OpenShift and verify the application instances
+
+Follow the steps in the shown in the `gif`.
+
+![](../../../images/develop-own-module-12.gif)
+
+#### Step 16: Access the UBI pod in OpenShift and execute `ls` in the terminal
+
+Follow the steps in the shown in the `gif`.
+
+![](../../../images/develop-own-module-13.gif)
+
+## 7. Verify the created Argo CD configuration on GitHub
+
+We see that in our GitHub account new repostory was created from the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap) and the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module to figure `Argo CD` for by using the `app-of-apps` concept with a single GitHub repository to manage all `Argo CD application configuration` and `helm configurations to deploy applications` in the GitOps context.
+
+> Reminder the boot strap configuration is shown in the following image for details visit the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
+
+![](https://github.com/cloud-native-toolkit/terraform-tools-gitops/blob/main/template/docs/gitops-structure-overview.png?raw=true)
+
+The new GitHub repository is called `iascable-gitops-ubi` in our case.
+
+The new `iascable-gitops-ubi` repository contains two folders the following image shows the relation to the bootstrap configuration.
+
+![](../../../images/develop-own-module-09.png)
+
+* **argocd** folder which contains the configuration for `Argo CD` let us call it **app-of-apps** folder. The following image displays the resulting configuration in `Argo CD`
+
+![](../../../images/develop-own-module-03.png)
+
+* **payload** folder which contains the current helm deployment for the **apps** which will be deployed. The following image show the deployment created by `apps` in our case the ubi-helm. 
+
+The following image shows the newly created GitHub `iascable-gitops-ubi` repository.
+
+![](../../../images/develop-own-module-02.png)
+
+For more details visit the template of the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
+
+
+### 7.1 Understand how the `ubi module content` was pasted into the new `iascable-gitops-ubi` repository
+
+Following the concept for the gitops bootstrap setup documented in the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) GitHub repository.
+
+We have two main folders in the `iascable-gitops-ubi` repository.
+
+1. One for the `Argo CD application` configurations called `argocd`
+2. One for the application which will be deployed be the `Argo CD application` configurations called payload.
+
+Let us inspect these two folders. The `gif` below shows some of the created files and folders.
+
+![](../../../images/develop-own-module-05.gif)
+
+#### 7.1.1 `argocd` folder
+
+There were two `Argo CD application` configurations added into the `iascable-gitops-ubi` repository. 
+
+1. One for the `namespace` in the OpenShift or Kubernetes cluster where the ubi application will be deployed. That `Argo CD application` configuration is related to exiting  `1-infrastructure` Argo CD project created by the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap).
+
+2. One for the `ubi` application we want to deploy. That `Argo CD application` configuration is related to exiting  `3-application` Argo CD project created by the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap).
+
+Let's take a look a the created `Argo CD application configurations`
+
+We have two `Argo CD` application configurations:
+
+#### 7.1.1.1 ubi **Namespace** in `argocd.1-infrastructure.cluster.default.base.namespace-ubi-helm.yaml`
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: namespace-ubi-helm
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: 1-infrastructure
+  source:
+    path: payload/1-infrastructure/namespace/ubi-helm/namespace
+    repoURL: https://github.com/thomassuedbroecker/iascable-gitops-ubi.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  ignoreDifferences: []
+```
+
+#### 7.1.1.2 UBI **application deployment** `argocd.3-applications.cluster.default.base.ubi-helm-ubi.yaml`
+
+This is the Argo CD application configuration `ubi-helm-ubi-helm.yaml` file, which was created automaticly by our module with the `igc gitops-module` command.
+
+That `payload` directory is used as the `source.path` in that `Argo CD application` configuration as you see above.
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ubi-helm-ubi-helm
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: ubi-helm
+    server: https://kubernetes.default.svc
+  project: 3-applications
+  source:
+    path: payload/3-applications/namespace/ubi-helm/ubi-helm
+    repoURL: https://github.com/thomassuedbroecker/iascable-gitops-ubi.git
+    targetRevision: main
+    helm:
+      releaseName: ubi-helm
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  ignoreDifferences: []
+```
+
+#### 7.1.2 `payload` folder
+
+That folder contains a `namespace` payload and the `helm-chart` payload. 
+
+#### 7.1.2.2 ubi **Namespace** in `payload.1-infrastructure.cluster.default.base`
+
+In the folder `payload.1-infrastructure.cluster.default.base` we have an `ns.yaml` and `rbac.yaml`. 
+
+* `ns.yaml`
+
+```yaml
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ubi-helm
+  annotations:
+    argocd.argoproj.io/sync-wave: "-30"
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: ubi-helm-operator-group
+  namespace: ubi-helm
+  annotations:
+    argocd.argoproj.io/sync-wave: "-20"
+spec:
+  targetNamespaces:
+    - ubi-helm
+```
+
+* `rbac.yaml`
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: argocd-admin
+  namespace: ubi-helm
+  annotations:
+    argocd.argoproj.io/sync-wave: "-20"
+rules:
+- apiGroups:
+  - "*"
+  resources:
+  - "*"
+  verbs:
+  - "*"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argocd-admin
+  namespace: ubi-helm
+  annotations:
+    argocd.argoproj.io/sync-wave: "-20"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: argocd-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: system:serviceaccounts:openshift-gitops
+```
+
+#### 7.1.1.2 ubi helm **application deployment** `payload.3-applications.cluster.default.base`
+
+That folder contains the **ubi application** `helm chart configuration` to deploy the ubi application.
+
+The script `scripts/create-yaml.sh` of our [module `terraform-gitops-ubi`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/scripts/create-yaml.sh) was resposible to copy the ubi helm-chart into the payload directory. Therefor we did the customization of that file.
+
+We defined the values content for the helm chart variables before in the `module.tf` file. That file `values.yaml` file is used in `Argo CD application` configuration for the parameters.
+
+```sh
+  values_content = {
+    ubi-helm = {
+      // create entry
+    }
+  }
+```
+
+The following gif shows the relation of the parameter configuration for the helm-chart
+
+![](../../../images/develop-own-module-06.gif)
+
