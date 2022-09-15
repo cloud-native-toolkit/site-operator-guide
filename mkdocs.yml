@@ -66,6 +66,7 @@ nav:
           - "Lab 1: The basics": learn/iascable/lab1/index.md
           - "Lab 2: Infrastructure": learn/iascable/lab2/index.md
           - "Lab 3: GitOps": learn/iascable/lab3/index.md
+          - "Lab 4: Develop GitOps module": learn/iascable/lab4/index.md
   - Apply:
       - Overview: apply/index.md
       - Bill of Material: apply/bill-of-material-reference/index.md
