@@ -1,12 +1,12 @@
-# Lab 3: Use `Software Everywhere` and `IasCable` to setup `GitOps` on a `Red Hat OpenShift Cluster` in a `Virtual Private Cloud` on `IBM Cloud`
+# Lab 3: Use `Technology Zone Accelerator Toolkit` and `IasCable` to setup `GitOps` on a `Red Hat OpenShift Cluster` in a `Virtual Private Cloud` on `IBM Cloud`
 
 Our objective is to create a customized initial [GitOps](https://www.ibm.com/garage/method/practices/run/gitops/) setup in an [`IBM Cloud`](https://cloud.ibm.com/login) environment.
 
-The [`Software Everywhere`](https://github.com/cloud-native-toolkit/software-everywhere) project and [`IasCable`](https://github.com/cloud-native-toolkit/iascable) CLI do provide an awesome way to eliminate writing [`Terraform`](https://www.terraform.io/) modules for various clouds such as [`IBM Cloud`](https://cloud.ibm.com/login), [`AWS`](https://aws.amazon.com/) or [`Azure`](https://azure.microsoft.com/) to create and configure resources. We are going to reuse Terraform modules which the [`Software Everywhere` catalog](https://modules.cloudnativetoolkit.dev/) does provide.
+The [`Technology Zone Accelerator Toolkit`](https://github.com/cloud-native-toolkit/software-everywhere) project and [`IasCable`](https://github.com/cloud-native-toolkit/iascable) CLI do provide an awesome way to eliminate writing [`Terraform`](https://www.terraform.io/) modules for various clouds such as [`IBM Cloud`](https://cloud.ibm.com/login), [`AWS`](https://aws.amazon.com/) or [`Azure`](https://azure.microsoft.com/) to create and configure resources. We are going to reuse Terraform modules which the [`Technology Zone Accelerator Toolkit` catalog](https://modules.cloudnativetoolkit.dev/) does provide.
 
 Surely, we need to know the needed outline for the cloud architecture which does depend on the cloud environment we are going to use.
 
-As I said the [`Software Everywhere` catalog](https://modules.cloudnativetoolkit.dev/) does provide  the reuse of existing Terraform modules, which we use by just combining by writing a ["`Bill of Material file`"](https://github.com/cloud-native-toolkit/iascable) and configure the variables for the related Terraform modules ([example link to the GitOps Terraform module](https://github.com/cloud-native-toolkit/terraform-gitops-cp-bas)) when it is needed.
+As I said the [`Technology Zone Accelerator Toolkit` catalog](https://modules.cloudnativetoolkit.dev/) does provide  the reuse of existing Terraform modules, which we use by just combining by writing a ["`Bill of Material file`"](https://github.com/cloud-native-toolkit/iascable) and configure the variables for the related Terraform modules ([example link to the GitOps Terraform module](https://github.com/cloud-native-toolkit/terraform-gitops-cp-bas)) when it is needed.
 
 > We **will not write any Terraform code**, we will only combine existing Terraform modules and configure them using [IasCable `BOM`](https://github.com/cloud-native-toolkit/iascable) files!
 
@@ -15,7 +15,7 @@ In that scenario we will use [`IBM Cloud`](https://cloud.ibm.com/login) with a [
 These are the major sections:
 
 1. Define an outline of the target architecture
-2. Identify the needed `Software Everywhere` Terraform modules for the target architecture
+2. Identify the needed `Technology Zone Accelerator Toolkit` Terraform modules for the target architecture
 3. Write a customized `BOM` to combine the modules
 4. Use `IasCable` to create the scaffolding for a `Terraform` project
 5. Use the [`IasCable` tools container](https://quay.io/repository/cloudnativetoolkit/cli-tools?tab=tags) to execute the `Terraform` modules
@@ -52,10 +52,10 @@ This is our simplified target architecture for our objective to create a customi
 
   ![](../../../images/SoftwareEverywhere-OpenShift-Infrastructure.drawio.png)
 
-## 2. Identify the needed `Software Everywhere` Terraform modules for the target architecture
+## 2. Identify the needed `Technology Zone Accelerator Toolkit` Terraform modules for the target architecture
 
-Let us first define which `Software Everywhere` 
-Terraform modules we are going to use for our custom `BOM` file specification. The [`Software Everywhere`](https://github.com/cloud-native-toolkit/software-everywhere) project points to the  [Automated Solutions project](https://github.com/cloud-native-toolkit/automation-solutions) which contains several starting points for various setups, which can be used as a starting point.
+Let us first define which `Technology Zone Accelerator Toolkit` 
+Terraform modules we are going to use for our custom `BOM` file specification. The [`Technology Zone Accelerator Toolkit`](https://github.com/cloud-native-toolkit/software-everywhere) project points to the  [Automated Solutions project](https://github.com/cloud-native-toolkit/automation-solutions) which contains several starting points for various setups, which can be used as a starting point.
 
 In our case we have two major areas for `Terraform` modules we want to use:
 
@@ -80,7 +80,7 @@ In our case we have two major areas for `Terraform` modules we want to use:
 
 ### Step 1: Write the **Bill of Material** `BOM` file
 
-Now we combine the existing `Terraform` modules we got from the `Software Everywhere catalog` and we specify the variables in the `BOM` file we need to reflect our target architecture.
+Now we combine the existing `Terraform` modules we got from the `Technology Zone Accelerator Toolkit catalog` and we specify the variables in the `BOM` file we need to reflect our target architecture.
 
 > Note: When we going to use these variables, we must keep in mind that we need to use the names of the variables defined in the `Terraform modules` and we should use `alias: ibm-vpc` to define the  prefix in the `BOM` file.
 
@@ -453,7 +453,7 @@ Destroy complete! Resources: 91 destroyed.
 
 We achieved what we wanted to achieve, create a customized initial setup in an [`IBM Cloud`](https://cloud.ibm.com/login) environment for [GitOps](https://www.ibm.com/garage/method/practices/run/gitops/). 
 
-The [`Software Everywhere`](https://github.com/cloud-native-toolkit/software-everywhere) project and [`IasCable`](https://github.com/cloud-native-toolkit/iascable) are powerful.
+The [`Technology Zone Accelerator Toolkit`](https://github.com/cloud-native-toolkit/software-everywhere) project and [`IasCable`](https://github.com/cloud-native-toolkit/iascable) are powerful.
 
 > As we have seen there was no need to write any Terraform module!
 
@@ -461,4 +461,4 @@ Yes, when you are going to define you own "Bill of Material `BOM` file" you need
 
 But, as I said: There was no need to write own Terraform modules in our case.
 
-The [`Software Everywhere`](https://github.com/cloud-native-toolkit/software-everywhere) project and [`IasCable`](https://github.com/cloud-native-toolkit/iascable) project needs some more documentation in the future, I like the power of it and it is under [Apache-2.0 license](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/LICENSE), which means you can use it as your starting point for Software Everywhere with Terraform and contribute to the project.
+The [`Technology Zone Accelerator Toolkit`](https://github.com/cloud-native-toolkit/software-everywhere) project and [`IasCable`](https://github.com/cloud-native-toolkit/iascable) project needs some more documentation in the future, I like the power of it and it is under [Apache-2.0 license](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/LICENSE), which means you can use it as your starting point for Technology Zone Accelerator Toolkit with Terraform and contribute to the project.
