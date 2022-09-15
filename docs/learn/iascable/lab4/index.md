@@ -34,11 +34,11 @@ These are the main tasks:
 3. Create an own `catalog` for the `terraform-gitops-ubi` `module`
 4. Create a [`BOM`(Bill of material)](https://github.com/cloud-native-toolkit/iascable#bom-spec) where the `terraform-gitops-ubi` `module` is used and create the needed terraform output with `iascable`
 
-We will use later two catalogs and one `BOM` (Bill of material). here is a simplified view of the depencencies we will have later.
+We will use later two catalogs and one `BOM` (Bill of material). here is a simplified view of the dependencies we will have later.
 
-![](../../../imagesdevelop-own-module-11.png)
+![](../../../images/develop-own-module-11.png)
 
-## 3.1 Perpare the environment
+## 3.1 Prepare the environment
 
 ### 3.1.1 Create a new GitHub repository based on the `gitops template`
 
@@ -48,7 +48,7 @@ We clone the [`gitops template` repository](https://github.com/cloud-native-tool
 
 You can follow the steps in the [blog post](https://wp.me/paelj4-1yf) to do this.
 
-Then you should have following folderstructure on on computer:
+Then you should have following folder structure on on computer:
 
 ```sh
 ├── LICENSE
@@ -256,7 +256,7 @@ That will be the resulting folder structure for the `terraform-gitops-ubi module
 ```
 
 
-#### Step 2: Copy in newly create folderstructure the content from the repository for the `ubi-helm` chart [https://github.com/thomassuedbroecker/ubi-helm/tree/main/charts/ubi-helm](https://github.com/thomassuedbroecker/ubi-helm/tree/main/charts/ubi-helm)
+#### Step 2: Copy in newly create folder structure the content from the repository for the `ubi-helm` chart [https://github.com/thomassuedbroecker/ubi-helm/tree/main/charts/ubi-helm](https://github.com/thomassuedbroecker/ubi-helm/tree/main/charts/ubi-helm)
 
 #### Step 3: Validate the `helm chart` with following commands:
 
@@ -428,9 +428,9 @@ The module github repository `release tags` should be updated when you are going
 
 The image below shows some releases and as you can see for each release an archive is available. Later [`iascable`](https://github.com/cloud-native-toolkit/iascable) uses the `release tag` to download the right archive to the local computer to create the Terraform output.
 
-![](../../../imagesdevelop-own-module-10.png)
+![](../../../images/develop-own-module-10.png)
 
-In case when you use specific version numbers in the `BOM` which consums the module, you need to ensure that version number is also in range of the custom chart which points to the module. That is also relevant for the `catalog.yaml` we will define later.
+In case when you use specific version numbers in the `BOM` which uses the module, you need to ensure that version number is also in range of the custom chart which points to the module. That is also relevant for the `catalog.yaml` we will define later.
 
 Example relevant extract from a `BOM` -> `version: v0.0.5`
 
@@ -455,9 +455,9 @@ We will create our own `catalog.yaml` file and save the configuration in the Git
 * Inspect the structure of a `catalog.yaml`
 * Create a custom catalog steps
 
-The following diagram shows the simplfied dependencies of `module`, `catalog` and `iascable`:
+The following diagram shows the simplified dependencies of `module`, `catalog` and `iascable`:
 
-![](../../../imagesdevelop-own-module-11.png)
+![](../../../images/develop-own-module-11.png)
 
 
 ### 5.1 How to create `catalog.yaml` file?
@@ -485,7 +485,7 @@ The following diagram shows the simplfied dependencies of `module`, `catalog` an
   That is a minimize extraction of the `index.yaml` above. It contains: `categories`,`modules`,`aliases` and `providers`.
 
   ```yaml
-  apiVersion: cloudnativetoolkit.dev/vlalphal
+  apiVersion: cloudnativetoolkit.dev/v1alpha1
   kind: Catalog
   categories:
     - category: ai-ml
