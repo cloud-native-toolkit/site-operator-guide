@@ -10,3 +10,5 @@ The getting started section provides you three initial getting started with [`Ia
 
 * [Lab3: Use `Software Everywhere` and `IasCable` to setup `GitOps` on a `Red Hat OpenShift Cluster` in a `Virtual Private Cloud` on `IBM Cloud`](lab3/)
 
+* [Lab4: Develop an own GitOps module](lab4/)
+
