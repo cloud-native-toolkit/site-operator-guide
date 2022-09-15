@@ -8,7 +8,7 @@ Let us have first a look the basic components of the `IasCable` framework.
 
 ### [Bill of Material](../../../apply/bill-of-material-reference/) and [Modules](https://modules.cloudnativetoolkit.dev/)
 
-The IasCable uses a [`Bill of Material`](../../../apply/bill-of-material-reference/) and [`Modules`](https://modules.cloudnativetoolkit.dev/)(from the [Software Everywhere project](https://github.com/cloud-native-toolkit/software-everywhere)), which you need to understand. These two parts are the heart of the framework we could say to realize the objective to  build an installable component infrastructure based on components from a catalog of available modules.
+The IasCable uses a [`Bill of Material`](../../../apply/bill-of-material-reference/) and [`Modules`](https://modules.cloudnativetoolkit.dev/)(from the [Technology Zone Accelerator Toolkit project](https://github.com/cloud-native-toolkit/software-everywhere)), which you need to understand. These two parts are the heart of the framework we could say to realize the objective to  build an installable component infrastructure based on components from a catalog of available modules.
 
 > Please visit the linked resources for more details.
 
@@ -24,7 +24,7 @@ Here is a simplified activity diagram that shows the activities carried out by t
 
 ![](../../../images/activity-diagram.drawio.png)
 
-### Realize [Software Everywhere](https://github.com/cloud-native-toolkit/software-everywhere) with [Bill of Material](https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure) and [Modules](https://modules.cloudnativetoolkit.dev/)
+### Realize [Technology Zone Accelerator Toolkit](https://github.com/cloud-native-toolkit/software-everywhere) with [Bill of Material](https://github.com/cloud-native-toolkit/iascable#bill-of-material-structure) and [Modules](https://modules.cloudnativetoolkit.dev/)
 
 Simplified we can say, we have two basic roles in that context:
 
@@ -1150,4 +1150,4 @@ Destroy complete! Resources: 36 destroyed.
 
 ## 4. Summary
 
-The `IasCable` and the [`Modules`](https://modules.cloudnativetoolkit.dev/) (from the Software Everywhere project) which are all from the Cloud Native Toolkit providing a good concept for a framework to provide reusable components to install and configure cloud infrastructure. This was just a getting started. There is more to learn.
+The `IasCable` and the [`Modules`](https://modules.cloudnativetoolkit.dev/) (from the Technology Zone Accelerator Toolkit project) which are all from the Cloud Native Toolkit providing a good concept for a framework to provide reusable components to install and configure cloud infrastructure. This was just a getting started. There is more to learn.

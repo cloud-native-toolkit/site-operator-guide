@@ -1,4 +1,4 @@
-# Develop an own GitOps module
+#  Lab 4: Develop an own GitOps module
 
 ## 1. Objective
 
