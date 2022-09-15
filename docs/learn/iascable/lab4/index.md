@@ -894,7 +894,7 @@ PROJECT=ibm-vpc-roks-argocd-ubi
 cp $CURRENT_PATH/../credentials.properties $CURRENT_PATH/ibm-vpc-roks-argocd-ubi/credentials.properties
 ```
 
-### Step 6: Map the current folder to the Multpass cli-tools VM
+### Step 6: Map the current folder to the Multipass cli-tools VM
 
 Ensure you started the `Multipass cli-tools VM` before you execute the following command:
 
@@ -1028,7 +1028,7 @@ Follow the steps in the shown in the `gif`.
 
 ## 7. Verify the created Argo CD configuration on GitHub
 
-We see that in our GitHub account new repostory was created from the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap) and the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module to figure `Argo CD` for by using the `app-of-apps` concept with a single GitHub repository to manage all `Argo CD application configuration` and `helm configurations to deploy applications` in the GitOps context.
+We see that in our GitHub account new repository was created from the [GitOps bootstrap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap) and the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module to figure `Argo CD` for by using the `app-of-apps` concept with a single GitHub repository to manage all `Argo CD application configuration` and `helm configurations to deploy applications` in the GitOps context.
 
 > Reminder the boot strap configuration is shown in the following image for details visit the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
 
@@ -1070,9 +1070,9 @@ Let us inspect these two folders. The `gif` below shows some of the created file
 
 There were two `Argo CD application` configurations added into the `iascable-gitops-ubi` repository. 
 
-1. One for the `namespace` in the OpenShift or Kubernetes cluster where the ubi application will be deployed. That `Argo CD application` configuration is related to exiting  `1-infrastructure` Argo CD project created by the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap).
+1. One for the `namespace` in the OpenShift or Kubernetes cluster where the ubi application will be deployed. That `Argo CD application` configuration is related to exiting  `1-infrastructure` Argo CD project created by the [GitOps bootstrap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap).
 
-2. One for the `ubi` application we want to deploy. That `Argo CD application` configuration is related to exiting  `3-application` Argo CD project created by the [GitOps bootstap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap).
+2. One for the `ubi` application we want to deploy. That `Argo CD application` configuration is related to exiting  `3-application` Argo CD project created by the [GitOps bootstrap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap).
 
 Let's take a look a the created `Argo CD application configurations`
 
@@ -1105,7 +1105,7 @@ spec:
 
 #### 7.1.1.2 UBI **application deployment** `argocd.3-applications.cluster.default.base.ubi-helm-ubi.yaml`
 
-This is the Argo CD application configuration `ubi-helm-ubi-helm.yaml` file, which was created automaticly by our module with the `igc gitops-module` command.
+This is the Argo CD application configuration `ubi-helm-ubi-helm.yaml` file, which was created automatically by our module with the `igc gitops-module` command.
 
 That `payload` directory is used as the `source.path` in that `Argo CD application` configuration as you see above.
 
@@ -1203,7 +1203,7 @@ subjects:
 
 That folder contains the **ubi application** `helm chart configuration` to deploy the ubi application.
 
-The script `scripts/create-yaml.sh` of our [module `terraform-gitops-ubi`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/scripts/create-yaml.sh) was resposible to copy the ubi helm-chart into the payload directory. Therefor we did the customization of that file.
+The script `scripts/create-yaml.sh` of our [module `terraform-gitops-ubi`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/scripts/create-yaml.sh) was responsible to copy the ubi helm-chart into the payload directory. Therefor we did the customization of that file.
 
 We defined the values content for the helm chart variables before in the `module.tf` file. That file `values.yaml` file is used in `Argo CD application` configuration for the parameters.
 
