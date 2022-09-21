@@ -1,6 +1,10 @@
 # Glossary
 
-[B](#B) [I](#I) [M](#M)
+## A
+
+| Term | Description
+|----|-----|
+| Ascent | The project name for the [builder UI](https://builder.cloudnativetoolkit.dev){target=_blank} |
 
 ## B
 
@@ -13,7 +17,7 @@
 
 | Term | Description
 |----|-----|
-| iascable | The command line tool to generate the automation assets from a [BOM](#B) |
+| iascable | The command line tool to generate the automation assets from a **Bill of Materials** |
 
 ## M
 
