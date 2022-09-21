@@ -69,6 +69,7 @@ nav:
     - Overview: tasks/overview.md
   - Tutorials:
     - Overview: tutorials/overview.md
+    - Setup: tutorials/1-setup.md
   - Reference:
     - Overview: reference/overview.md
     - Glossary: reference/glossary.md

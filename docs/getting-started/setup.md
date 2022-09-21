@@ -33,6 +33,9 @@ Docker Desktop provides a container environment for Windows and MacOS.  It is fr
 
 Multipass is a free virtual machine environment for Windows, MacOS and Linux to run Ubuntu images.
 
+!!! Warning
+    Some users have reported DNS resolution issues when using Multipass with some VPN clients, such as Cisco Anywhere.  If you encounter such issues then you must work with the VPN client not running
+
 ## Additional options
 
 There are some additional environments that can be used, but these are not supported and cannot be guaranteed to work.  There are also some known issues with the environments listed below:
