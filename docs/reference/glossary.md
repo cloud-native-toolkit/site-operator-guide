@@ -24,3 +24,4 @@
 | Term | Description
 |----|-----|
 | Module | A composable block to setup/install a part of an environment |
+| Module catalog | The online [catalog](http://modules.cloudnativetoolkit.dev){target=_blank} of available modules |
