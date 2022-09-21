@@ -26,7 +26,7 @@ Select which environment you want to work with.  There is a discussion about the
 
     1. Open a command line window (on Windows you should work in [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about){target=_blank} shell).  
     2. Navigate to a local directory you want to work in, using the `cd` command
-    3. Download the virtual machine initilization file using command:
+    3. Download the virtual machine initialization file using command:
     
         ``` shell
         curl https://raw.githubusercontent.com/cloud-native-toolkit/sre-utilities/main/cloud-init/cli-tools.yaml --output cli-tools.yaml

@@ -44,7 +44,7 @@ There are some additional environments that can be used, but these are not suppo
 
 ### Podman
 
-Podman is an opensource tool, free to use, that provides much the same functionality as Docker Desktop.  There are some known issues with Podman:
+Podman is an open source tool, free to use, that provides much the same functionality as Docker Desktop.  There are some known issues with Podman:
 
 -   When resuming from suspend, if the podman machine is left running, it will not automatically synchronize to the host clock. This will cause the podman machine to lose time. Either stop/restart the podman machine or define an alias like this in your startup scripts:
 
@@ -58,7 +58,7 @@ Podman is an opensource tool, free to use, that provides much the same functiona
 
 ### Colima
 
-Colima is an opensource container engine, free to use, but there are some known issues with Colima:
+Colima is an open source container engine, free to use, but there are some known issues with Colima:
 
 -   Network/DNS failures under load
 -   Read/write permissions to local storage volumes
