@@ -26,6 +26,7 @@ theme:
       - navigation.tracking
 #      - navigation.tabs.sticky
 #      - navigation.top
+      - content.tabs.link
 use_directory_urls: true
 watch:
   - overrides
@@ -70,6 +71,7 @@ nav:
     - Overview: tutorials/overview.md
   - Reference:
     - Overview: reference/overview.md
+    - Glossary: reference/glossary.md
   - Contribute:
     - Overview: contribute/overview.md
   - Previous Layout (to be removed once incorporated into the new layout):
