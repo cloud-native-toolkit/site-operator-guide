@@ -1,6 +1,6 @@
 ---
 template: home.html
-title: TechZone Automation: Operations
+title: "TechZone Automation: Operations"
 hide:
 - toc
 ---
