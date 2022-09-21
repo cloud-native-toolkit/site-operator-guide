@@ -1,6 +1,6 @@
 # Learn
 
-Learn how to use the Cloud-Native Toolkit to provision and customize cloud resources, be it infrastructure or software, across a number of hosting environments.
+Learn how to use the TechZone Automation to provision and customize cloud resources, be it infrastructure or software, across a number of hosting environments.
 
 ## TechZone Automation Builder
 
