@@ -53,7 +53,7 @@ multipass launch --name cli-tools --cloud-init ./cli-tools.yaml
 
 This will take several minutes to start the virtual machine and apply the configuration.  
 
-Once the virtual machine is started, you need to mount the local  file system for use within the virtual machine.
+Once the virtual machine is started, you need to mount the local file system for use within the virtual machine.
 
 Then mount the file system using the following command:
 
