@@ -61,7 +61,7 @@ nav:
   - Getting started: getting-started/index.md
   - Learn:
       - Overview: learn/index.md
-      - Iascable:
+      - Create:
           - Overview: learn/iascable/index.md
           - "Lab 1: The basics": learn/iascable/lab1/index.md
           - "Lab 2: Infrastructure": learn/iascable/lab2/index.md
