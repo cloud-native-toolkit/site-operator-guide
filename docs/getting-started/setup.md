@@ -1,9 +1,6 @@
 # Setup you learning and development environment
 
-!!! todo
-    complete this section
-
-The automation used within the toolkit uses a number of open source tools and utilities.  To avoid issues with different operating systems, command line interpreters (shells) and versions of the various tools, it is recommended that a container or virtual machine is used, so there is a know working environment for the automation to run in.
+The automation used within the toolkit uses a number of open source tools and utilities.  To avoid issues with different operating systems, command line interpreters (shells) and versions of the various tools, it is recommended that a container or virtual machine is used, so you will have a verified working environment for the automation to run in.
 
 Some of the tools used are:
 
@@ -28,6 +25,8 @@ There are 2 recommended, supported environments:
 ## Docker Desktop
 
 Docker Desktop provides a container environment for Windows and MacOS.  It is free to use for non-commercial uses, but requires a license for commercial use.
+
+If the license isn't an issue then this is the simplest, recommended option to use.
 
 ## Multipass
 
