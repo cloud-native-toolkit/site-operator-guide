@@ -73,6 +73,10 @@
   padding: 0;
 }
 
+.md-content__inner {
+  margin-left: 0;
+}
+
 .md-typeset img,
 .md-typeset svg {
   max-width: initial;
