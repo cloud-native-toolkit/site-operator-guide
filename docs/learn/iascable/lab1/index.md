@@ -1,18 +1,18 @@
-# Lab 1: Getting start with the basics
+# Lab 1: Getting started with the basics
 
 This is just a starting point to use `[IasCable](https://github.com/cloud-native-toolkit/iascable)`.
 
 ## 1. The `IasCable` framework
 
-Let us have first a look the basic components of the `IasCable` framework.
+Let us look at the basic components of the `IasCable` framework.
 
 ### [Bill of Material](../../../apply/bill-of-material-reference/) and [Modules](https://modules.cloudnativetoolkit.dev/)
 
-The IasCable uses a [`Bill of Material`](../../../apply/bill-of-material-reference/) and [`Modules`](https://modules.cloudnativetoolkit.dev/)(from the [Technology Zone Accelerator Toolkit project](https://github.com/cloud-native-toolkit/software-everywhere)), which you need to understand. These two parts are the heart of the framework we could say to realize the objective to  build an installable component infrastructure based on components from a catalog of available modules.
+The IasCable uses a [`Bill of Material`](../../../apply/bill-of-material-reference/) and [`Modules`](https://modules.cloudnativetoolkit.dev/)(from the [TechZone Accelerator Toolkit](https://github.com/cloud-native-toolkit/software-everywhere)), which you need to understand. These two parts are the heart of the framework we could say to realize the objective to  build an installable component infrastructure based on components from a catalog of available modules.
 
 > Please visit the linked resources for more details.
 
-Simplified we can say a `BOM` is specified by modules it uses, variables you can define and providers you can define. In addition you have the option to use variables and providers definitions related to a `BOM` specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.
+In a simplified way, we can say a `BOM` is specified by modules it uses, variables you can define and providers you can define. In addition you have the option to use variables and providers definitions related to a `BOM` specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.
 
 Simplified we can say a [BOM is specified](../../../apply/bill-of-material-reference/#bom-spec) by modules it uses. In addition you have the option to use variables and providers definitions related to a BOM specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.
 
