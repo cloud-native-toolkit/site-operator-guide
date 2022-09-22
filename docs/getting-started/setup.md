@@ -58,7 +58,7 @@ Podman is an open source tool, free to use, that provides much the same function
 
 ### Colima
 
-Colima is an open source container engine, free to use, but there are some known issues with Colima:
+Colima is an open source container engine for Intel or Arm based Mac systems.  It is free to use, but there are some known issues with Colima:
 
 -   Network/DNS failures under load
 -   Read/write permissions to local storage volumes

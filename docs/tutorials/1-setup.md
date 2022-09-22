@@ -24,7 +24,7 @@ Select which environment you want to work with.  There is a discussion about the
 
     Once installed you need to prepare a virtual machine with the necessary tools installed.  To do this you need to:
 
-    1. Open a command line window (on Windows you should work in [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about){target=_blank} shell).  
+    1. Open a command line window (on Windows you should work in a [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/about){target=_blank} shell).  
     2. Navigate to a local directory you want to work in, using the `cd` command
     3. Download the virtual machine initialization file using command:
     
@@ -55,12 +55,29 @@ Select which environment you want to work with.  There is a discussion about the
 
 === "unsupported-Colima"
 
-    !!!Todo
-        Colima instructions here
-
     !!! Warning
         This is an unsupported environment.  You may encounter issues using this environment and the developers may choose not to fix any issues identified
 
+    Colima can be installed using one of the following package management tools.  [Homebrew](https://brew.sh/){target=_blank}, [Macports](https://www.macports.org){target=_blank} or [Nix](https://nixos.org/download.html#nix-install-macos){target=_blank}
+
+    -   Homebrew
+
+        ``` shell
+        brew install colima docker
+        ```
+
+    -   MacPorts
+
+        ``` shell
+        sudo port install colima
+        ```
+
+    -   Nix
+        ``` shell
+        nix-env -iA nixpkgs.colima
+        ```
+
+    Additional installation can be found on the [colima github repository](https://github.com/abiosoft/colima#installation){target=_blank}
 ## Install local tools
 
 Install the following command line tools on your workstation or laptop:
