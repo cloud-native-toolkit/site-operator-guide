@@ -47,11 +47,18 @@ Select which environment you want to work with.  There is a discussion about the
 
 === "unsupported-Podman"
 
-    !!!Todo
-        Podman instructions here
-    
     !!! Warning
         This is an unsupported environment.  You may encounter issues using this environment and the developers may choose not to fix any issues identified
+    
+    To install Podman please follow instructions for your OS on the [podman website](https://podman.io/getting-started/installation){target=_blank}
+
+    On Mac and Windows you need to enable **rootful** mode, so you need to set this before running the machine start command:
+
+    ```shell
+    podman machine init
+    podman machine set --rootful
+    podman machine start
+    ```
 
 === "unsupported-Colima"
 
