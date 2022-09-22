@@ -76,7 +76,7 @@ Then you should have following folder structure on on computer:
 
 ### 3.1.2 Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
 
-We install  [`iascable`](https://github.com/cloud-native-toolkit/iascable) to ensure you use the lates version.
+We install  [`iascable`](https://github.com/cloud-native-toolkit/iascable) to ensure you use the latest version.
 
 #### Step 1: Install [`iascable`](https://github.com/cloud-native-toolkit/iascable) on your local computer
 

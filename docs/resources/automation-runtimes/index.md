@@ -35,15 +35,15 @@ curl https://raw.githubusercontent.com/cloud-native-toolkit/sre-utilities/main/c
 
 The `cli-tools` cloud init script prepares a VM with the same tools available in the quay.io/cloudnativetoolkit/cli-tools-ibmcloud container image. Particularly:
 
-- `terraform`
-- `terragrunt`
-- `git`
-- `jq`
-- `yq`
-- `oc`
-- `kubectl`
-- `helm`
-- `ibmcloud cli`
+-   terraform
+-   terragrunt
+-   git
+-   jq
+-   yq
+-   oc
+-   kubectl
+-   helm
+-   ibmcloud cli
 
 Launch the Multipass virtual machine using the following command:
 
@@ -53,7 +53,7 @@ multipass launch --name cli-tools --cloud-init ./cli-tools.yaml
 
 This will take several minutes to start the virtual machine and apply the configuration.  
 
-Once the virtual machine is started, you need to mount the local  file system for use within the virtual machine.
+Once the virtual machine is started, you need to mount the local file system for use within the virtual machine.
 
 Then mount the file system using the following command:
 

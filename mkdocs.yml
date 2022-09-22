@@ -26,6 +26,7 @@ theme:
       - navigation.tracking
 #      - navigation.tabs.sticky
 #      - navigation.top
+      - content.tabs.link
 use_directory_urls: true
 watch:
   - overrides
@@ -58,28 +59,44 @@ extra:
 copyright: Copyright © 2022 TechZone Automation
 nav:
   - Home: index.md
-  - Getting started: getting-started/index.md
-  - Learn:
-      - Overview: learn/index.md
-      - Create:
-          - Overview: learn/iascable/index.md
-          - "Lab 1: The basics": learn/iascable/lab1/index.md
-          - "Lab 2: Infrastructure": learn/iascable/lab2/index.md
-          - "Lab 3: GitOps": learn/iascable/lab3/index.md
-          - "Lab 4: Develop GitOps module": learn/iascable/lab4/index.md
-  - Apply:
-      - Overview: apply/index.md
-      - Bill of Material: apply/bill-of-material-reference/index.md
-      - Multiple module catalogs:
-          - Overview: apply/multi-catalog/index.md
-          - Generating automation: apply/multi-catalog/iascable/index.md
-          - Creating a catalog: apply/multi-catalog/custom-catalog/index.md
-      - End-To-End Testing: apply/end-to-end-testing/index.md
-  - Resources:
-      - Overview: resources/index.md
-      - ASCENT: resources/ascent/index.md
-      - Automation bundles: resources/automation-bundles/index.md
-      - Automation Runtimes: resources/automation-runtimes/index.md
-      - Troubleshooting: resources/troubleshooting/index.md
-      - Module catalog: resources/module-catalog/index.md
-
+  - Getting Started:
+    - Overview: getting-started/overview.md
+    - Setup: getting-started/setup.md
+    - Best practices: getting-started/best-practices.md
+  - Concepts:
+    - Overview: concepts/overview.md
+  - Tasks:
+    - Overview: tasks/overview.md
+  - Tutorials:
+    - Overview: tutorials/overview.md
+    - Setup: tutorials/1-setup.md
+  - Reference:
+    - Overview: reference/overview.md
+    - Glossary: reference/glossary.md
+  - Contribute:
+    - Overview: contribute/overview.md
+  - Previous Layout (to be removed once incorporated into the new layout):
+    - Getting started: getting-started/index.md
+    - Learn:
+        - Overview: learn/index.md
+        - Create:
+            - Overview: learn/iascable/index.md
+            - "Lab 1: The basics": learn/iascable/lab1/index.md
+            - "Lab 2: Infrastructure": learn/iascable/lab2/index.md
+            - "Lab 3: GitOps": learn/iascable/lab3/index.md
+            - "Lab 4: Develop GitOps module": learn/iascable/lab4/index.md
+    - Apply:
+        - Overview: apply/index.md
+        - Bill of Material: apply/bill-of-material-reference/index.md
+        - Multiple module catalogs:
+            - Overview: apply/multi-catalog/index.md
+            - Generating automation: apply/multi-catalog/iascable/index.md
+            - Creating a catalog: apply/multi-catalog/custom-catalog/index.md
+        - End-To-End Testing: apply/end-to-end-testing/index.md
+    - Resources:
+        - Overview: resources/overview.md
+        - ASCENT: resources/ascent/index.md
+        - Automation bundles: resources/automation-bundles/index.md
+        - Automation Runtimes: resources/automation-runtimes/index.md
+        - Troubleshooting: resources/troubleshooting/index.md
+        - Module catalog: resources/module-catalog/index.md
