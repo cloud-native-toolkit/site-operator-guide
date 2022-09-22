@@ -2,7 +2,7 @@ site_name: "TechZone Automation: Operate"
 site_description: >-
   The TechZone Automation Toolkit is an open-source collection of assets that enable application development and support teams to deliver business value quickly using Red Hat OpenShift or Kubernetes
 site_url: https://operate.cloudnativetoolkit.dev
-site_author: TechZone Automation Toolkit development team
+site_author: TechZone Automation development team
 repo_name: ""
 repo_url: https://github.com/cloud-native-toolkit/site-operator-guide
 docs_dir: docs

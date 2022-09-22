@@ -11,7 +11,7 @@ jobs:
 
     env:
       NODE_VERSION: 12.x
-      TITLE: Cloud-Native Toolkit
+      TITLE: TechZone Automation
       ANALYTICS_ID: ""
 
     steps:

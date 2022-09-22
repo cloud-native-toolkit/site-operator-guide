@@ -1,6 +1,6 @@
 ---
 template: home.html
-title: Cloud Native Toolkit
+title: TechZone Automation: Operations
 hide:
-- navigation
+- toc
 ---
