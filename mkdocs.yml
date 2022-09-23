@@ -65,6 +65,11 @@ nav:
     - Best practices: getting-started/best-practices.md
   - Concepts:
     - Overview: concepts/overview.md
+    - GitOps: concepts/gitops.md
+    - Toolkit Concepts:
+      - Module: concepts/module.md
+      - Bill of Materials: concepts/bom.md
+      - Properties: concepts/variables.md
   - Tasks:
     - Overview: tasks/overview.md
   - Tutorials:
@@ -72,6 +77,8 @@ nav:
     - Setup: tutorials/1-setup.md
   - Reference:
     - Overview: reference/overview.md
+    - Module: reference/module.md
+    - Bill of Material: reference/bom.md
     - Glossary: reference/glossary.md
   - Contribute:
     - Overview: contribute/overview.md

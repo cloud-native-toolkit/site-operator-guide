@@ -45,6 +45,11 @@ Select which environment you want to work with.  There is a discussion about the
         multipass mount $PWD cli-tools:/automation
         ```
 
+    !!! Warning
+        If you use a VPN solution on MacOS, such as Cisco Anywhere or TunnelBlick then you may find your multipass VM cannot access the internet.  This is due to the packet filter configuration (/etc/pf.conf) on MacOS.  You can either use Multipass without running the VPN or do one of the following:
+        -   Follow [this article](){target=_blank} to configure your packet filter to allow multipass internet traffic when using the VPN - *if you are using work provided workstation or laptop you may need to verify these changes are acceptable with your company security officer*
+        -   Remove Multipass from your system, if already installed, then perform the multipass install and setup with the VPN client running
+
 === "unsupported-Podman"
 
     !!! Warning
