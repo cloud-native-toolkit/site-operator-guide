@@ -35,7 +35,7 @@ or Operator) defining [Bill of Materials](https://github.com/cloud-native-toolki
 And we have two major elements to define and create the needed Terraform automation.
 
 1. The `BOM` configures `IasCable` to point to right Terraform modules in a module catalog to create the Terraform automation code.
-2. `IasCable` is uses Terraform modules to create a Terraform automation which will be consumed.
+2. `IasCable` uses Terraform modules to create a Terraform automation which will be consumed.
 
 The following diagram shows some high level dependencies.
 
