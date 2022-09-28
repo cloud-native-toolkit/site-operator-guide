@@ -174,6 +174,7 @@ locals {
       "replicaCount": 1
       "image.repository" = "registry.access.redhat.com/ubi8/ubi"
       "image.tag" = "latest"
+      "command" = "${var.command}"
     }
   }
   layer = "applications"
@@ -192,6 +193,11 @@ locals {
 variable "cluster_type" {
   description = "The cluster type (openshift or kubernetes)"
   default     = "openshift"
+}
+
+variable "command" {
+  description = "command to run in container"
+  default     = ""
 }
 ```
 
@@ -212,6 +218,7 @@ variable "cluster_type" {
     │       │       ├── templates
     │       │       │   ├── _helpers.tpl
     │       │       │   └── deployment.yaml
+    │       │       │   └── configmap.yaml    
     │       │       ├── ubi-helm-v0.0.01.tgz
     │       │       └── values.yaml
     │       └── values.yaml
@@ -231,6 +238,7 @@ That will be the resulting folder structure for the `terraform-gitops-ubi module
 │       │       ├── templates
 │       │       │   ├── _helpers.tpl
 │       │       │   └── deployment.yaml
+│       │       │   └── configmap.yaml 
 │       │       ├── ubi-helm-v0.0.1.tgz
 │       │       └── values.yaml
 │       └── values.yaml
@@ -295,14 +303,27 @@ helm template test . -n test
 Example output:
 
 ```sh
-# Source: terraform-gitops-ubi/templates/deployment.yaml
+# Source: ubi-helm/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-ubi-helm
+  labels:
+    app: ubi-helm
+    chart: test-ubi-helm
+    release: test
+    heritage: Helm
+data:
+  COMMAND: echo helloworld!
+---
+# Source: ubi-helm/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-terraform-gitops-ubi
+  name: test-ubi-helm
   labels:
-    app: terraform-gitops-ubi
-    chart: test-terraform-gitops-ubi
+    app: ubi-helm
+    chart: test-ubi-helm
     release: test
     heritage: Helm
 spec:
@@ -310,29 +331,31 @@ spec:
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: terraform-gitops-ubi
+      app: ubi-helm
       release: test
   template:
     metadata:
       labels:
-        app: terraform-gitops-ubi
+        app: ubi-helm
         release: test
     spec:
       containers:
-        - name: terraform-gitops-ubi
+        - name: ubi-helm
           image: "registry.access.redhat.com/ubi8/ubi:latest"
           imagePullPolicy: Always
-          args:
-            - /bin/sh
-            - -c
-            - touch /tmp/healthy; sleep 30; rm -f /tmp/healthy; sleep 600
-          livenessProbe:
-            exec:
-              command:
-              - cat
-              - /tmp/healthy
-            initialDelaySeconds: 5
-            periodSeconds: 5
+          env:
+            - name: COMMAND
+              valueFrom:
+                configMapKeyRef:
+                  name: test-ubi-helm
+                  key: COMMAND
+                  optional: true # mark the variable as optional
+          command: ["/bin/sh","-c"]
+          args: 
+            - while true; do
+              $COMMAND;
+              sleep 1000;
+              done;
 ```
 
 ```sh
@@ -432,14 +455,16 @@ The image below shows some releases and as you can see for each release an archi
 
 In case when you use specific version numbers in the `BOM` which uses the module, you need to ensure that version number is also in range of the custom chart which points to the module. That is also relevant for the `catalog.yaml` we will define later.
 
-Example relevant extract from a `BOM` -> `version: v0.0.5`
+Example relevant extract from a `BOM` -> `version: v0.0.7`
 
 ```yaml
     # Install terraform-gitops-ubi
     # New custom module linked be the custom catalog
     - name: terraform-gitops-ubi
-      alias: terraform-gitops-ubi
-      version: v0.0.5
+      version: v0.0.8
+      variables:
+        - name: command
+          value: "echo 'helloworld'"
 ```
 
 You can follow the step to create a GitHub tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and then create a release.
@@ -563,7 +588,7 @@ categories:
               - kubernetes
               - ocp3
               - ocp4
-            version: v0.0.2
+            version: v0.0.8
             dependencies:
               - id: gitops
                 refs:
@@ -665,6 +690,9 @@ categories:
               - name: cluster_type
                 description: The cluster type (openshift or kubernetes)
                 default: '"openshift"'
+              - name: command
+                description: Command to run in container
+                default: ""
             outputs:
               - name: name
                 description: The name of the module
@@ -802,8 +830,10 @@ spec:
     # Install ubi
     # New custom module linked be the custom catalog
     - name: terraform-gitops-ubi
-      alias: terraform-gitops-ubi
-      #  version: v0.0.5
+      version: v0.0.8
+      variables:
+        - name: command
+          value: "echo 'helloworld'"
 ```
 
 ## 6. Create terraform code and create the resources
