@@ -64,6 +64,7 @@ iascable --version
 <span class=w>      </span><span class=nt>&quot;replicaCount&quot;</span><span class=p>:</span><span class=w> </span><span class=mi>1</span><span class=w></span>
 <span class=w>      </span><span class=s2>&quot;image.repository&quot;</span><span class=w> </span><span class=err>=</span><span class=w> </span><span class=s2>&quot;registry.access.redhat.com/ubi8/ubi&quot;</span><span class=w></span>
 <span class=w>      </span><span class=s2>&quot;image.tag&quot;</span><span class=w> </span><span class=err>=</span><span class=w> </span><span class=s2>&quot;latest&quot;</span><span class=w></span>
+<span class=w>      </span><span class=s2>&quot;command&quot;</span><span class=w> </span><span class=err>=</span><span class=w> </span><span class=s2>&quot;${var.command}&quot;</span><span class=w></span>
 <span class=w>    </span><span class=p>}</span><span class=w></span>
 <span class=w>  </span><span class=p>}</span><span class=w></span>
 <span class=w>  </span><span class=err>layer</span><span class=w> </span><span class=err>=</span><span class=w> </span><span class=s2>&quot;applications&quot;</span><span class=w></span>
@@ -76,6 +77,11 @@ iascable --version
   description = &quot;The cluster type (openshift or kubernetes)&quot;
   default     = &quot;openshift&quot;
 }
+
+variable &quot;command&quot; {
+  description = &quot;command to run in container&quot;
+  default     = &quot;&quot;
+}
 </code></pre></div> <h3 id=43-the-helm-chart-content>4.3 The <a href=https://github.com/Vishal-Ramani/terraform-gitops-ubi/tree/main/chart/ubi-helm><code>helm chart</code></a> content<a class=headerlink href=#43-the-helm-chart-content title="Permanent link">&para;</a></h3> <h4 id=step-1-create-a-new-folder-structure-for-the-terraform-gitops-ubi-helm-chart>Step 1: Create a new folder structure for the <code>terraform-gitops-ubi helm chart</code><a class=headerlink href=#step-1-create-a-new-folder-structure-for-the-terraform-gitops-ubi-helm-chart title="Permanent link">&para;</a></h4> <ul> <li>Create following folder structure <code>chart/ubi-helm</code>. The name after chart must be the module name.</li> </ul> <div class=highlight><pre><span></span><code>    ├── chart
     │   └── ubi-helm
     │       ├── Chart.yaml
@@ -85,6 +91,7 @@ iascable --version
     │       │       ├── templates
     │       │       │   ├── _helpers.tpl
     │       │       │   └── deployment.yaml
+    │       │       │   └── configmap.yaml    
     │       │       ├── ubi-helm-v0.0.01.tgz
     │       │       └── values.yaml
     │       └── values.yaml
@@ -99,6 +106,7 @@ iascable --version
 │       │       ├── templates
 │       │       │   ├── _helpers.tpl
 │       │       │   └── deployment.yaml
+│       │       │   └── configmap.yaml 
 │       │       ├── ubi-helm-v0.0.1.tgz
 │       │       └── values.yaml
 │       └── values.yaml
@@ -130,14 +138,27 @@ iascable --version
 
 <span class=m>1</span> chart<span class=o>(</span>s<span class=o>)</span> linted, <span class=m>0</span> chart<span class=o>(</span>s<span class=o>)</span> failed
 </code></pre></div> <div class=highlight><pre><span></span><code>helm template <span class=nb>test</span> . -n <span class=nb>test</span>
-</code></pre></div> <p>Example output:</p> <div class=highlight><pre><span></span><code><span class=c1># Source: terraform-gitops-ubi/templates/deployment.yaml</span>
+</code></pre></div> <p>Example output:</p> <div class=highlight><pre><span></span><code><span class=c1># Source: ubi-helm/templates/configmap.yaml</span>
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-ubi-helm
+  labels:
+    app: ubi-helm
+    chart: test-ubi-helm
+    release: <span class=nb>test</span>
+    heritage: Helm
+data:
+  COMMAND: <span class=nb>echo</span> helloworld!
+---
+<span class=c1># Source: ubi-helm/templates/deployment.yaml</span>
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: test-terraform-gitops-ubi
+  name: test-ubi-helm
   labels:
-    app: terraform-gitops-ubi
-    chart: test-terraform-gitops-ubi
+    app: ubi-helm
+    chart: test-ubi-helm
     release: <span class=nb>test</span>
     heritage: Helm
 spec:
@@ -145,29 +166,31 @@ spec:
   revisionHistoryLimit: <span class=m>3</span>
   selector:
     matchLabels:
-      app: terraform-gitops-ubi
+      app: ubi-helm
       release: <span class=nb>test</span>
   template:
     metadata:
       labels:
-        app: terraform-gitops-ubi
+        app: ubi-helm
         release: <span class=nb>test</span>
     spec:
       containers:
-        - name: terraform-gitops-ubi
+        - name: ubi-helm
           image: <span class=s2>&quot;registry.access.redhat.com/ubi8/ubi:latest&quot;</span>
           imagePullPolicy: Always
-          args:
-            - /bin/sh
-            - -c
-            - touch /tmp/healthy<span class=p>;</span> sleep <span class=m>30</span><span class=p>;</span> rm -f /tmp/healthy<span class=p>;</span> sleep <span class=m>600</span>
-          livenessProbe:
-            exec:
-              command:
-              - cat
-              - /tmp/healthy
-            initialDelaySeconds: <span class=m>5</span>
-            periodSeconds: <span class=m>5</span>
+          env:
+            - name: COMMAND
+              valueFrom:
+                configMapKeyRef:
+                  name: test-ubi-helm
+                  key: COMMAND
+                  optional: <span class=nb>true</span> <span class=c1># mark the variable as optional</span>
+          command: <span class=o>[</span><span class=s2>&quot;/bin/sh&quot;</span>,<span class=s2>&quot;-c&quot;</span><span class=o>]</span>
+          args: 
+            - <span class=k>while</span> true<span class=p>;</span> <span class=k>do</span>
+              <span class=nv>$COMMAND</span><span class=p>;</span>
+              sleep <span class=m>1000</span><span class=p>;</span>
+              <span class=k>done</span><span class=p>;</span>
 </code></pre></div> <div class=highlight><pre><span></span><code>helm package .
 </code></pre></div> <h3 id=44-the-moduleyaml-file>4.4 The <a href=https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/module.yaml><code>module.yaml</code></a> file<a class=headerlink href=#44-the-moduleyaml-file title="Permanent link">&para;</a></h3> <h4 id=step-1-edited-the-moduleyaml>Step 1: Edited the <code>module.yaml</code><a class=headerlink href=#step-1-edited-the-moduleyaml title="Permanent link">&para;</a></h4> <ul> <li>Use for <code>name</code>: <code>terraform-gitops-ubi</code></li> <li>Use for <code>description</code>: <code>That module will add a new Argo CD config to deploy the terraform-gitops-ubi application</code></li> </ul> <div class=highlight><pre><span></span><code><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s>&quot;terraform-gitops-ubi&quot;</span><span class=w></span>
 <span class=nt>type</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class=w></span>
@@ -229,11 +252,13 @@ cp -R <span class=s2>&quot;</span><span class=si>${</span><span class=nv>CHART_D
 find <span class=s2>&quot;</span><span class=si>${</span><span class=nv>DEST_DIR</span><span class=si>}</span><span class=s2>&quot;</span> -name <span class=s2>&quot;*&quot;</span>
 <span class=nb>echo</span> <span class=s2>&quot;Files in output path&quot;</span>
 ls -l <span class=s2>&quot;</span><span class=si>${</span><span class=nv>DEST_DIR</span><span class=si>}</span><span class=s2>&quot;</span>
-</code></pre></div> <h3 id=46-terraform-gitops-ubi-github-repository-tags-and-releases>4.6 <a href=https://github.com/Vishal-Ramani/terraform-gitops-ubi/tags><code>terraform-gitops-ubi</code></a> GitHub repository <code>tags</code> and <code>releases</code><a class=headerlink href=#46-terraform-gitops-ubi-github-repository-tags-and-releases title="Permanent link">&para;</a></h3> <p>The release tag represents the version number of our module. <a href=https://github.com/Vishal-Ramani/terraform-gitops-ubi><code>terraform-gitops-ubi</code></a></p> <h4 id=step-1-create-github-tag-and-release-for-the-terraform-gitops-ubi-github-repository>Step 1: Create GitHub tag and release for the <code>terraform-gitops-ubi</code> GitHub repository<a class=headerlink href=#step-1-create-github-tag-and-release-for-the-terraform-gitops-ubi-github-repository title="Permanent link">&para;</a></h4> <p>The module github repository <code>release tags</code> should be updated when you are going to change the <a href=https://github.com/Vishal-Ramani/terraform-gitops-ubi><code>terraform-gitops-ubi</code></a> GitHub repository module. </p> <p>The image below shows some releases and as you can see for each release an archive is available. Later <a href=https://github.com/cloud-native-toolkit/iascable><code>iascable</code></a> uses the <code>release tag</code> to download the right archive to the local computer to create the Terraform output.</p> <p><img alt src=../../../images/develop-own-module-10.png></p> <p>In case when you use specific version numbers in the <code>BOM</code> which uses the module, you need to ensure that version number is also in range of the custom chart which points to the module. That is also relevant for the <code>catalog.yaml</code> we will define later.</p> <p>Example relevant extract from a <code>BOM</code> -&gt; <code>version: v0.0.5</code></p> <div class=highlight><pre><span></span><code><span class=w>    </span><span class=c1># Install terraform-gitops-ubi</span><span class=w></span>
+</code></pre></div> <h3 id=46-terraform-gitops-ubi-github-repository-tags-and-releases>4.6 <a href=https://github.com/Vishal-Ramani/terraform-gitops-ubi/tags><code>terraform-gitops-ubi</code></a> GitHub repository <code>tags</code> and <code>releases</code><a class=headerlink href=#46-terraform-gitops-ubi-github-repository-tags-and-releases title="Permanent link">&para;</a></h3> <p>The release tag represents the version number of our module. <a href=https://github.com/Vishal-Ramani/terraform-gitops-ubi><code>terraform-gitops-ubi</code></a></p> <h4 id=step-1-create-github-tag-and-release-for-the-terraform-gitops-ubi-github-repository>Step 1: Create GitHub tag and release for the <code>terraform-gitops-ubi</code> GitHub repository<a class=headerlink href=#step-1-create-github-tag-and-release-for-the-terraform-gitops-ubi-github-repository title="Permanent link">&para;</a></h4> <p>The module github repository <code>release tags</code> should be updated when you are going to change the <a href=https://github.com/Vishal-Ramani/terraform-gitops-ubi><code>terraform-gitops-ubi</code></a> GitHub repository module. </p> <p>The image below shows some releases and as you can see for each release an archive is available. Later <a href=https://github.com/cloud-native-toolkit/iascable><code>iascable</code></a> uses the <code>release tag</code> to download the right archive to the local computer to create the Terraform output.</p> <p><img alt src=../../../images/develop-own-module-10.png></p> <p>In case when you use specific version numbers in the <code>BOM</code> which uses the module, you need to ensure that version number is also in range of the custom chart which points to the module. That is also relevant for the <code>catalog.yaml</code> we will define later.</p> <p>Example relevant extract from a <code>BOM</code> -&gt; <code>version: v0.0.7</code></p> <div class=highlight><pre><span></span><code><span class=w>    </span><span class=c1># Install terraform-gitops-ubi</span><span class=w></span>
 <span class=w>    </span><span class=c1># New custom module linked be the custom catalog</span><span class=w></span>
 <span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">terraform-gitops-ubi</span><span class=w></span>
-<span class=w>      </span><span class=nt>alias</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">terraform-gitops-ubi</span><span class=w></span>
-<span class=w>      </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v0.0.5</span><span class=w></span>
+<span class=w>      </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v0.0.8</span><span class=w></span>
+<span class=w>      </span><span class=nt>variables</span><span class=p>:</span><span class=w></span>
+<span class=w>        </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">command</span><span class=w></span>
+<span class=w>          </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s>&quot;echo</span><span class=nv> </span><span class=s>&#39;helloworld&#39;&quot;</span><span class=w></span>
 </code></pre></div> <p>You can follow the step to create a GitHub tag is that <a href=https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/ >example blog post</a> and then create a release.</p> <h2 id=5-create-an-own-catalog>5. Create an own catalog<a class=headerlink href=#5-create-an-own-catalog title="Permanent link">&para;</a></h2> <p>In that example we will not publish the our <code>terraform-gitops-ubi</code> module to the public catalog on <a href=https://modules.cloudnativetoolkit.dev/ ><code>Technology Zone Accelerator Toolkit</code></a>. </p> <p>We will create our own <code>catalog.yaml</code> file and save the configuration in the GitHub project of the module.</p> <ul> <li>How to create <code>catalog.yaml</code> file?</li> <li>How to combine various catalogs?</li> <li>Inspect the structure of a <code>catalog.yaml</code></li> <li>Create a custom catalog steps</li> </ul> <p>The following diagram shows the simplified dependencies of <code>module</code>, <code>catalog</code> and <code>iascable</code>:</p> <p><img alt src=../../../images/develop-own-module-11.png></p> <h3 id=51-how-to-create-catalogyaml-file>5.1 How to create <code>catalog.yaml</code> file?<a class=headerlink href=#51-how-to-create-catalogyaml-file title="Permanent link">&para;</a></h3> <p>It is useful to take a look into <a href=https://github.com/cloud-native-toolkit/iascable>iascable documentation</a> and the <a href=https://github.com/cloud-native-toolkit/software-everywhere/blob/main/.github/scripts/build-catalog.sh>build-catalog.sh automation</a>.</p> <h3 id=52-how-to-combine-various-catalogs>5.2 How to combine various catalogs?<a class=headerlink href=#52-how-to-combine-various-catalogs title="Permanent link">&para;</a></h3> <p>You can combine more than one <code>catalog resources</code> and <code>BOM inputs</code> with the <code>iascable build</code> command.</p> <p>Here is the build command:</p> <div class=highlight><pre><span></span><code>iascable build <span class=o>[</span>-c <span class=o>{</span>CATALOG_URL<span class=o>}]</span> <span class=o>[</span>-c <span class=o>{</span>CATALOG_URL<span class=o>}]</span> -i <span class=o>{</span>BOM_INPUT<span class=o>}</span> <span class=o>[</span>-i <span class=o>{</span>BOM_INPUT<span class=o>}]</span> <span class=o>[</span>-o <span class=o>{</span>OUTPUT_DIR<span class=o>}]</span>
 </code></pre></div> <ul> <li><code>CATALOG_URL</code> is the url of the module catalog. The default module catalog is https://modules.cloudnativetoolkit.dev/index.yaml. Multiple module catalogs can be provided. The catalogs are combined, with the last one taking precedence in the case of duplicate modules.</li> <li><code>BOM_INPUT</code> is the input file containing the Bill of Material definition. Multiple BOM files can be provided at the same time.</li> <li><code>OUTPUT_DIR</code> is the directory where the output terraform template will be generated.</li> </ul> <h3 id=53-inspect-the-structure-of-a-catalogyaml>5.3 Inspect the structure of a <code>catalog.yaml</code><a class=headerlink href=#53-inspect-the-structure-of-a-catalogyaml title="Permanent link">&para;</a></h3> <p>The structure of a catalog can be verified here <a href=https://modules.cloudnativetoolkit.dev/index.yaml>https://modules.cloudnativetoolkit.dev/index.yaml</a> That is a minimize extraction of the <code>index.yaml</code> above. It contains: <code>categories</code>,<code>modules</code>,<code>aliases</code> and <code>providers</code>.</p> <div class=highlight><pre><span></span><code><span class=nt>apiVersion</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">cloudnativetoolkit.dev/v1alpha1</span><span class=w></span>
 <span class=nt>kind</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Catalog</span><span class=w></span>
@@ -296,7 +321,7 @@ ls -l <span class=s2>&quot;</span><span class=si>${</span><span class=nv>DEST_DI
 <span class=w>              </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">kubernetes</span><span class=w></span>
 <span class=w>              </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">ocp3</span><span class=w></span>
 <span class=w>              </span><span class="p p-Indicator">-</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">ocp4</span><span class=w></span>
-<span class=w>            </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v0.0.2</span><span class=w></span>
+<span class=w>            </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v0.0.8</span><span class=w></span>
 <span class=w>            </span><span class=nt>dependencies</span><span class=p>:</span><span class=w></span>
 <span class=w>              </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">gitops</span><span class=w></span>
 <span class=w>                </span><span class=nt>refs</span><span class=p>:</span><span class=w></span>
@@ -398,6 +423,9 @@ ls -l <span class=s2>&quot;</span><span class=si>${</span><span class=nv>DEST_DI
 <span class=w>              </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">cluster_type</span><span class=w></span>
 <span class=w>                </span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">The cluster type (openshift or kubernetes)</span><span class=w></span>
 <span class=w>                </span><span class=nt>default</span><span class=p>:</span><span class=w> </span><span class=s>&#39;&quot;openshift&quot;&#39;</span><span class=w></span>
+<span class=w>              </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">command</span><span class=w></span>
+<span class=w>                </span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">Command to run in container</span><span class=w></span>
+<span class=w>                </span><span class=nt>default</span><span class=p>:</span><span class=w> </span><span class=s>&quot;&quot;</span><span class=w></span>
 <span class=w>            </span><span class=nt>outputs</span><span class=p>:</span><span class=w></span>
 <span class=w>              </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">name</span><span class=w></span>
 <span class=w>                </span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">The name of the module</span><span class=w></span>
@@ -490,8 +518,10 @@ ls -l <span class=s2>&quot;</span><span class=si>${</span><span class=nv>DEST_DI
 <span class=w>    </span><span class=c1># Install ubi</span><span class=w></span>
 <span class=w>    </span><span class=c1># New custom module linked be the custom catalog</span><span class=w></span>
 <span class=w>    </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">terraform-gitops-ubi</span><span class=w></span>
-<span class=w>      </span><span class=nt>alias</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">terraform-gitops-ubi</span><span class=w></span>
-<span class=w>      </span><span class=c1>#  version: v0.0.5</span><span class=w></span>
+<span class=w>      </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">v0.0.8</span><span class=w></span>
+<span class=w>      </span><span class=nt>variables</span><span class=p>:</span><span class=w></span>
+<span class=w>        </span><span class="p p-Indicator">-</span><span class=w> </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class="l l-Scalar l-Scalar-Plain">command</span><span class=w></span>
+<span class=w>          </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s>&quot;echo</span><span class=nv> </span><span class=s>&#39;helloworld&#39;&quot;</span><span class=w></span>
 </code></pre></div> <h2 id=6-create-terraform-code-and-create-the-resources>6. Create terraform code and create the resources<a class=headerlink href=#6-create-terraform-code-and-create-the-resources title="Permanent link">&para;</a></h2> <p>Use <a href=https://github.com/cloud-native-toolkit/iascable><code>iascable</code></a> to create the terraform code.</p> <h3 id=step-1-create-a-credentialsproperties-file-and-edit-the-file>Step 1: Create a <code>credentials.properties</code> file and edit the file<a class=headerlink href=#step-1-create-a-credentialsproperties-file-and-edit-the-file title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=nb>cd</span> example
 cp ./credentials.properties-template ./credentials.properties
 nano credentials.properties
