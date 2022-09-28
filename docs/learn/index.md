@@ -1,5 +1,8 @@
 # Learn
 
+!!! Warning
+    This content will move to the [Tutorial section](../tutorials/overview.md)
+
 Learn how to use the TechZone Automation to provision and customize cloud resources, be it infrastructure or software, across a number of hosting environments.
 
 ## TechZone Automation Builder

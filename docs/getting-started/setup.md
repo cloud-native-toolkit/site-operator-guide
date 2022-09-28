@@ -17,32 +17,46 @@ Some of the tools used are:
 !!! Todo
     what about other cloud CLIs?
 
-There are 2 recommended, supported environments:
+## Supported runtime environments
 
--   [Docker Desktop](https://www.docker.com/products/docker-desktop/){target=_blank}
--   [Multipass](https://multipass.run){target=_blank}
+The developers do not have the bandwidth to run and test will all possible combinations of runtimes across different operating systems, so these are the recommended, tested OS/runtime environments:
 
-## Docker Desktop
+=== "Linux"
 
-Docker Desktop provides a container environment for Windows and MacOS.  It is free to use for non-commercial uses, but requires a license for commercial use.
+    -   [Docker Engine](https://docs.docker.com/engine/){target=_blank}
+
+=== "Mac OS"
+
+    -   [Docker Desktop](https://www.docker.com/products/docker-desktop/){target=_blank}
+    -   [Multipass](https://multipass.run){target=_blank}
+
+=== "Windows"
+
+    -   [Windows Subsystem for Linux](){target=_blank} running Ubuntu 22.04.1 LTS image with [Docker Engine](https://docs.docker.com/engine/){target=_blank} installed
+
+### Docker
+
+Docker Desktop provides a container environment for MacOS.  It is free to use for non-commercial uses, but requires a license for commercial use.
 
 If the license isn't an issue then this is the simplest, recommended option to use.
 
-## Multipass
+If running on Linux or Windows Subsystem for Linux, then [docker engine](https://docs.docker.com/engine/){target=_blank} is the recommended option to use.
 
-Multipass is a free virtual machine environment for Windows, MacOS and Linux to run Ubuntu images.
+### Multipass
+
+Multipass is a free virtual machine environment for Windows, MacOS and Linux to run Ubuntu images.  Only Multipass on MacOS is supported within this documentation.
 
 !!! Warning
-    Some users have reported DNS resolution issues when using Multipass with some VPN clients, such as Cisco Anywhere.  If you encounter such issues then you must work with the VPN client not running
+    Some users have reported DNS resolution issues when using Multipass with some VPN clients, such as Cisco Anywhere.  There are workaround solutions covered in the setup tutorial.
 
-## Additional options
+### Additional unsupported options
 
-There are some additional environments that can be used, but these are not supported and cannot be guaranteed to work.  There are also some known issues with the environments listed below:
+There are some additional environments that are used within the community, but these are not supported and cannot be guaranteed to work.  There are also some known issues with the environments listed below:
 
 -   [podman](https://podman.io){target=_blank}
 -   [colima](https://github.com/abiosoft/colima){target=_blank}
 
-### Podman
+#### Podman
 
 Podman is an open source tool, free to use, that provides much the same functionality as Docker Desktop.  There are some known issues with Podman:
 
@@ -56,7 +70,7 @@ Podman is an open source tool, free to use, that provides much the same function
 
 -   There is currently an QEMU bug which prevents binary files that should be executable by the podman machine vm from operating from inside a mounted volume path. This is most common when using the host automation directory, vs a container volume like `/workspaces` for running the automation. Generally the cli-tools image will have any binary needed and the `utils-cli` module will symbolically link, vs. download a new binary into this path. However there can be drift between binaries in `cli-tools` image used by `launch.sh` and those requested to the `utils-cli` module.
 
-### Colima
+#### Colima
 
 Colima is an open source container engine for Intel or Arm based Mac systems.  It is free to use, but there are some known issues with Colima:
 
