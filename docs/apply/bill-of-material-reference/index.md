@@ -1,5 +1,8 @@
 # Bill of Material reference
 
+!!! Warning
+    This page has been [relocated](../../reference/bom.md)
+
 The Bill Of Materials (BOM) yaml has been modeled after a Kubernetes Custom Resource Definition. It is used to define the modules from the module catalog that should be included in the generated terraform template. As appropriate the Bill of Materials can also be used to define the relationships between the modules and the default variables that should be supplied to the modules for the architecture.
 
 The terraform template is generated from the BOM using the `iascable build` command. The build process relies on metadata for each of the modules stored in the module catalog to understand each module's dependencies and the relationships between the different modules. By default, the module entries for the Bill of Material are pulled from the Cloud Native Toolkit module catalog - https://modules.cloudnativetoolkit.dev/
