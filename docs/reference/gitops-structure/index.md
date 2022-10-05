@@ -68,7 +68,7 @@ The "bootstrap" repository must at least contain the `argocd/0-bootstrap` folder
 
 ### Multi-server
 
-The GitOps repository structure supports defining the deployment configuration for multiple servers in a single Git repository. Each of the argocd configuration paths includes a cluster name/identifier so that the full path to the configuration is `argocd/{layer}/clsuter/{cluster id}`, e.g. `argpcd/0-bootstrap/cluster/default`. The default cluster id used is "default". 
+The GitOps repository structure supports defining the deployment configuration for multiple servers in a single Git repository. Each of the argocd configuration paths includes a cluster name/identifier so that the full path to the configuration is `argocd/{layer}/cluster/{cluster id}`, e.g. `argocd/0-bootstrap/cluster/default`. The default cluster id used is "default". 
 
 ### payload/
 
