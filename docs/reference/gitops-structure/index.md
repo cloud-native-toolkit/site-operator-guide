@@ -125,4 +125,4 @@ In order to aid the process, the public certificate that can be used to encrypt 
 
 ## Example
 
-An example GitOps repository is provided at https://github.com/cloud-native-toolkit-test/gitops-sample
+An example GitOps repository is provided at [https://github.com/cloud-native-toolkit-test/gitops-sample](https://github.com/cloud-native-toolkit-test/gitops-sample)
