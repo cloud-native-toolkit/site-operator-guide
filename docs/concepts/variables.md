@@ -1,4 +1,4 @@
-# Properties
+# Configuration Data
 
 !!!Note
     This is an advanced topic, not needed to use the Toolkit, but contains useful information if you need to debug an issue or want to create your own modules
