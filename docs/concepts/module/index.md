@@ -8,7 +8,7 @@ Breaking down complex environment setup steps into small modules, allows better 
 
 A module should follow the [**Separation of Concerns** design principle](https://en.wikipedia.org/wiki/Separation_of_concerns){target=_blank}, where each module is well defined and addresses a single *concern* or task without overlapping with the functionality of other modules.
 
-A [Bill of Materials](./bom.md) is used to combine the automation provided by Toolkit modules to create a desired environment. *The modules are the building blocks and the Bill of Materials are the instructions on how to combine the building blocks to create the desired outcome*
+A [Bill of Materials](docs/concepts/bom/bom.md) is used to combine the automation provided by Toolkit modules to create a desired environment. *The modules are the building blocks and the Bill of Materials are the instructions on how to combine the building blocks to create the desired outcome*
 
 The automation used in the toolkit is based on [Terraform](https://www.terraform.io){target=_blank}, but the module metadata and tooling provided by the Toolkit ensures that the end user of the Toolkit does not need to know how to use Terraform and does not get exposed to the underlying Terraform automation.
 
@@ -17,11 +17,11 @@ There are currently 2 flavours of Toolkit module:
 -   Terraform module
 -   GitOps module
 
-Both flavours of module use Terraform, but a Terraform module uses Terraform to implement the required automation steps, whilst the GitOps modules use Terraform to make changes to the GitOps source control repository, then the GitOps application, [ArgoCD](https://argo-cd.readthedocs.io){target=_blank}, will actually make the required changes based on the content of the source control repository.  See the [GitOps concept page](gitops.md) for more details.
+Both flavours of module use Terraform, but a Terraform module uses Terraform to implement the required automation steps, whilst the GitOps modules use Terraform to make changes to the GitOps source control repository, then the GitOps application, [ArgoCD](https://argo-cd.readthedocs.io){target=_blank}, will actually make the required changes based on the content of the source control repository.  See the [GitOps concept page](docs/concepts/gitops/gitops.md) for more details.
 
 ## How does a module work?
 
-The Toolkit adds a layer of abstraction over the underlying Terraform automation to allow modules to be combined to define a required computing environment, typically a cloud based environment.  The modules are combined using a [Bill of Material](bom.md) yaml file.
+The Toolkit adds a layer of abstraction over the underlying Terraform automation to allow modules to be combined to define a required computing environment, typically a cloud based environment.  The modules are combined using a [Bill of Material](docs/concepts/bom/bom.md) yaml file.
 
 The Toolkit layer of abstraction includes:
 
@@ -37,7 +37,7 @@ The input properties allow the functionality of the module automation to be cust
 
 The output properties allow a module to make information it generates available to subsequent modules, such as a password generated during an application install.
 
-There is more detail about how properties are used in the Toolkit on the [properties concepts page](variables.md).
+There is more detail about how properties are used in the Toolkit on the [properties concepts page](docs/concepts/variables/variables.md).
 
 ### Dependencies
 
@@ -55,9 +55,9 @@ A module can specify an interface as a dependency rather than a specific module.
 
 An example of an interface is a [**cluster**](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/interfaces/cluster.yaml){target=_blank}.  Looking at the cluster section of the [module catalog](https://modules.cloudnativetoolkit.dev){target=_blank}, you see there are 7 modules that provide a cluster.  Actually there are 6 modules that will install a cluster and the `IBM OpenShift Login` module that allows you to use an existing cluster.
 
-![Cluster category of Module Catalog](images/cluster_catalog.png)
+![Cluster category of Module Catalog](docs/concepts/images/cluster_catalog.png)
 
-More details about how a module is implemented can be found in the [module reference](../reference/module.md) section.
+More details about how a module is implemented can be found in the [module reference](docs/reference/module/module.md) section.
 
 ## Catalog
 
