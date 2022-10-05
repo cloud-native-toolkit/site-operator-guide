@@ -46,6 +46,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://operate.cloudnativetoolkit.dev/concepts/</loc>
+         <lastmod>2022-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://operate.cloudnativetoolkit.dev/concepts/bom/</loc>
          <lastmod>2022-10-05</lastmod>
          <changefreq>daily</changefreq>
@@ -61,17 +66,12 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://operate.cloudnativetoolkit.dev/concepts/overview/</loc>
-         <lastmod>2022-10-05</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://operate.cloudnativetoolkit.dev/concepts/variables/</loc>
          <lastmod>2022-10-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://operate.cloudnativetoolkit.dev/contribute/overview/</loc>
+         <loc>https://operate.cloudnativetoolkit.dev/contribute/</loc>
          <lastmod>2022-10-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -82,11 +82,6 @@
     </url>
     <url>
          <loc>https://operate.cloudnativetoolkit.dev/getting-started/best-practices/</loc>
-         <lastmod>2022-10-05</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://operate.cloudnativetoolkit.dev/getting-started/overview/</loc>
          <lastmod>2022-10-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -131,7 +126,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://operate.cloudnativetoolkit.dev/reference/</loc>
+         <lastmod>2022-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://operate.cloudnativetoolkit.dev/reference/bom/</loc>
+         <lastmod>2022-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://operate.cloudnativetoolkit.dev/reference/gitops-structure/</loc>
          <lastmod>2022-10-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -142,11 +147,6 @@
     </url>
     <url>
          <loc>https://operate.cloudnativetoolkit.dev/reference/module/</loc>
-         <lastmod>2022-10-05</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://operate.cloudnativetoolkit.dev/reference/overview/</loc>
          <lastmod>2022-10-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
@@ -181,17 +181,17 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://operate.cloudnativetoolkit.dev/tasks/overview/</loc>
+         <loc>https://operate.cloudnativetoolkit.dev/tasks/</loc>
+         <lastmod>2022-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://operate.cloudnativetoolkit.dev/tutorials/</loc>
          <lastmod>2022-10-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://operate.cloudnativetoolkit.dev/tutorials/1-setup/</loc>
-         <lastmod>2022-10-05</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://operate.cloudnativetoolkit.dev/tutorials/overview/</loc>
          <lastmod>2022-10-05</lastmod>
          <changefreq>daily</changefreq>
     </url>
