@@ -3,18 +3,99 @@
 !!!Note
     This is an advanced topic, not needed to use the Toolkit, but contains useful information if you need to debug an issue or want to create your own modules
 
-!!! Todo
-    Complete this concept page
+The Toolkit modules are created to allow their functionality to be customized at runtime.  The customization is controlled using configuration data, *variables*, passed to a module when it is run.
 
-    -   Module input output variables
-    -   Module variable scope
-    -   Module using dependent module output variables
-    -   default values in Module definition
-    -   use of Important flag in Module definition
-    -   Relationship between variables defined in module.yaml and terraform variable files in module implementation directory
-    -   Variables specified in BOM
-    -   credentials.property file
-    -   providing variables when launching automation (variables.yaml)
-    -   understanding what variables are prompted when apply script is run
-    -   overriding default values specified in module or BOM
-    -   how the final Terraform values are generated / used when Terraform apply is run
+Ultimately each module will run Terraform to perform its automation tasks, so all the configuration data is made available using [standard Terraform input variables](https://www.terraform.io/language/values/variables#using-input-variable-values){target=_blank}. Understanding how the underlying Terraform works can help when debugging an issue or of you want to create a new module, but a consumer should not need to touch any Terraform files nor understand how Terraform works to use the Toolkit to deploy a Bill of Materials.
+
+## Module defined variables
+
+When a module is create the developer defines the variables needed for the module to work (input) and also the data the module can expose to subsequent modules (output).
+
+### Input variables
+
+Input variables are defined in the **module.yaml** file in the root folder of the module implementation.  Each input variable is defined using multiple properties:
+
+-   **name** : the name of the variable
+-   **type** : the data type of the variable
+-   **description** : the description of what data the variable holds
+-   **optional** : if the variable must be provided or if it is optional
+-   **important** : a flag to mark the variable as important
+-   **default** : the default value for the variable
+-   **scope** : the scope of the variable (global or module)
+-   **moduleRef** : a reference to a dependent module output variable to bind to this variable.
+
+At deploy times all non-optional variables must have a value.  The default value will be used if provided.  If there is no default value and the variable isn't marked as optional then a value will need to be provided at deploy time.
+
+The important flag is used to indicate variables that are key for the module functionality and will need to be verified by the end user at deploy time rather than just accept any default value.
+
+The scope of a variable can be either **global** or **module**.  When a variable has module scope it is referred to using a combination of the module name followed by the variable name - `<module name>-<variable name>`.  
+
+E.g. If I have a module called **gitops-repo** and within the module there is an input variable called **project**:
+
+-   with no scope defined or module scope specified the variable is referred to as **gitops-repo-project**
+-   with global scope specified the variable is referred to as **project**
+
+A Bill of Material (BOM) can **alias** a module input variable to rename it and/or change the scope.  
+
+E.g. If multiple modules in a BOM all have a *namespace* input variable and the BOM requires them all to be set to the same namespace.  In the BOM the **namespace** variable for each module can be aliased to be a global scope variable called **deploy_namespace**.  At deploy time the user is only required to provide a value for the single global variable **deploy_namespace** and all modules will assign that value to their **namespace** variable.
+
+!!! Todo
+    Add a link to the task showing where module variables are aliased
+
+The other scenario when a variable is aliased is when a variable will hold a secret which the user may provide as an environment variable.  Environment variable names containing the dash or minus (`-`) character can cause issues in Linux so is best avoided.  A variable **alias** can be used to rename a variable to use underscore characters (`_`) instead of the dashes.
+
+!!! Note
+    In a module implementation the input variables are also defined in the terraform file **variables.tf**.  This is where each variable is given a type and optionally properties, such as **sensitive** for variable containing a secret that shouldn't be displayed in output.
+
+### Output variables
+
+A module's output variables are defined in the Terraform **output.tf** file.  They are not defined in the module.yaml file. 
+
+If a module specifies another module as a dependency, then they can access the output variables of the dependent module
+
+## Providing Variables for a deployment
+
+There are a number of ways the configuration data can be provided to a module:
+
+-   default values in the module definition
+-   default values in the Bill of Materials
+-   taking output from previously run modules
+-   environment variables
+-   variables.yaml file
+-   command line prompts at deploy time
+
+The variables are processed from top to bottom in the above list with the last set value being used for any property.  E.g. If a value is provided as an environment variable and in the variables.yaml file, then the value from the variables.yaml file will be used.
+
+When deploying a bill of materials using the scripts generated by the Toolkit, environment variables can be specified in a file called credentials.properties.  The variables defined in this will be be automatically added to the environment.
+
+The Toolkit will generate the required Terraform variable files automatically, there should be no need to touch Terraform files when deploying a Bill of Materials.
+
+Any configuration data required by any module in the Bill of Materials that is not provided as:
+
+-   a default value in the Module definition
+-   a default value in the Bill of Material definition
+-   a mapped output from a dependant module
+-   an environment variable
+-   in the variables.yaml file
+
+will need to be provided on the command line when deploying.
+
+### Where is the best place to set a value?
+
+One of the principles of the Toolkit is to make consumability as easy as possible, so where possible sensible default values should be provided.  The module creator should set default values for the module, where they make sense.
+
+When creating a Bill of Material there may be values that can be set, or it may be appropriate to set a collection of configuration properties to a common value or configuration variable that the user will need to input. 
+
+E.g. if you needed to deploy a number of services to the same namespace.  You could alias the variables to a common variable, so the user only needs to set a single configuration property for namespace that all the modules will use rather than making the user provide the same namespace value multiple times.
+
+You don't want to set default values that would restrict the Bill of Material to a single instance.  The Bill of Materials should be a template that cen be used to deployed multiple environments.  Set default values for properties that you want to be common across all the deployed environments in the Bill of Materials.
+
+Properties that are unique to a specific environment should be set in the variables.yaml file or the credentials.property (*environment variables*) files.  You will also need to add any module variables with the important flag set as these need to be explicitly set or you will be prompted to confirm the values at deploy time.
+
+Any property that contains sensitive data, such as a password, token or other secret, should be placed in environment variables (credentials.properties) and all other property values should be placed in variables.yaml.
+
+!!! Warning
+    Environment variables should not contain the `-` character, so be sure to alias any variable names to use `_` instead
+
+!!! Todo
+    Add links to reference pages for BOM and Module + links to the appropriate tasks and tutorials for concepts covered on this page

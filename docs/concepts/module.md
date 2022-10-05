@@ -8,7 +8,9 @@ Breaking down complex environment setup steps into small modules, allows better 
 
 A module should follow the [**Separation of Concerns** design principle](https://en.wikipedia.org/wiki/Separation_of_concerns){target=_blank}, where each module is well defined and addresses a single *concern* or task without overlapping with the functionality of other modules.
 
-The automation used in the toolkit is based around [Terraform](https://www.terraform.io){target=_blank}, but the module metadata and tooling provided by the Toolkit ensures that the end user of the Toolkit does not need to know how to use Terraform and does not get exposed to the underlying Terraform automation.
+A [Bill of Materials](./bom.md) is used to combine the automation provided by Toolkit modules to create a desired environment. *The modules are the building blocks and the Bill of Materials are the instructions on how to combine the building blocks to create the desired outcome*
+
+The automation used in the toolkit is based on [Terraform](https://www.terraform.io){target=_blank}, but the module metadata and tooling provided by the Toolkit ensures that the end user of the Toolkit does not need to know how to use Terraform and does not get exposed to the underlying Terraform automation.
 
 There are currently 2 flavours of Toolkit module:
 
@@ -67,3 +69,6 @@ However, there may be circumstances where modules may need to stay private, so a
     Add link to the instructions for adding new module to Toolkit catalog in section above
 
     -   Does the builder UI allow multiple catalogues to be used?
+
+!!! Todo
+    Add links to reference pages for BOM and Module + links to the appropriate tasks and tutorials for concepts covered on this page
