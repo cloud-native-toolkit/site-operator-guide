@@ -10,7 +10,7 @@ The ```curl``` utility is used in some of the instructions in this tutorial.  Mo
 
 ## Installing the environment
 
-Select which environment you want to work with.  There is a discussion about these options in the [Getting Started](../getting-started/setup.md) section.
+Select which environment you want to work with.  There is a discussion about these options in the [Getting Started](../../getting-started/setup/) section.
 
 === "Linux"
 

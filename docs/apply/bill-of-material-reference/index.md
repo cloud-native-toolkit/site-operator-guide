@@ -1,7 +1,7 @@
 # Bill of Material reference
 
 !!! Warning
-    This page has been [relocated](../../reference/bom.md)
+    This page has been [relocated](../../reference/bom/)
 
 The Bill Of Materials (BOM) yaml has been modeled after a Kubernetes Custom Resource Definition. It is used to define the modules from the module catalog that should be included in the generated terraform template. As appropriate the Bill of Materials can also be used to define the relationships between the modules and the default variables that should be supplied to the modules for the architecture.
 

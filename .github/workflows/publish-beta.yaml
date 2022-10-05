@@ -11,7 +11,7 @@ jobs:
 
     env:
       NODE_VERSION: 12.x
-      TITLE: TechZone Automation
+      TITLE: TechZone Accelerator Toolkit
       ANALYTICS_ID: ""
 
     steps:

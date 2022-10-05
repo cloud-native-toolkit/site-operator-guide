@@ -80,4 +80,4 @@ Colima is an open source container engine for Intel or Arm based Mac systems.  I
 
 ## Setup instructions
 
-Instructions for setting up your chosen container or VM environment are covered in the first [tutorial](../tutorials/1-setup.md)
+Instructions for setting up your chosen container or VM environment are covered in the first [tutorial](../../tutorials/1-setup/)
