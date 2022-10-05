@@ -70,7 +70,7 @@ nav:
     - Toolkit Concepts:
       - Module: concepts/module.md
       - Bill of Materials: concepts/bom.md
-      - Configuration values: concepts/variables.md
+      - Configuration data: concepts/variables.md
   - Tasks:
     - Overview: tasks/overview.md
   - Tutorials:
