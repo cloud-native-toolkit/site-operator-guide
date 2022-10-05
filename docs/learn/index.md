@@ -1,7 +1,7 @@
 # Learn
 
 !!! Warning
-    This content will move to the [Tutorial section](../tutorials/overview.md)
+    This content will move to the [Tutorial section](../tutorials/)
 
 Learn how to use the Toolkit to provision and customize cloud resources, be it infrastructure or software, across a number of hosting environments.
 
