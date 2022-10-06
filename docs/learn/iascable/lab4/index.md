@@ -12,7 +12,7 @@ The `custom module`  will be deployed on a Red Hat OpenShift cluster on IBM Clou
 
 * This repository does `inspect` the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops).
 
-* The repository shows how to `create a custom module` for [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/) `step-by-step` using the [ubi-helm example](https://github.com/thomassuedbroecker/ubi-helm) from the Argo CD GitHub repository.
+* The repository shows how to `create a custom module` for [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/) `step-by-step` using the [ubi-helm example](https://github.com/ibm/ubi-helm) from the Argo CD GitHub repository.
 
 * The repository shows how to use a `custom module` in a [`BOM`(Bill of material)](https://github.com/cloud-native-toolkit/iascable#bom-spec)
 
@@ -145,7 +145,7 @@ In that section we will modify files in our newly created repository. These are 
   }
   ```
 
-  These are the values we need to insert for our terraform-gitops-ubi application as variables for the helm-chart. You find the variables in the Argo CD github project for the ubi-helm [values.yaml](https://github.com/thomassuedbroecker/ubi-helm/blob/main/charts/ubi-helm/values.yaml)
+  These are the values we need to insert for our terraform-gitops-ubi application as variables for the helm-chart. You find the variables in the Argo CD github project for the ubi-helm [values.yaml](https://github.com/ibm/ubi-helm/blob/main/charts/ubi-helm/values.yaml)
 
   Now replace the `// create entry` with the needed values.
 
@@ -264,7 +264,7 @@ That will be the resulting folder structure for the `terraform-gitops-ubi module
 ```
 
 
-#### Step 2: Copy in newly create folder structure the content from the repository for the `ubi-helm` chart [https://github.com/thomassuedbroecker/ubi-helm/tree/main/charts/ubi-helm](https://github.com/thomassuedbroecker/ubi-helm/tree/main/charts/ubi-helm)
+#### Step 2: Copy in newly create folder structure the content from the repository for the `ubi-helm` chart [https://github.com/ibm/ubi-helm/tree/main/charts/ubi-helm](https://github.com/ibm/ubi-helm/tree/main/charts/ubi-helm)
 
 #### Step 3: Validate the `helm chart` with following commands:
 
@@ -717,7 +717,7 @@ git clone https://github.com/Vishal-Ramani/UBI-helm-module-example.git
 cd example
 ```
 
-#### Step 2: Verify the [`ibm-vpc-roks-argocd-ubi.yaml`](https://github.com/thomassuedbroecker/gitops-create-software-everywhere-module/blob/main/example/ibm-vpc-roks-argocd-ubi.yaml) `BOM` file
+#### Step 2: Verify the [`ibm-vpc-roks-argocd-ubi.yaml`](https://github.com/ibm/gitops-create-software-everywhere-module/blob/main/example/ibm-vpc-roks-argocd-ubi.yaml) `BOM` file
 
 This is the simplified target architecture what our  `BOM` will create as terraform code for initial setup.
 
@@ -1060,9 +1060,9 @@ Follow the steps in the shown in the `gif`.
 
 We see that in our GitHub account new repository was created from the [GitOps bootstrap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap) and the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module to figure `Argo CD` for by using the `app-of-apps` concept with a single GitHub repository to manage all `Argo CD application configuration` and `helm configurations to deploy applications` in the GitOps context.
 
-> Reminder the boot strap configuration is shown in the following image for details visit the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
+> Reminder the boot strap configuration is shown in the following image for details visit the [GitOps Repository Structure](https://operate.cloudnativetoolkit.dev/reference/gitops-structure/) module.
 
-![](https://github.com/cloud-native-toolkit/terraform-tools-gitops/blob/main/template/docs/gitops-structure-overview.png?raw=true)
+![](https://operate.cloudnativetoolkit.dev/images/gitops-structure-overview.png)
 
 The new GitHub repository is called `iascable-gitops-ubi` in our case.
 
