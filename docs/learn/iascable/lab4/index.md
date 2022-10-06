@@ -2,30 +2,41 @@
 
 ## 1. Objective
 
-The objective is to understand how to build and use a custom module for the [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/).
+The objective is to understand how to build and use a custom module for the [`TechZone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/).
 
 Therefor a `custom module` will be created in GitOps scenario to deploy a helm-chart for an example application.
 
 The `custom module`  will be deployed on a Red Hat OpenShift cluster on IBM Cloud with Argo CD configured for GitOps.
 
-## 2. What does the repository do?
+## 2. What do we cover in that lab 4?
 
-* This repository does `inspect` the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops).
+These are the major topics:
 
-* The repository shows how to `create a custom module` for [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/) `step-by-step` using the [ubi-helm example](https://github.com/ibm/ubi-helm) from the Argo CD GitHub repository.
+* We`inspect` the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops).
 
-* The repository shows how to use a `custom module` in a [`BOM`(Bill of material)](https://github.com/cloud-native-toolkit/iascable#bom-spec)
+* We `create a custom module` for [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/) `step-by-step` using the [ubi-helm example](https://github.com/ibm/ubi-helm) from the Argo CD GitHub repository.
 
-* The repository shows how to create and use a `custom catalog` for a `custom module`
+* We will see how to use a `custom module` in a [`BOM`(Bill of material)](https://github.com/cloud-native-toolkit/iascable#bom-spec)
 
-* The repository shows and inspects usage of a `custom module`  
+* We will see how to create and use a `custom catalog` for a `custom module`
 
-### 2.1 Understand the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops)
+* We will inspects the usage of a `custom module` 
+
+That are the following sections:
+
+3. Understand the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops)
+4. Use the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) to create a module to deploy the terraform-gitops-ubi example
+5. Implement the new `terraform-gitops-ubi` **module** 
+6. Create an own **catalog**
+7. Create Terraform code with `iascable` and create the IBM Cloud resources with Terraform
+8. Verify the created Argo CD configuration on GitHub
+
+## 3. Understand the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops)
 
 The [`template-terraform-gitops`](https://github.com/cloud-native-toolkit/template-terraform-gitops) is a part of the `How to` instructions of the [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/). 
 The module covers the [GitOps topic](https://modules.cloudnativetoolkit.dev/#/how-to/gitops).
 
-## 3. Use the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) to create a module to deploy the terraform-gitops-ubi example
+## 4. Use the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) to create a module to deploy the terraform-gitops-ubi example
 
 These are the main tasks:
 
@@ -38,9 +49,9 @@ We will use later two catalogs and one `BOM` (Bill of material). here is a simpl
 
 ![](../../../images/develop-own-module-11.png)
 
-## 3.1 Prepare the environment
+## 4.1 Prepare the environment
 
-### 3.1.1 Create a new GitHub repository based on the `gitops template`
+### 4.1.1 Create a new GitHub repository based on the `gitops template`
 
 We clone the [`gitops template` repository](https://github.com/cloud-native-toolkit/template-terraform-gitops) to our local computer and we going to create our [`terraform-gitops-ubi`](https://github.com/Vishal-Ramani/terraform-gitops-ubi) repository.
 
@@ -74,7 +85,7 @@ Then you should have following folder structure on on computer:
 └── version.tf
 ```
 
-### 3.1.2 Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
+### 4.1.2 Install [`iascable`](https://github.com/cloud-native-toolkit/iascable)
 
 We install  [`iascable`](https://github.com/cloud-native-toolkit/iascable) to ensure you use the latest version.
 
@@ -91,7 +102,7 @@ iascable --version
 2.17.4
 ```
 
-### 3.1.2 Install a [Multipass](https://multipass.run/) 
+### 4.1.2 Install a [Multipass](https://multipass.run/) 
 
 We will follow the instructions for [Multipass](https://github.com/cloud-native-toolkit/automation-solutions/blob/main/common-files/RUNTIMES.md#multipass). The following steps are an extractions of the [cloud-native-toolkit documentation](https://github.com/cloud-native-toolkit/automation-solutions/blob/main/common-files/RUNTIMES.md#multipas) with small changes when needed.
 
@@ -112,7 +123,7 @@ curl https://raw.githubusercontent.com/cloud-native-toolkit/sre-utilities/main/c
 multipass launch --name cli-tools --cloud-init ./cli-tools.yaml
 ```
 
-## 4. Implement the new `terraform-gitops-ubi` module 
+## 5. Implement the new `terraform-gitops-ubi` module 
 
 In that section we will modify files in our newly created repository. These are the relevant files for our new module.
 
@@ -123,7 +134,7 @@ In that section we will modify files in our newly created repository. These are 
 * Configure the `helm chart` copy automation in the `scripts/create-yaml.sh` file
 * Create for [`terraform-gitops-ubi` GitHub repository `tags` and `releases`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/tags)
 
-### 4.1 The [`main.tf`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/main.tf) file
+### 5.1 The [`main.tf`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/main.tf) file
 
 #### Step 1:  Do some modifications in the `main.tf` file
 
@@ -185,7 +196,7 @@ locals {
 }
 ```
 
-### 4.2 The [`variable.tf`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/variables.tf) file
+### 5.2 The [`variable.tf`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/variables.tf) file
 
 #### Step 1: Add some variables in the [`variable.tf`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/variables.tf) file
 
@@ -201,7 +212,7 @@ variable "command" {
 }
 ```
 
-### 4.3 The [`helm chart`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/tree/main/chart/ubi-helm) content
+### 5.3 The [`helm chart`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/tree/main/chart/ubi-helm) content
 
 #### Step 1: Create a new folder structure for the `terraform-gitops-ubi helm chart`
 
@@ -362,7 +373,7 @@ spec:
 helm package .
 ```
 
-### 4.4 The [`module.yaml`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/module.yaml) file
+### 5.4 The [`module.yaml`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/blob/main/module.yaml) file
 
 #### Step 1: Edited the `module.yaml` 
 
@@ -413,7 +424,7 @@ versions:
           output: sealed_secrets_cert
 ```
 
-### 4.5 Configure the `helm chart` copy automation in the `scripts/create-yaml.sh` file
+### 5.5 Configure the `helm chart` copy automation in the `scripts/create-yaml.sh` file
 
 #### Step 1: Configure the `scripts/create-yaml.sh` in `terraform-gitops-ubi` repository 
 
@@ -441,7 +452,7 @@ echo "Files in output path"
 ls -l "${DEST_DIR}"
 ```
 
-### 4.6 [`terraform-gitops-ubi`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/tags) GitHub repository `tags` and `releases` 
+### 5.6 [`terraform-gitops-ubi`](https://github.com/Vishal-Ramani/terraform-gitops-ubi/tags) GitHub repository `tags` and `releases` 
 
 The release tag represents the version number of our module. [`terraform-gitops-ubi`](https://github.com/Vishal-Ramani/terraform-gitops-ubi)
 
@@ -469,7 +480,7 @@ Example relevant extract from a `BOM` -> `version: v0.0.7`
 
 You can follow the step to create a GitHub tag is that [example blog post](https://suedbroecker.net/2022/05/09/how-to-create-a-github-tag-for-your-last-commit/) and then create a release.
 
-## 5. Create an own catalog
+## 6. Create an own catalog
 
 In that example we will not publish the our `terraform-gitops-ubi` module to the public catalog on [`Technology Zone Accelerator Toolkit`](https://modules.cloudnativetoolkit.dev/). 
 
@@ -485,11 +496,11 @@ The following diagram shows the simplified dependencies of `module`, `catalog` a
 ![](../../../images/develop-own-module-11.png)
 
 
-### 5.1 How to create `catalog.yaml` file?
+### 6.1 How to create `catalog.yaml` file?
 
   It is useful to take a look into [iascable documentation](https://github.com/cloud-native-toolkit/iascable) and the [build-catalog.sh automation](https://github.com/cloud-native-toolkit/software-everywhere/blob/main/.github/scripts/build-catalog.sh).
 
-### 5.2 How to combine various catalogs?
+### 6.2 How to combine various catalogs?
 
   You can combine more than one `catalog resources` and `BOM inputs` with the `iascable build` command.
 
@@ -503,7 +514,7 @@ The following diagram shows the simplified dependencies of `module`, `catalog` a
   * `BOM_INPUT` is the input file containing the Bill of Material definition. Multiple BOM files can be provided at the same time.
   * `OUTPUT_DIR` is the directory where the output terraform template will be generated.
 
-### 5.3 Inspect the structure of a `catalog.yaml`
+### 6.3 Inspect the structure of a `catalog.yaml`
 
   The structure of a catalog can be verified here
   [https://modules.cloudnativetoolkit.dev/index.yaml](https://modules.cloudnativetoolkit.dev/index.yaml)
@@ -550,13 +561,13 @@ The following diagram shows the simplified dependencies of `module`, `catalog` a
           scope: global
   ```
 
-### 5.4 Inspect the module section of the catalog file in more detail
+### 6.4 Inspect the module section of the catalog file in more detail
 
   We see that the `modules section` does contain following `cloudProvider`, `softwareProvider`, `id`, `group`, `displayName` and `type` which are not a part of the `module.yaml`. After these entries we insert content of the `module.yaml`.
 
   [Current `gitops` template](https://github.com/cloud-native-toolkit/template-terraform-gitops).
 
-### 5.5 Create a custom catalog
+### 6.5 Create a custom catalog
 
 #### Step 1: Create a `terraform-gitops-ubi-catalog.yml` and insert following content
 
@@ -708,7 +719,7 @@ categories:
                 description: The type of module where the module is deployed  
 ```
 
-### 5.6. `BOM` that we will use `terraform-gitops-ubi module`
+### 6.6. `BOM` that we will use `terraform-gitops-ubi module`
 
 #### Step 1: Clone the project with the example [`BOM`](https://github.com/Vishal-Ramani/UBI-helm-module-example.git/blob/main/example/ibm-vpc-roks-argocd-ubi.yaml) configuration 
 
@@ -836,7 +847,7 @@ spec:
           value: "echo 'helloworld'"
 ```
 
-## 6. Create terraform code and create the resources
+## 7. Create terraform code and create the resources
 
 Use [`iascable`](https://github.com/cloud-native-toolkit/iascable) to create the terraform code.
 
@@ -1056,7 +1067,7 @@ Follow the steps in the shown in the `gif`.
 
 ![](../../../images/develop-own-module-13.gif)
 
-## 7. Verify the created Argo CD configuration on GitHub
+## 8. Verify the created Argo CD configuration on GitHub
 
 We see that in our GitHub account new repository was created from the [GitOps bootstrap module](https://github.com/cloud-native-toolkit/terraform-util-gitops-bootstrap) and the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module to figure `Argo CD` for by using the `app-of-apps` concept with a single GitHub repository to manage all `Argo CD application configuration` and `helm configurations to deploy applications` in the GitOps context.
 
@@ -1083,7 +1094,7 @@ The following image shows the newly created GitHub `iascable-gitops-ubi` reposit
 For more details visit the template of the [terraform-tools-gitops](https://github.com/cloud-native-toolkit/terraform-tools-gitops/tree/main/template) module.
 
 
-### 7.1 Understand how the `ubi module content` was pasted into the new `iascable-gitops-ubi` repository
+### 8.1 Understand how the `ubi module content` was pasted into the new `iascable-gitops-ubi` repository
 
 Following the concept for the gitops bootstrap setup documented in the [template-terraform-gitops](https://github.com/cloud-native-toolkit/template-terraform-gitops) GitHub repository.
 
@@ -1096,7 +1107,7 @@ Let us inspect these two folders. The `gif` below shows some of the created file
 
 ![](../../../images/develop-own-module-05.gif)
 
-#### 7.1.1 `argocd` folder
+#### 8.1.1 `argocd` folder
 
 There were two `Argo CD application` configurations added into the `iascable-gitops-ubi` repository. 
 
@@ -1108,7 +1119,7 @@ Let's take a look a the created `Argo CD application configurations`
 
 We have two `Argo CD` application configurations:
 
-#### 7.1.1.1 ubi **Namespace** in `argocd.1-infrastructure.cluster.default.base.namespace-ubi-helm.yaml`
+#### 8.1.1.1 ubi **Namespace** in `argocd.1-infrastructure.cluster.default.base.namespace-ubi-helm.yaml`
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -1133,7 +1144,7 @@ spec:
   ignoreDifferences: []
 ```
 
-#### 7.1.1.2 UBI **application deployment** `argocd.3-applications.cluster.default.base.ubi-helm-ubi.yaml`
+#### 8.1.1.2 UBI **application deployment** `argocd.3-applications.cluster.default.base.ubi-helm-ubi.yaml`
 
 This is the Argo CD application configuration `ubi-helm-ubi-helm.yaml` file, which was created automatically by our module with the `igc gitops-module` command.
 
@@ -1164,11 +1175,11 @@ spec:
   ignoreDifferences: []
 ```
 
-#### 7.1.2 `payload` folder
+#### 8.1.2 `payload` folder
 
 That folder contains a `namespace` payload and the `helm-chart` payload. 
 
-#### 7.1.2.2 ubi **Namespace** in `payload.1-infrastructure.cluster.default.base`
+#### 8.1.2.2 ubi **Namespace** in `payload.1-infrastructure.cluster.default.base`
 
 In the folder `payload.1-infrastructure.cluster.default.base` we have an `ns.yaml` and `rbac.yaml`. 
 
@@ -1229,7 +1240,7 @@ subjects:
   name: system:serviceaccounts:openshift-gitops
 ```
 
-#### 7.1.1.2 ubi helm **application deployment** `payload.3-applications.cluster.default.base`
+#### 8.1.1.2 ubi helm **application deployment** `payload.3-applications.cluster.default.base`
 
 That folder contains the **ubi application** `helm chart configuration` to deploy the ubi application.
 
@@ -1248,4 +1259,5 @@ We defined the values content for the helm chart variables before in the `module
 The following gif shows the relation of the parameter configuration for the helm-chart
 
 ![](../../../images/develop-own-module-06.gif)
+
 
