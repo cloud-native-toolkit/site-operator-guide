@@ -1,20 +1,20 @@
-# Lab 1: Getting start with the basics
+# Lab 1: Getting started with the basics
 
-This is just a starting point to use `[IasCable](https://github.com/cloud-native-toolkit/iascable)`.
+As a starting point use `[IasCable](https://github.com/cloud-native-toolkit/iascable)`.
 
 ## 1. The `IasCable` framework
 
-Let us have first a look the basic components of the `IasCable` framework.
+Let us look at the basic components of the `IasCable` framework.
 
 ### [Bill of Material](../../../apply/bill-of-material-reference/) and [Modules](https://modules.cloudnativetoolkit.dev/)
 
-The IasCable uses a [`Bill of Material`](../../../apply/bill-of-material-reference/) and [`Modules`](https://modules.cloudnativetoolkit.dev/)(from the [Technology Zone Accelerator Toolkit project](https://github.com/cloud-native-toolkit/software-everywhere)), which you need to understand. These two parts are the heart of the framework we could say to realize the objective to  build an installable component infrastructure based on components from a catalog of available modules.
+The IasCable uses a [`Bill of Material`](../../../apply/bill-of-material-reference/) and [`Modules`](https://modules.cloudnativetoolkit.dev/)(from the [TechZone Accelerator Toolkit](https://github.com/cloud-native-toolkit/software-everywhere)), this is an important point to understand. Bill of Material (BOM) and Modules are the heart of the framework to realize the objective to  build an installable component infrastructure based on components from a catalog of available modules.
 
 > Please visit the linked resources for more details.
 
-Simplified we can say a `BOM` is specified by modules it uses, variables you can define and providers you can define. In addition you have the option to use variables and providers definitions related to a `BOM` specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.
+In a simplified way, we can say a `BOM` is specified by modules it uses, variables you can define and providers you can define. In addition you have the option to use variables and providers definitions related to a `BOM` specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.
 
-Simplified we can say a [BOM is specified](../../../apply/bill-of-material-reference/#bom-spec) by modules it uses. In addition you have the option to use variables and providers definitions related to a BOM specification. It is good to know that Modules can have dependencies to other modules, if this is the case the related modules will be included by the framework, as far as I understand.
+We can simply say a [BOM is specified](../../../apply/bill-of-material-reference/#bom-spec) by modules it uses. In addition you have the option to use variables and providers definitions related to a BOM specification. It is good to know that Modules can have dependencies to other modules, if this is the case, the related modules will be included by the framework, as far as I understand.
 
 Here is a simplified overview diagram of the dependencies:
 
@@ -54,7 +54,7 @@ That is the cloud environment we will use.
 
 ## 3. `Step-by-step` example setup
 
-This is a step by step example setup to create a `Virtual Private Cloud` with three `Subnets` on IBM Cloud.
+This is a step by step set up example to create a `Virtual Private Cloud` with three `Subnets` on IBM Cloud.
 
 * 1 x [`Virtual Private Cloud`](https://www.ibm.com/cloud/learn/vpc)
 * 3 x [`Subnets`](https://cloud.ibm.com/docs/subnets?topic=subnets-getting-started)
@@ -181,7 +181,7 @@ metadata:
 
 * `output/ibm-vpc/terraform` folder
 
-This is table contains the list of files in the terraform folder.
+This is the table which contains the list of files in the terraform folder.
 
 | Filename | Content |
 | --- | --- |
@@ -193,7 +193,7 @@ This is table contains the list of files in the terraform folder.
 
 * The `output/launch.sh` file
 
-That script downloads and starts a container on your local machine. The objective to ensure that the right environment is used for applying the Terraform configuration.
+That script downloads and starts a container on your local machine. The objective is to ensure that the right environment is used for applying the Terraform configuration.
 
 It attaches the local path to the container as a volume.
 
@@ -1150,4 +1150,4 @@ Destroy complete! Resources: 36 destroyed.
 
 ## 4. Summary
 
-The `IasCable` and the [`Modules`](https://modules.cloudnativetoolkit.dev/) (from the Technology Zone Accelerator Toolkit project) which are all from the Cloud Native Toolkit providing a good concept for a framework to provide reusable components to install and configure cloud infrastructure. This was just a getting started. There is more to learn.
+The `IasCable` and the [`Modules`](https://modules.cloudnativetoolkit.dev/) (from the TechZone Accelerator Toolkit) are all from the Cloud Native Toolkit providing a good concept for a framework. This helps to provide reusable components to install and configure cloud infrastructure. What you have learned so far is just helping you to get started, there is more to learn. 

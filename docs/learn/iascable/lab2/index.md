@@ -18,9 +18,9 @@ That is the cloud environment we will use.
 
 * [IBM Cloud](https://www.ibm.com/cloud)
 
-## 2. `Step-by-step` example setup
+## 2. `Step-by-step` setup example
 
-This is a step by step example setup to create a [`Virtual Private Cloud`](https://www.ibm.com/cloud/learn/vpc) and an [`IBM Cloud managed Red Hat OpenShift cluster`](https://www.ibm.com/cloud/openshift).
+This is a step by step setup to create a [`Virtual Private Cloud`](https://www.ibm.com/cloud/learn/vpc) and an [`IBM Cloud managed Red Hat OpenShift cluster`](https://www.ibm.com/cloud/openshift).
 
 * 1 x [`Virtual Private Cloud`](https://www.ibm.com/cloud/learn/vpc)
 * 3 x [`Subnets`](https://cloud.ibm.com/docs/subnets?topic=subnets-getting-started)
@@ -115,7 +115,7 @@ tree
 
 You can find details of the created files and folders also in [IasCable starting point GitHub project](https://github.com/thomassuedbroecker/iascable-starting-point) and that [blog post](https://suedbroecker.net/2022/07/06/get-started-with-an-installable-component-infrastructure-by-selecting-components-from-a-catalog-of-available-modules-with-iascable/).
 
-In the newly created `bom.yaml` file we find more detailed information about modules we are going to use.
+In the newly created `bom.yaml` file we can find more detailed information about modules we are going to use.
 
 ```yaml
 apiVersion: cloudnativetoolkit.dev/v1alpha1
