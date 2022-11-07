@@ -8,7 +8,7 @@
 
 .home-hero-image {
   height: 45vh;
-  background-image: url(images/dc2.jpeg);
+  background-image: url(overrides/cntk/assets/stylesheets/images/dc2.jpeg);
   background-position: center;
   background-size: cover;
 }

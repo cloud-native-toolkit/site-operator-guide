@@ -4,3 +4,4 @@ public/
 .cache/
 *.iml
 .DS_Store
+mkdocs.yml
