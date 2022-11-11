@@ -1,5 +1,6 @@
 FROM squidfunk/mkdocs-material:8.5.8
 
+ARG YQ_VERSION=v4.29.2
 ARG YQ_BINARY=yq_linux_amd64
 
 RUN apk add --no-cache --update nodejs npm
