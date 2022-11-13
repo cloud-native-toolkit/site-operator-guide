@@ -3,6 +3,7 @@ FROM docker.io/squidfunk/mkdocs-material:8.5.8 as builder
 ARG OVERLAY=techzone
 ARG YQ_VERSION=v4.29.2
 ARG YQ_BINARY=yq_linux_amd64
+ARG TITLE="TechZone Builder"
 
 RUN apk add --no-cache --update nodejs npm
 RUN wget https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY}.tar.gz -O - |\
