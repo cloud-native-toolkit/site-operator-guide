@@ -1,6 +1,6 @@
 ---
 template: home.html
-title: "TechZone Accelerator Toolkit: Operations"
+title: "TechZone Deployer: Operations"
 hide:
 - toc
 ---
